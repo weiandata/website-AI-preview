@@ -150,7 +150,7 @@ export function SkillDetail({ skill }: { skill: Skill }) {
               <p>{localize(skill.usage, locale)}</p>
             </section>
 
-            <section>
+            <section className="detail-workflow-section">
               <h2>{t("detail.workflow")}</h2>
               <ol className="workflow-steps">
                 {list(skill.workflow).map((step) => (
@@ -161,7 +161,7 @@ export function SkillDetail({ skill }: { skill: Skill }) {
               </ol>
             </section>
 
-            <section>
+            <section className="detail-changelog-section">
               <h2>{t("detail.changelog")}</h2>
               <div className="changelog-list">
                 {skill.changelog.map((entry) => (

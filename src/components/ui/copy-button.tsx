@@ -29,7 +29,13 @@ export function CopyButton({ value }: { value: string }) {
         : t("common.copy");
 
   return (
-    <Button variant="ghost" size="sm" onClick={copyValue} aria-live="polite">
+    <Button
+      variant="ghost"
+      size="sm"
+      className="copy-command-button"
+      onClick={copyValue}
+      aria-live="polite"
+    >
       {status === "copied" ? (
         <Check aria-hidden="true" size={15} strokeWidth={1.8} />
       ) : (

@@ -9,7 +9,7 @@ import { localize } from "@/lib/i18n";
 
 export function FeaturedSkills() {
   const { locale, t } = useLanguage();
-  const featured = skills.filter((skill) => skill.featured).slice(0, 3);
+  const featured = skills.filter((skill) => skill.featured).slice(0, 6);
 
   return (
     <section className="featured-section container-shell">

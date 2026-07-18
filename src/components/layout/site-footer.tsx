@@ -1,35 +1,24 @@
 "use client";
 
 import Link from "next/link";
-import { GitFork } from "lucide-react";
 import Image from "next/image";
 import { useLanguage } from "@/components/language/language-provider";
-import { skills } from "@/data/skills";
 import { localize } from "@/lib/i18n";
 import { siteConfig } from "@/lib/site-config";
 
 export function SiteFooter() {
   const { locale, t } = useLanguage();
-  const featuredLinks = skills
-    .filter((skill) => skill.featured)
-    .slice(0, 2)
-    .map((skill) => [
-      locale === "zh" ? skill.nameZh ?? skill.name : skill.name,
-      `/skills/${skill.slug}`,
-    ]);
   const columns = [
     {
       title: t("footer.explore"),
       links: [
         [t("nav.skills"), "/skills"],
         [t("home.recentTitle"), "/skills?period=30d&sort=added"],
-        ...featuredLinks,
       ],
     },
     {
       title: t("footer.resources"),
       links: [
-        ["GitHub", "https://github.com/topics/ai-agents"],
         [t("detail.usage"), "/about#usage"],
         [localize({ zh: "开源归属", en: "Open-source attribution" }, locale), "/about#open-source"],
       ],
@@ -90,14 +79,6 @@ export function SiteFooter() {
             : "© 2026 WEIAN DATA. All rights reserved."}
         </p>
         <p>{t("footer.notice")}</p>
-        <a
-          href="https://github.com/topics/ai-agents"
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="GitHub"
-        >
-          <GitFork aria-hidden="true" size={18} strokeWidth={1.8} />
-        </a>
       </div>
     </footer>
   );

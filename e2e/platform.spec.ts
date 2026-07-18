@@ -21,6 +21,12 @@ test("home discovery supports bilingual search and category exploration", async 
     "/skills",
   );
   await expect(page.locator(".header-actions .github-button")).toHaveCount(0);
+  await expect(page.locator(".nav-skills-group > a")).toHaveAttribute("href", "/skills");
+  if ((page.viewportSize()?.width ?? 0) > 980) {
+    await page.locator('.nav-dropdown summary[aria-label="显示 Skill 分类"]').click();
+    await expect(page.locator(".nav-dropdown .dropdown-panel")).toBeVisible();
+  }
+  await expect(page.locator(".featured-skill")).toHaveCount(6);
   await page.getByRole("link", { name: "搜索" }).click();
   await expect(page).toHaveURL(/#home-search$/);
   await expect(page.locator("#home-search")).toBeInViewport();
@@ -30,6 +36,8 @@ test("home discovery supports bilingual search and category exploration", async 
     "/skills?period=30d&sort=added",
   );
   await page.getByRole("combobox", { name: "搜索 Skill" }).focus();
+  await expect(page.locator(".hero-search kbd")).toHaveCount(0);
+  await expect(page.locator(".hero-search > button")).toHaveCount(0);
   const popular = page.locator(".popular-search-term").first();
   await expect(popular).toHaveCSS("color", "rgb(12, 68, 124)");
   await expect(popular).not.toHaveCSS("background-color", "rgb(0, 0, 0)");
@@ -55,6 +63,8 @@ test("home discovery supports bilingual search and category exploration", async 
   }
   await expect(page.getByRole("link", { name: "联系我们" })).toBeVisible();
   await expect(page.getByRole("link", { name: "隐私政策" })).toBeVisible();
+  await expect(page.locator(".footer-column").first().getByRole("link")).toHaveCount(2);
+  await expect(page.getByRole("link", { name: "GitHub", exact: true })).toHaveCount(0);
   await expect(page.getByText("© 2026 WEIAN DATA。保留所有权利。"))
     .toBeVisible();
   await page.goto("/about#usage");
@@ -72,6 +82,7 @@ test("skill library keeps filters shareable and supports every result state", as
   );
 
   await expect(page.getByRole("heading", { name: "开源 Skill 库" })).toBeVisible();
+  await expect(page.locator(".header-actions .github-button")).toHaveCount(0);
   await expect(page.locator(".sort-control select")).not.toHaveCSS(
     "background-color",
     "rgb(0, 0, 0)",
@@ -97,6 +108,8 @@ test("skill library keeps filters shareable and supports every result state", as
   await page.getByRole("button", { name: "清除筛选" }).click();
   await page.getByRole("button", { name: "列表视图" }).click();
   await expect(page.locator(".skill-list-row")).toHaveCount(6);
+  await expect(page.locator(".skill-list-row h3").first()).toBeVisible();
+  await expect(page.locator(".skill-list-eyebrow").first()).toBeVisible();
   await page.getByRole("button", { name: "加载更多" }).click();
   await expect(page.locator(".skill-list-row")).toHaveCount(8);
 
@@ -133,6 +146,22 @@ test("skill detail presents guidance, provenance, safe actions, and related Skil
 
   await expect(page.getByRole("heading", { name: "相关 Skills" })).toBeVisible();
   await expect(page.locator(".related-skills .skill-card")).toHaveCount(3);
+  await expect(page.locator(".copy-command-button").first()).not.toHaveCSS(
+    "background-color",
+    "rgb(0, 0, 0)",
+  );
+  await expect(page.locator(".workflow-steps")).toHaveCSS(
+    "background-color",
+    "rgb(248, 249, 248)",
+  );
+  expect(
+    await page.locator(".changelog-list article").first().evaluate((element) =>
+      Number.parseFloat(getComputedStyle(element).paddingLeft),
+    ),
+  ).toBeGreaterThanOrEqual(20);
+  for (const tag of await page.locator(".sidebar-tags div span").all()) {
+    await expect(tag).not.toHaveCSS("background-color", "rgb(25, 30, 41)");
+  }
 
   for (const id of ["overview", "features", "installation", "usage"]) {
     await page.locator(`.detail-on-page-nav a[href="#${id}"]`).click();
@@ -195,6 +224,16 @@ test("supported navigation state focuses search and filters featured Skills", as
     "border-color",
     "rgb(46, 134, 222)",
   );
+});
+
+test("about page stays compact and omits global GitHub actions", async ({ page }) => {
+  await page.goto("/about");
+
+  await expect(page.locator(".header-actions .github-button")).toHaveCount(0);
+  await expect(page.locator(".about-compact-overview")).toBeVisible();
+  await expect(page.locator(".about-compact-usage")).toBeVisible();
+  await expect(page.locator(".about-compact-bottom")).toBeVisible();
+  expect(await page.locator(".about-principle-card").count()).toBe(4);
 });
 
 test("public Skill submission is not a route", async ({ page }) => {

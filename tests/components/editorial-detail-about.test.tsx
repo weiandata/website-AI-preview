@@ -43,9 +43,11 @@ describe("editorial detail and about pages", () => {
     ).toBeInTheDocument();
     expect(container.querySelector(".about-editorial-hero")).toBeInTheDocument();
     expect(container.querySelector(".about-content-grid")).toBeInTheDocument();
-    expect(container.querySelectorAll(".about-section-heading")).toHaveLength(5);
+    expect(container.querySelector(".about-compact-overview")).toBeInTheDocument();
+    expect(container.querySelector(".about-compact-usage")).toBeInTheDocument();
+    expect(container.querySelector(".about-compact-bottom")).toBeInTheDocument();
     expect(container.querySelectorAll(".about-principle-card")).toHaveLength(4);
-    expect(container.querySelector(".about-legal-grid")).toBeInTheDocument();
+    expect(container.querySelector(".about-legal-compact")).toBeInTheDocument();
     expect(container.querySelectorAll(".about-usage-step")).toHaveLength(3);
     expect(container.querySelector(".about-mark")).not.toBeInTheDocument();
     expect(screen.queryByText(/欢迎推荐项目/)).not.toBeInTheDocument();

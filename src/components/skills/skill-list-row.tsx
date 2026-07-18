@@ -1,14 +1,13 @@
 "use client";
 
-import { BadgeCheck } from "lucide-react";
+import { ArrowUpRight, BadgeCheck, Star } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/components/language/language-provider";
 import { Badge } from "@/components/ui/badge";
 import { categories } from "@/data/categories";
 import { localize } from "@/lib/i18n";
-import { formatDate } from "@/lib/utils";
+import { formatCompactNumber, formatDate } from "@/lib/utils";
 import type { Skill } from "@/types/content";
-import { SkillIcon } from "./skill-icon";
 
 export function SkillListRow({ skill }: { skill: Skill }) {
   const { locale, t } = useLanguage();
@@ -22,11 +21,12 @@ export function SkillListRow({ skill }: { skill: Skill }) {
         href={`/skills/${skill.slug}`}
         aria-label={`${name} - ${t("common.viewDetails")}`}
       >
-        <span className="skill-icon liquid-glass">
-          <SkillIcon icon={skill.icon} />
-        </span>
         <div className="skill-list-main">
-          <div>
+          <div className="skill-list-eyebrow">
+            <span>{localize(category.name, locale)}</span>
+            <span>v{skill.version}</span>
+          </div>
+          <div className="skill-list-title">
             <h3>{name}</h3>
             {skill.verified ? (
               <Badge tone="teal">
@@ -36,9 +36,23 @@ export function SkillListRow({ skill }: { skill: Skill }) {
             ) : null}
           </div>
           <p>{localize(skill.description, locale)}</p>
-          <span className="skill-list-meta">
-            {localize(category.name, locale)} / {skill.license} / {formatDate(skill.updatedAt, locale)}
+          <div className="skill-list-footer">
+            <div className="skill-list-platforms">
+              {skill.platforms.slice(0, 3).map((platform) => (
+                <span key={platform}>{platform}</span>
+              ))}
+            </div>
+            <span className="skill-list-meta">
+              {skill.license} · {formatDate(skill.updatedAt, locale)}
+            </span>
+          </div>
+        </div>
+        <div className="skill-list-aside" aria-hidden="true">
+          <span>
+            <Star size={14} strokeWidth={1.8} />
+            {formatCompactNumber(skill.stars, locale)}
           </span>
+          <ArrowUpRight size={19} strokeWidth={1.8} />
         </div>
       </Link>
     </article>

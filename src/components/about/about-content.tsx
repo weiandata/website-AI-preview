@@ -63,84 +63,70 @@ export function AboutContent() {
           <p>{t("about.description")}</p>
         </section>
 
-        <section className="about-section about-mission">
-          <div className="about-section-heading">
-            <h2>{locale === "zh" ? "网站使命" : "Our mission"}</h2>
-            <p>
+        <section className="about-compact-overview">
+          <article className="about-mission-compact">
+            <span className="section-kicker">
+              {locale === "zh" ? "网站使命" : "Our mission"}
+            </span>
+            <h2>
               {locale === "zh"
-                ? "让寻找、理解和使用开源 AI 工具变得更直接。"
+                ? "让开源 AI 工具更容易被找到、理解和使用。"
                 : "Make open-source AI tools easier to find, understand, and use."}
-            </p>
-          </div>
-          <p className="about-statement">
-            {locale === "zh"
-              ? "我们持续整理高质量开源资源，强调透明来源、可复核说明与真实工作价值，让使用者能够更快做出可靠判断。"
-              : "We continuously organize high-quality open-source resources with transparent sources, reviewable guidance, and real workflow value so people can make reliable decisions faster."}
-          </p>
-        </section>
-
-        <section className="about-section about-principles">
-          <div className="about-section-heading">
-            <h2>{locale === "zh" ? "收录原则" : "Selection principles"}</h2>
+            </h2>
             <p>
               {locale === "zh"
-                ? "每个项目都应清楚说明来源、用途和使用责任。"
-                : "Every project should clearly explain its source, purpose, and user responsibilities."}
+                ? "我们整理具有真实工作价值的项目，并清楚呈现来源、许可证、安装条件与使用边界。"
+                : "We curate projects with real workflow value and clearly present their source, license, installation requirements, and usage boundaries."}
             </p>
-          </div>
-          <div className="about-principles-grid">
+          </article>
+          <div className="about-principles-compact">
             {principles.map((principle) => {
               const [title, description] = principle[locale];
               const Icon = principle.icon;
               return (
                 <article className="about-principle-card" key={title}>
-                  <Icon aria-hidden="true" size={21} strokeWidth={1.7} />
-                  <h3>{title}</h3>
-                  <p>{description}</p>
+                  <Icon aria-hidden="true" size={18} strokeWidth={1.7} />
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{description}</p>
+                  </div>
                 </article>
               );
             })}
           </div>
         </section>
 
-        <section className="about-section about-usage" id="usage">
-          <div className="about-section-heading">
-            <h2>{locale === "zh" ? "使用说明" : "Using the library"}</h2>
-            <p>
-              {locale === "zh"
-                ? "从来源核验开始，把风险判断放在安装之前。"
-                : "Start with source verification and assess risk before installation."}
-            </p>
+        <section className="about-compact-usage" id="usage">
+          <div>
+            <span className="section-kicker">
+              {locale === "zh" ? "使用说明" : "Using the library"}
+            </span>
+            <h2>{locale === "zh" ? "安装之前，先做三项核对。" : "Three checks before installation."}</h2>
           </div>
           <div className="about-usage-steps">
-            {usageSteps.map((step) => {
+            {usageSteps.map((step, index) => {
               const [title, description] = step[locale];
               return (
                 <article className="about-usage-step" key={title}>
-                  <h3>{title}</h3>
-                  <p>{description}</p>
+                  <span>0{index + 1}</span>
+                  <div>
+                    <h3>{title}</h3>
+                    <p>{description}</p>
+                  </div>
                 </article>
               );
             })}
           </div>
         </section>
 
-        <section className="about-section about-legal-section">
-          <div className="about-section-heading">
-            <h2>{locale === "zh" ? "责任与归属" : "Responsibility and attribution"}</h2>
-            <p>
-              {locale === "zh"
-                ? "目录负责整理信息，项目权利与使用责任仍归各自主体。"
-                : "The directory organizes information while project rights and usage responsibilities remain with their respective parties."}
-            </p>
-          </div>
-          <div className="about-legal-grid">
+        <section className="about-compact-bottom">
+          <div className="about-legal-compact">
             <article id="open-source">
               <h3>{locale === "zh" ? "开源归属" : "Open-source attribution"}</h3>
               <p>
                 {locale === "zh"
-                  ? "WEIAN DATA 负责整理和索引信息，并不代表我们维护所有外部项目。项目版权、商标与许可证归原作者或相关权利人所有。"
-                  : "WEIAN DATA curates and indexes information but does not maintain every external project. Copyright, trademarks, and licenses remain with their respective authors and rights holders."}
+                  ? "WEIAN DATA 负责整理与索引信息；项目版权、商标和许可证归原作者或相关权利人所有。"
+                  : "WEIAN DATA curates and indexes information; project copyrights, trademarks, and licenses remain with their respective rights holders."}
               </p>
             </article>
             <article id="privacy">
@@ -152,21 +138,20 @@ export function AboutContent() {
               </p>
             </article>
           </div>
-        </section>
-
-        <section className="about-contact-panel">
-          <Mail aria-hidden="true" size={23} strokeWidth={1.7} />
-          <div className="about-section-heading">
-            <h2>{locale === "zh" ? "联系我们" : "Contact"}</h2>
-            <p>
-              {locale === "zh"
-                ? "如需报告失效链接或提出目录改进建议，欢迎通过邮件与我们联系。"
-                : "Contact us by email to report broken links or suggest improvements to the directory."}
-            </p>
-          </div>
-          <ButtonLink href={`mailto:${siteConfig.contactEmail}`} variant="secondary" external>
-            {siteConfig.contactEmail}
-          </ButtonLink>
+          <aside className="about-contact-panel">
+            <Mail aria-hidden="true" size={20} strokeWidth={1.7} />
+            <div>
+              <h2>{locale === "zh" ? "联系我们" : "Contact"}</h2>
+              <p>
+                {locale === "zh"
+                  ? "如需报告失效链接或提出目录改进建议，欢迎通过邮件与我们联系。"
+                  : "Contact us by email to report broken links or suggest improvements to the directory."}
+              </p>
+            </div>
+            <ButtonLink href={`mailto:${siteConfig.contactEmail}`} variant="secondary" external>
+              {locale === "zh" ? "发送邮件" : "Email us"}
+            </ButtonLink>
+          </aside>
         </section>
       </div>
     </main>

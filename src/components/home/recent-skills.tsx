@@ -3,7 +3,6 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/components/language/language-provider";
-import { SkillIcon } from "@/components/skills/skill-icon";
 import { skills } from "@/data/skills";
 import { localize } from "@/lib/i18n";
 import { formatDate } from "@/lib/utils";
@@ -31,9 +30,6 @@ export function RecentSkills() {
       <div className="recent-list">
         {recent.map((skill) => (
           <Link href={`/skills/${skill.slug}`} key={skill.id}>
-            <span className="recent-icon">
-              <SkillIcon icon={skill.icon} size={18} />
-            </span>
             <span>
               <strong>{locale === "zh" ? skill.nameZh ?? skill.name : skill.name}</strong>
               <small>{localize(skill.description, locale)}</small>

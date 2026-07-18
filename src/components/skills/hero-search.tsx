@@ -104,10 +104,6 @@ export function HeroSearch() {
           }}
           onKeyDown={handleKeyDown}
         />
-        <kbd>/</kbd>
-        <button type="button" aria-label={t("nav.search")} onClick={() => submit()}>
-          <ArrowRight aria-hidden="true" size={18} strokeWidth={1.8} />
-        </button>
       </div>
 
       {open ? (

@@ -47,7 +47,7 @@ describe("application shell", () => {
     );
     expect(screen.getByRole("combobox", { name: "搜索 Skill" })).toBeInTheDocument();
     expect(container.querySelectorAll(".category-card")).toHaveLength(8);
-    expect(container.querySelectorAll(".featured-skill[data-tone]")).toHaveLength(3);
+    expect(container.querySelectorAll(".featured-skill[data-tone]")).toHaveLength(6);
     expect(container.querySelectorAll(".category-card-footer")).toHaveLength(8);
     expect(screen.getByRole("link", { name: /查看全部更新/ })).toHaveAttribute(
       "href",
@@ -55,6 +55,8 @@ describe("application shell", () => {
     );
     fireEvent.focus(screen.getByRole("combobox", { name: "搜索 Skill" }));
     expect(container.querySelectorAll(".popular-search-term")).toHaveLength(8);
+    expect(container.querySelector(".hero-search kbd")).not.toBeInTheDocument();
+    expect(container.querySelector(".hero-search > button")).not.toBeInTheDocument();
     expect(screen.queryByText(/一起完善开源 Skill 生态/)).not.toBeInTheDocument();
   });
 
@@ -76,7 +78,12 @@ describe("application shell", () => {
       "/#home-search",
     );
     expect(container.querySelector(".header-actions .github-button")).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "GitHub" })).not.toBeInTheDocument();
     expect(screen.queryByRole("link", { name: "分类" })).not.toBeInTheDocument();
+    expect(container.querySelector(".nav-skills-group > a")).toHaveAttribute("href", "/skills");
+    expect(
+      container.querySelector('.nav-dropdown summary[aria-label="显示 Skill 分类"]'),
+    ).toBeInTheDocument();
     expect(container.querySelector("#home-search")).not.toBeInTheDocument();
   });
 

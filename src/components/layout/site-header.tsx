@@ -2,7 +2,6 @@
 
 import {
   ChevronDown,
-  GitFork,
   Menu,
   Search,
   X,
@@ -16,7 +15,6 @@ import { localize } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { LanguageSwitcher } from "@/components/language/language-switcher";
 import { useLanguage } from "@/components/language/language-provider";
-import { buttonClassName } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
 
 export function SiteHeader() {
@@ -50,27 +48,35 @@ export function SiteHeader() {
         <nav className="desktop-nav" aria-label="Primary navigation">
           {navItems.map((item) =>
             item.href === "/skills" ? (
-              <details className="nav-dropdown" key={item.href}>
-                <summary
+              <div className="nav-skills-group" key={item.href}>
+                <Link
+                  href={item.href}
                   className={cn(
                     "nav-link",
                     pathname.startsWith("/skills") && "is-active",
                   )}
                 >
                   {item.label}
-                  <ChevronDown aria-hidden="true" size={14} strokeWidth={1.8} />
-                </summary>
-                <div className="dropdown-panel liquid-glass">
-                  {categories.map((category) => (
-                    <Link
-                      href={`/skills?category=${category.id}`}
-                      key={category.id}
-                    >
-                      {localize(category.name, locale)}
-                    </Link>
-                  ))}
-                </div>
-              </details>
+                </Link>
+                <details className="nav-dropdown">
+                  <summary
+                    aria-label={locale === "zh" ? "显示 Skill 分类" : "Show Skill categories"}
+                    title={locale === "zh" ? "显示分类" : "Show categories"}
+                  >
+                    <ChevronDown aria-hidden="true" size={14} strokeWidth={1.8} />
+                  </summary>
+                  <div className="dropdown-panel liquid-glass">
+                    {categories.map((category) => (
+                      <Link
+                        href={`/skills?category=${category.id}`}
+                        key={category.id}
+                      >
+                        {localize(category.name, locale)}
+                      </Link>
+                    ))}
+                  </div>
+                </details>
+              </div>
             ) : (
               <Link
                 href={item.href}
@@ -97,21 +103,6 @@ export function SiteHeader() {
             <Search aria-hidden="true" size={18} strokeWidth={1.8} />
           </Link>
           <LanguageSwitcher />
-          {!isHome ? (
-            <a
-              href="https://github.com/topics/ai-agents"
-              target="_blank"
-              rel="noopener noreferrer"
-              className={buttonClassName({
-                variant: "secondary",
-                size: "sm",
-                className: "github-button",
-              })}
-            >
-              <GitFork aria-hidden="true" size={16} strokeWidth={1.8} />
-              <span>{t("nav.github")}</span>
-            </a>
-          ) : null}
           <button
             type="button"
             className="icon-button mobile-menu-button"
