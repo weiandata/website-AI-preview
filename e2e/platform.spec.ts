@@ -65,3 +65,33 @@ test("skill library keeps filters shareable and supports every result state", as
   await page.getByRole("button", { name: "筛选" }).click();
   await expect(page.getByRole("dialog", { name: "筛选" })).toBeVisible();
 });
+
+test("skill detail presents guidance, provenance, safe actions, and related Skills", async ({
+  page,
+  context,
+}) => {
+  await context.grantPermissions(["clipboard-read", "clipboard-write"], {
+    origin: "http://127.0.0.1:3000",
+  });
+  await page.goto("/skills/data-analysis-assistant");
+
+  await expect(page.getByRole("heading", { name: "数据分析助手" })).toBeVisible();
+  await expect(page.getByRole("heading", { name: "安装方式" })).toBeVisible();
+  await expect(page.locator("script[type='application/ld+json']")).toHaveCount(2);
+  await expect(page.getByRole("navigation", { name: "Breadcrumb" })).toBeVisible();
+
+  await page.getByRole("button", { name: "复制" }).first().click();
+  await expect(page.getByRole("button", { name: "已复制" }).first()).toBeVisible();
+
+  await page.getByRole("button", { name: "下载 Skill" }).first().click();
+  await expect(
+    page.getByRole("dialog", { name: "即将前往第三方下载页面" }),
+  ).toBeVisible();
+  await page.getByRole("button", { name: "取消" }).last().click();
+
+  await expect(page.getByRole("heading", { name: "相关 Skills" })).toBeVisible();
+  await expect(page.locator(".related-skills .skill-card")).toHaveCount(3);
+
+  await page.goto("/skills/not-a-real-skill");
+  await expect(page.getByRole("heading", { name: /未找到 Skill/ })).toBeVisible();
+});

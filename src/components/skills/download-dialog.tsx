@@ -10,9 +10,13 @@ import type { Skill } from "@/types/content";
 export function DownloadDialog({
   skill,
   compact = false,
+  label,
+  prominent = false,
 }: {
   skill: Skill;
   compact?: boolean;
+  label?: string;
+  prominent?: boolean;
 }) {
   const [open, setOpen] = useState(false);
   const triggerRef = useRef<HTMLButtonElement>(null);
@@ -42,13 +46,13 @@ export function DownloadDialog({
     <>
       <Button
         ref={triggerRef}
-        variant={compact ? "ghost" : "secondary"}
+        variant={compact ? "ghost" : prominent ? "primary" : "secondary"}
         size={compact ? "sm" : "md"}
         disabled={!skill.downloadUrl}
         onClick={() => setOpen(true)}
       >
         <Download aria-hidden="true" size={16} strokeWidth={1.8} />
-        {t("common.download")}
+        {label ?? t("common.download")}
       </Button>
       <Dialog
         open={open}
