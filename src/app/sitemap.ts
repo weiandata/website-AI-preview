@@ -2,6 +2,8 @@ import type { MetadataRoute } from "next";
 import { siteConfig } from "@/lib/site-config";
 import { getPublishedSkills } from "@/lib/skills/repository";
 
+export const dynamic = "force-static";
+
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
   const skills = await getPublishedSkills();
   const staticRoutes = ["", "/skills", "/about"].map(

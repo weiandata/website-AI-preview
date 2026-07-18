@@ -2,7 +2,7 @@
 
 A polished bilingual website for discovering, evaluating, and sharing open-source AI Skills from WEIAN DATA（惟安数据科技）.
 
-The platform includes a discovery homepage, shareable search and filters, eight statically generated Skill pages, category browsing, a submission flow, and company information. Chinese and English can be switched without leaving the current route, and the selection persists locally.
+The platform includes a discovery homepage, shareable search and filters, statically generated Skill pages, category browsing, and company information. Chinese and English can be switched without leaving the current route, and the selection persists locally.
 
 ## Development
 
@@ -47,19 +47,31 @@ npx playwright install chromium
 
 ## Content
 
-Skill records live in `src/data/skills.ts`. Categories and interface translations live in `src/data/categories.ts` and `src/data/translations.ts`.
+Each Skill is maintained as one Markdown file in `content/skills/`. The versioned format is documented by `content/skill-template.md`. Categories and interface translations live in `src/data/categories.ts` and `src/data/translations.ts`.
 
 Each Skill record contains bilingual presentation copy, platform and license metadata, installation commands, usage notes, changelog entries, FAQ content, and source attribution. Search and filter state is encoded in the URL so result pages can be shared.
 
-The submission page is intentionally client-only in this preview. Valid recommendations show a confirmation but are not transmitted or stored until a reviewed backend service is connected.
+Draft Markdown records are excluded from public pages, search, static detail routes, and the sitemap.
+
+## Cloudflare Pages
+
+Connect Cloudflare Pages to the GitHub repository with these settings:
+
+```text
+Production branch: main
+Build command: npm run build
+Build output directory: out
+Root directory: /
+Node version: 20 or newer
+```
+
+GitHub is the only production deployment source. A push to `main` triggers a production build; non-production branches may create preview deployments. Cloudflare does not edit or store Skill source content, and this project has no production editor or content database.
 
 ## Main routes
 
 - `/` discovery homepage
 - `/skills` searchable Skill library
 - `/skills/[slug]` static Skill detail pages
-- `/categories` category index
-- `/submit` client-side submission workflow
 - `/about` company, project, attribution, and contact information
 
 ## Project documentation

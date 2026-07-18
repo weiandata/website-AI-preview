@@ -18,10 +18,10 @@ test("home discovery supports bilingual search and category exploration", async 
   ).toBeVisible();
   await expect(page.getByRole("link", { name: "浏览全部 Skills" })).toHaveAttribute(
     "href",
-    "/skills",
+    "/skills/",
   );
   await expect(page.locator(".header-actions .github-button")).toHaveCount(0);
-  await expect(page.locator(".nav-skills-group > a")).toHaveAttribute("href", "/skills");
+  await expect(page.locator(".nav-skills-group > a")).toHaveAttribute("href", "/skills/");
   if ((page.viewportSize()?.width ?? 0) > 980) {
     await page.locator('.nav-dropdown summary[aria-label="显示 Skill 分类"]').click();
     await expect(page.locator(".nav-dropdown .dropdown-panel")).toBeVisible();
@@ -33,14 +33,16 @@ test("home discovery supports bilingual search and category exploration", async 
 
   await expect(page.getByRole("link", { name: "查看全部更新" })).toHaveAttribute(
     "href",
-    "/skills?period=30d&sort=added",
+    "/skills/?period=30d&sort=added",
   );
   await page.getByRole("combobox", { name: "搜索 Skill" }).focus();
   await expect(page.locator(".hero-search kbd")).toHaveCount(0);
   await expect(page.locator(".hero-search > button")).toHaveCount(0);
-  const popular = page.locator(".popular-search-term").first();
-  await expect(popular).toHaveCSS("color", "rgb(12, 68, 124)");
-  await expect(popular).not.toHaveCSS("background-color", "rgb(0, 0, 0)");
+  await expect(page.locator(".popular-searches")).toHaveCount(0);
+  await expect(page.locator(".popular-search-term")).toHaveCount(0);
+  await page.getByRole("combobox", { name: "搜索 Skill" }).fill("PDF");
+  await expect(page.getByRole("option")).toHaveCount(1);
+  await page.getByRole("combobox", { name: "搜索 Skill" }).fill("");
 
   await page.getByRole("button", { name: "EN", exact: true }).click();
   await expect(
@@ -52,7 +54,7 @@ test("home discovery supports bilingual search and category exploration", async 
     .getByRole("combobox", { name: "搜索 Skill" })
     .fill("PDF");
   await page.getByRole("combobox", { name: "搜索 Skill" }).press("Enter");
-  await expect(page).toHaveURL(/\/skills\?q=PDF/);
+  await expect(page).toHaveURL(/\/skills\/\?q=PDF/);
 
   await page.goto("/");
   await expect(page.locator(".category-card")).toHaveCount(8);
@@ -93,7 +95,7 @@ test("skill library keeps filters shareable and supports every result state", as
   await expect(page.locator("[data-filter-chip]")) .toHaveCount(2);
 
   await page.getByRole("button", { name: "清除筛选" }).click();
-  await expect(page).toHaveURL("/skills");
+  await expect(page).toHaveURL("/skills/");
   await expect(page.locator(".library-result-count")).toContainText("8");
 
   const firstCard = page.locator(".skill-card .skill-item-link").first();
@@ -125,7 +127,7 @@ test("skill detail presents guidance, provenance, safe actions, and related Skil
   context,
 }) => {
   await context.grantPermissions(["clipboard-read", "clipboard-write"], {
-    origin: "http://127.0.0.1:3000",
+    origin: "http://127.0.0.1:4175",
   });
   await page.goto("/skills/data-analysis-assistant");
 
