@@ -8,6 +8,11 @@ export default defineConfig({
     environment: "jsdom",
     setupFiles: ["./tests/setup.ts"],
     css: true,
+    environmentOptions: {
+      jsdom: {
+        url: "http://localhost/",
+      },
+    },
   },
   resolve: {
     alias: {
