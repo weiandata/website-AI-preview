@@ -75,9 +75,9 @@ Expected: FAIL because the current shell uses the Workflow icon and still render
 Copy the source bytes from:
 
 ```text
-/Users/makunxiang/Documents/公司项目/创业内容/WEIAN DATA TECH/公司logo/WEIAN-logo-primary.svg
-/Users/makunxiang/Documents/公司项目/创业内容/WEIAN DATA TECH/公司logo/WEIAN-logo-reversed.svg
-/Users/makunxiang/Documents/公司项目/创业内容/WEIAN DATA TECH/公司logo/WEIAN-mark-primary.svg
+<本机公司 logo 素材目录>/WEIAN-logo-primary.svg
+<本机公司 logo 素材目录>/WEIAN-logo-reversed.svg
+<本机公司 logo 素材目录>/WEIAN-mark-primary.svg
 ```
 
 into the three `public/brand` targets. Replace `src/app/icon.svg` with the exact mark asset bytes.

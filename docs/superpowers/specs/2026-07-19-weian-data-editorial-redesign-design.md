@@ -38,7 +38,7 @@ Use the original company assets without redrawing, editing, or reconstructing th
 
 Source directory:
 
-`/Users/makunxiang/Documents/公司项目/创业内容/WEIAN DATA TECH/公司logo/`
+本机公司 logo 素材目录（不在仓库内，由维护者本地提供）。
 
 Brand colors:
 
