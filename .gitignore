@@ -10,6 +10,9 @@ Thumbs.db
 # Local environment and secrets
 .env
 
+# Local tooling scratch state
+.superpowers/
+
 # JavaScript build and test output
 node_modules/
 .next/
