@@ -5,9 +5,9 @@ import {
   GitFork,
   Menu,
   Search,
-  Workflow,
   X,
 } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useState } from "react";
@@ -23,25 +23,29 @@ export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
   const pathname = usePathname();
   const { locale, t } = useLanguage();
+  const isHome = pathname === "/";
   const navItems = [
     { href: "/", label: t("nav.home") },
     { href: "/skills", label: t("nav.skills") },
     { href: "/categories", label: t("nav.categories") },
-    { href: "/submit", label: t("nav.submit") },
     { href: "/about", label: t("nav.about") },
   ];
 
   return (
-    <header id="page-top" className="site-header">
+    <header id="page-top" className={cn("site-header", isHome && "is-home")}>
       <div className="container-shell header-inner">
         <Link href="/" className="brand-lockup" aria-label="WEIAN DATA home">
-          <span className="brand-mark liquid-glass">
-            <Workflow aria-hidden="true" size={21} strokeWidth={1.8} />
-          </span>
-          <span>
-            <strong>WEIAN DATA</strong>
-            <small>惟安数据科技</small>
-          </span>
+          <Image
+            src={
+              isHome
+                ? "/brand/weian-logo-reversed.svg"
+                : "/brand/weian-logo-primary.svg"
+            }
+            alt="WEIAN DATA TECH"
+            width={174}
+            height={50}
+            priority
+          />
         </Link>
 
         <nav className="desktop-nav" aria-label="Primary navigation">

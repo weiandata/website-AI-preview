@@ -45,7 +45,7 @@ export function SkillDetail({ skill }: { skill: Skill }) {
           <span aria-current="page">{name}</span>
         </nav>
 
-        <header className="detail-header">
+        <header className="detail-header detail-editorial-hero">
           <div className="detail-identity">
             <span className="detail-icon liquid-glass">
               <SkillIcon icon={skill.icon} size={31} />
@@ -109,14 +109,14 @@ export function SkillDetail({ skill }: { skill: Skill }) {
           </span>
         </div>
 
-        <div className="detail-layout">
+        <div className="detail-layout detail-editorial-layout">
           <div className="detail-content">
             <section id="overview">
               <h2>{t("detail.overview")}</h2>
               <p>{localize(skill.longDescription, locale)}</p>
             </section>
 
-            <section className="detail-two-column">
+            <section className="detail-two-column" id="features">
               <div>
                 <h2>{t("detail.features")}</h2>
                 <ul>
@@ -197,6 +197,16 @@ export function SkillDetail({ skill }: { skill: Skill }) {
           </div>
 
           <aside className="detail-sidebar">
+            <nav
+              className="detail-on-page-nav"
+              aria-label={locale === "zh" ? "页面导航" : "On this page"}
+            >
+              <span>{locale === "zh" ? "本页内容" : "On this page"}</span>
+              <a href="#overview">{t("detail.overview")}</a>
+              <a href="#features">{t("detail.features")}</a>
+              <a href="#installation">{t("detail.installation")}</a>
+              <a href="#usage">{t("detail.usage")}</a>
+            </nav>
             <div className="detail-sidebar-card">
               <DownloadDialog
                 skill={skill}

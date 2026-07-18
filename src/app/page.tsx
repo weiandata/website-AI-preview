@@ -1,5 +1,5 @@
 import { CategoryExplorer } from "@/components/home/category-explorer";
-import { ContributionSection } from "@/components/home/contribution-section";
+import { DiscoverySearch } from "@/components/home/discovery-search";
 import { FeaturedSkills } from "@/components/home/featured-skills";
 import { Hero } from "@/components/home/hero";
 import { PlatformValues } from "@/components/home/platform-values";
@@ -9,6 +9,7 @@ export default function Home() {
   return (
     <main>
       <Hero />
+      <DiscoverySearch />
       <FeaturedSkills />
       <div className="container-shell section-space">
         <CategoryExplorer />
@@ -19,7 +20,6 @@ export default function Home() {
       <div className="container-shell section-space">
         <RecentSkills />
       </div>
-      <ContributionSection />
     </main>
   );
 }

@@ -39,7 +39,13 @@ export function AboutContent() {
   const { locale, t } = useLanguage();
   return (
     <main className="about-page">
-      <section className="container-shell about-hero" id="company">
+      <section
+        className="container-shell about-hero about-editorial-hero"
+        id="company"
+      >
+        <span className="section-kicker">
+          {locale === "zh" ? "关于惟安数据科技" : "About WEIAN DATA"}
+        </span>
         <span className="about-mark liquid-glass">
           <Building2 aria-hidden="true" size={26} strokeWidth={1.7} />
         </span>
@@ -125,8 +131,8 @@ export function AboutContent() {
           <h2>{locale === "zh" ? "联系我们" : "Contact"}</h2>
           <p>
             {locale === "zh"
-              ? "欢迎推荐项目、报告失效链接或提出目录改进建议。"
-              : "Recommend projects, report broken links, or suggest improvements to the directory."}
+              ? "如需报告失效链接或提出目录改进建议，欢迎通过邮件与我们联系。"
+              : "Contact us by email to report broken links or suggest improvements to the directory."}
           </p>
         </div>
         <ButtonLink

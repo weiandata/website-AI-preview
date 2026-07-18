@@ -154,3 +154,12 @@ test("supported navigation state focuses search and filters featured Skills", as
     "rgb(60, 131, 246)",
   );
 });
+
+test("public Skill submission is not a route", async ({ page }) => {
+  const response = await page.goto("/submit");
+
+  expect(response?.status()).toBe(404);
+  await expect(
+    page.getByRole("heading", { name: /未找到 Skill|Skill not found/i }),
+  ).toBeVisible();
+});

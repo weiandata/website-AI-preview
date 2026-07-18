@@ -18,10 +18,6 @@ const routeTitles = {
     zh: "Skill 分类 | 惟安数据科技",
     en: "Skill Categories | WEIAN DATA",
   },
-  "/submit": {
-    zh: "提交开源 Skill | 惟安数据科技",
-    en: "Submit an Open-Source Skill | WEIAN DATA",
-  },
   "/about": {
     zh: "关于惟安数据科技 | 开源 AI Skills",
     en: "About WEIAN DATA | Open-Source AI Skills",

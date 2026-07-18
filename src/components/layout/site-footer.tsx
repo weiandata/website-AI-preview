@@ -1,7 +1,8 @@
 "use client";
 
 import Link from "next/link";
-import { GitFork, Workflow } from "lucide-react";
+import { GitFork } from "lucide-react";
+import Image from "next/image";
 import { useLanguage } from "@/components/language/language-provider";
 import { siteConfig } from "@/lib/site-config";
 
@@ -20,7 +21,6 @@ export function SiteFooter() {
     {
       title: t("footer.resources"),
       links: [
-        [t("nav.submit"), "/submit"],
         ["GitHub", "https://github.com/topics/ai-agents"],
         [t("detail.usage"), "/about#usage"],
         [t("common.openSource"), "/about#open-source"],
@@ -44,11 +44,12 @@ export function SiteFooter() {
     <footer className="site-footer">
       <div className="container-shell footer-grid">
         <div className="footer-brand">
-          <span className="brand-mark liquid-glass">
-            <Workflow aria-hidden="true" size={21} strokeWidth={1.8} />
-          </span>
-          <strong>WEIAN DATA</strong>
-          <span>惟安数据科技</span>
+          <Image
+            src="/brand/weian-logo-reversed.svg"
+            alt="WEIAN DATA TECH"
+            width={174}
+            height={50}
+          />
           <p>{t("footer.description")}</p>
         </div>
         {columns.map((column) => (

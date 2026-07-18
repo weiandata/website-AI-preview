@@ -4,6 +4,7 @@ import { LanguageProvider } from "@/components/language/language-provider";
 import { SiteShell } from "@/components/layout/site-shell";
 import { siteConfig } from "@/lib/site-config";
 import "./globals.css";
+import "./editorial.css";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteConfig.url),

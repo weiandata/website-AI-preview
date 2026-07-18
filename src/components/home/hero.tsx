@@ -1,12 +1,11 @@
 "use client";
 
-import { ArrowRight, Sparkles } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 import { useLanguage } from "@/components/language/language-provider";
-import { SkillCard } from "@/components/skills/skill-card";
-import { HeroSearch } from "@/components/skills/hero-search";
-import { Badge } from "@/components/ui/badge";
 import { ButtonLink } from "@/components/ui/button";
-import { skills } from "@/data/skills";
+
+const HERO_VIDEO_URL =
+  "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4";
 
 export function Hero() {
   const { locale, t } = useLanguage();
@@ -17,18 +16,16 @@ export function Hero() {
 
   return (
     <section className="hero-section">
-      <div className="hero-grid-overlay" aria-hidden="true" />
-      <div className="hero-orb hero-orb-one" aria-hidden="true" />
-      <div className="hero-orb hero-orb-two" aria-hidden="true" />
+      <video className="hero-video" autoPlay muted loop playsInline aria-hidden="true">
+        <source src={HERO_VIDEO_URL} type="video/mp4" />
+      </video>
+      <div className="hero-shade" aria-hidden="true" />
       <div className="container-shell hero-layout">
         <div className="hero-content">
-          <Badge tone="blue" className="hero-eyebrow liquid-glass">
-            <Sparkles aria-hidden="true" size={13} strokeWidth={1.7} />
-            {t("hero.badge")}
-          </Badge>
+          <span className="hero-eyebrow">{t("hero.badge")}</span>
           <h1 aria-label={accessibleTitle}>
             <span>{t("hero.titleLead")}</span>
-            <span className="gradient-text">{t("hero.titleAccent")}</span>
+            <span>{t("hero.titleAccent")}</span>
           </h1>
           <p>{t("hero.description")}</p>
           <div className="hero-actions">
@@ -36,24 +33,7 @@ export function Hero() {
               {t("hero.primary")}
               <ArrowRight aria-hidden="true" size={17} strokeWidth={1.8} />
             </ButtonLink>
-            <ButtonLink href="/submit" variant="secondary" size="lg">
-              {t("hero.secondary")}
-              <ArrowRight aria-hidden="true" size={17} strokeWidth={1.8} />
-            </ButtonLink>
           </div>
-          <HeroSearch />
-        </div>
-
-        <div className="hero-library-preview" aria-label={t("home.featuredTitle")}>
-          <div className="preview-index">
-            <span>{locale === "zh" ? "开源索引" : "Open index"}</span>
-            <strong>{skills.length.toString().padStart(2, "0")}</strong>
-          </div>
-          {skills.slice(0, 3).map((skill, index) => (
-            <div className={`preview-card preview-card-${index + 1}`} key={skill.id}>
-              <SkillCard skill={skill} compact />
-            </div>
-          ))}
         </div>
       </div>
     </section>

@@ -17,8 +17,17 @@ export function CategoryExplorer({ showHeader = true }: { showHeader?: boolean }
     <section className="category-explorer">
       {showHeader ? (
         <div className="section-heading">
-          <h2>{t("home.categoriesTitle")}</h2>
-          <p>{t("home.categoriesDescription")}</p>
+          <div>
+            <span className="section-kicker">
+              {locale === "zh" ? "八个工作领域" : "Eight fields of work"}
+            </span>
+            <h2>{t("home.categoriesTitle")}</h2>
+            <p>{t("home.categoriesDescription")}</p>
+          </div>
+          <Link className="editorial-link" href="/categories">
+            {locale === "zh" ? "全部分类" : "All categories"}
+            <ArrowUpRight aria-hidden="true" size={15} />
+          </Link>
         </div>
       ) : null}
       <div className="category-grid">

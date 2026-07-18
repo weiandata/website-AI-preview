@@ -179,8 +179,11 @@ export function SkillLibrary() {
   ];
 
   return (
-    <main className="library-page">
-      <div className="container-shell library-hero">
+    <main className="library-page skill-library-page">
+      <header className="container-shell library-hero page-hero-editorial">
+        <span className="section-kicker">
+          {locale === "zh" ? "开放工作流索引" : "Open workflow index"}
+        </span>
         <h1>{t("library.title")}</h1>
         <p>{t("library.description")}</p>
         <div className="library-search">
@@ -211,10 +214,13 @@ export function SkillLibrary() {
             </button>
           ) : null}
         </div>
-      </div>
+      </header>
 
       <div className="container-shell library-layout">
-        <aside className="library-sidebar" aria-label={t("library.filters")}>
+        <aside
+          className="library-sidebar library-filter-rail"
+          aria-label={t("library.filters")}
+        >
           <div className="sidebar-title">
             <span>
               <SlidersHorizontal aria-hidden="true" size={17} strokeWidth={1.8} />
