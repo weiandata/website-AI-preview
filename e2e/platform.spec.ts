@@ -151,7 +151,7 @@ test("supported navigation state focuses search and filters featured Skills", as
   await expect(page.locator(".library-result-count")).toHaveText("6");
   await expect(page.locator(".library-search")).toHaveCSS(
     "border-color",
-    "rgb(60, 131, 246)",
+    "rgb(46, 134, 222)",
   );
 });
 

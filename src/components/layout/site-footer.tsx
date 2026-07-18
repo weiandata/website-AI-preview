@@ -49,6 +49,7 @@ export function SiteFooter() {
             alt="WEIAN DATA TECH"
             width={174}
             height={50}
+            loading="eager"
           />
           <p>{t("footer.description")}</p>
         </div>

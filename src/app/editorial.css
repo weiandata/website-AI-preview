@@ -556,17 +556,21 @@ h3 {
   border-top: 1px solid var(--weian-line);
 }
 
-.category-card {
+.category-grid .category-card {
   position: relative;
   display: grid;
+  grid-column: auto;
   min-height: 12rem;
   grid-template-columns: 1fr auto;
   align-content: space-between;
   gap: 1rem;
   padding: 2.8rem 1.25rem 1.5rem;
+  border: 0;
   border-bottom: 1px solid var(--weian-line);
+  border-radius: 0;
+  background: transparent;
   color: var(--weian-ink);
-  transition: background-color 180ms ease;
+  transition: background-color 180ms ease, transform 180ms ease;
 }
 
 .category-card:not(:nth-child(4n + 1)) {
@@ -574,7 +578,9 @@ h3 {
 }
 
 .category-card:hover {
+  border-color: var(--weian-line);
   background: rgba(46, 134, 222, 0.055);
+  transform: none;
 }
 
 .category-icon {
@@ -1009,6 +1015,14 @@ h3 {
 
 .detail-content > section + section {
   margin-top: 3.5rem;
+}
+
+.detail-two-column > div {
+  padding: 1.5rem;
+  border: 1px solid var(--weian-line);
+  border-radius: var(--weian-radius);
+  background: var(--weian-white);
+  color: var(--weian-ink);
 }
 
 .detail-content h2,
