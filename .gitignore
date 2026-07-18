@@ -5,6 +5,7 @@ Thumbs.db
 # Editor settings
 .vscode/
 .idea/
+.worktrees/
 
 # Local environment and secrets
 .env
