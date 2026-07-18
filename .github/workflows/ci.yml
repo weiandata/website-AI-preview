@@ -29,5 +29,6 @@ jobs:
           args: >-
             --no-progress
             --verbose
+            --exclude-loopback
             './**/*.md'
           fail: true
