@@ -42,6 +42,17 @@ export const siteConfig = resolveSiteConfig({
   NEXT_PUBLIC_CONTACT_EMAIL: process.env.NEXT_PUBLIC_CONTACT_EMAIL,
 });
 
+/**
+ * Absolute URL in the site's canonical form. next.config.ts sets
+ * `trailingSlash: true`, so page routes end in "/" and anything else would
+ * redirect; file routes such as /sitemap.xml keep their exact path.
+ */
 export function absoluteUrl(path = "/"): string {
-  return new URL(path, `${siteConfig.url}/`).toString();
+  const url = new URL(path, `${siteConfig.url}/`);
+  const lastSegment = url.pathname.split("/").pop() ?? "";
+  const isFileRoute = lastSegment.includes(".");
+  if (!isFileRoute && !url.pathname.endsWith("/")) {
+    url.pathname = `${url.pathname}/`;
+  }
+  return url.toString();
 }

@@ -13,4 +13,17 @@ describe("public sitemap", () => {
       "/categories",
     );
   });
+
+  it("lists canonical trailing-slash URLs so no entry redirects", async () => {
+    const urls = (await sitemap()).map((entry) => entry.url);
+
+    expect(urls.length).toBeGreaterThan(3);
+    for (const url of urls) {
+      expect(url.endsWith("/"), `${url} should end with a slash`).toBe(true);
+    }
+    expect(urls).toContain("https://skills.weiandata.com/");
+    expect(urls).toContain("https://skills.weiandata.com/skills/");
+    expect(urls).toContain("https://skills.weiandata.com/about/");
+    expect(urls).toContain("https://skills.weiandata.com/skills/data-analysis-assistant/");
+  });
 });

@@ -1,5 +1,5 @@
 import { describe, expect, it } from "vitest";
-import { resolveSiteConfig } from "@/lib/site-config";
+import { absoluteUrl, resolveSiteConfig } from "@/lib/site-config";
 
 describe("site configuration", () => {
   it("uses production-safe WEIAN DATA defaults", () => {
@@ -26,5 +26,21 @@ describe("site configuration", () => {
     expect(() =>
       resolveSiteConfig({ NEXT_PUBLIC_CONTACT_EMAIL: "not-an-email" }),
     ).toThrow("NEXT_PUBLIC_CONTACT_EMAIL");
+  });
+
+  it("matches the site's trailingSlash routing for page URLs", () => {
+    // next.config.ts sets trailingSlash: true, so canonical page URLs end in "/".
+    expect(absoluteUrl()).toBe("https://skills.weiandata.com/");
+    expect(absoluteUrl("/skills")).toBe("https://skills.weiandata.com/skills/");
+    expect(absoluteUrl("/skills/")).toBe("https://skills.weiandata.com/skills/");
+    expect(absoluteUrl("/skills/pdf-document-toolkit")).toBe(
+      "https://skills.weiandata.com/skills/pdf-document-toolkit/",
+    );
+  });
+
+  it("leaves file routes without a trailing slash", () => {
+    expect(absoluteUrl("/sitemap.xml")).toBe("https://skills.weiandata.com/sitemap.xml");
+    expect(absoluteUrl("/robots.txt")).toBe("https://skills.weiandata.com/robots.txt");
+    expect(absoluteUrl("/icon.svg")).toBe("https://skills.weiandata.com/icon.svg");
   });
 });
