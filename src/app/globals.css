@@ -1,6 +1,6 @@
 @import url("https://api.fontshare.com/v2/css?f[]=general-sans@400,500,600,700&display=swap");
 @import "@fontsource/geist-sans";
-@import "tailwindcss";
+@import "tailwindcss" source("../");
 
 :root {
   --background: 222 47% 5%;
