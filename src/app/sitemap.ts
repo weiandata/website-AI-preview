@@ -3,7 +3,7 @@ import { skills } from "@/data/skills";
 import { siteConfig } from "@/lib/site-config";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const staticRoutes = ["", "/skills", "/categories", "/about"].map(
+  const staticRoutes = ["", "/skills", "/about"].map(
     (path) => ({
       url: `${siteConfig.url}${path}`,
       lastModified: new Date("2026-07-18"),

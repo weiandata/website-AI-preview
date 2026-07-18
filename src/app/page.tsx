@@ -2,7 +2,6 @@ import { CategoryExplorer } from "@/components/home/category-explorer";
 import { DiscoverySearch } from "@/components/home/discovery-search";
 import { FeaturedSkills } from "@/components/home/featured-skills";
 import { Hero } from "@/components/home/hero";
-import { PlatformValues } from "@/components/home/platform-values";
 import { RecentSkills } from "@/components/home/recent-skills";
 
 export default function Home() {
@@ -13,9 +12,6 @@ export default function Home() {
       <FeaturedSkills />
       <div className="container-shell section-space">
         <CategoryExplorer />
-      </div>
-      <div className="container-shell section-space">
-        <PlatformValues />
       </div>
       <div className="container-shell section-space">
         <RecentSkills />

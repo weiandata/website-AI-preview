@@ -7,4 +7,10 @@ describe("public sitemap", () => {
       "/submit",
     );
   });
+
+  it("does not expose the redundant Categories route", () => {
+    expect(sitemap().map((entry) => new URL(entry.url).pathname)).not.toContain(
+      "/categories",
+    );
+  });
 });

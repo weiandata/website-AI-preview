@@ -27,7 +27,6 @@ export function SiteHeader() {
   const navItems = [
     { href: "/", label: t("nav.home") },
     { href: "/skills", label: t("nav.skills") },
-    { href: "/categories", label: t("nav.categories") },
     { href: "/about", label: t("nav.about") },
   ];
 
@@ -91,22 +90,28 @@ export function SiteHeader() {
 
         <div className="header-actions">
           <Link
-            href="/skills?focus=search"
+            href={isHome ? "/#home-search" : "/skills?focus=search"}
             className="icon-button header-search"
             aria-label={t("nav.search")}
           >
             <Search aria-hidden="true" size={18} strokeWidth={1.8} />
           </Link>
           <LanguageSwitcher />
-          <a
-            href="https://github.com/topics/ai-agents"
-            target="_blank"
-            rel="noopener noreferrer"
-            className={buttonClassName({ variant: "secondary", size: "sm", className: "github-button" })}
-          >
-            <GitFork aria-hidden="true" size={16} strokeWidth={1.8} />
-            <span>{t("nav.github")}</span>
-          </a>
+          {!isHome ? (
+            <a
+              href="https://github.com/topics/ai-agents"
+              target="_blank"
+              rel="noopener noreferrer"
+              className={buttonClassName({
+                variant: "secondary",
+                size: "sm",
+                className: "github-button",
+              })}
+            >
+              <GitFork aria-hidden="true" size={16} strokeWidth={1.8} />
+              <span>{t("nav.github")}</span>
+            </a>
+          ) : null}
           <button
             type="button"
             className="icon-button mobile-menu-button"

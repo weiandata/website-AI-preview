@@ -52,7 +52,7 @@ describe("application shell", () => {
 
   it("uses official brand lockups and excludes submission navigation", () => {
     window.localStorage.setItem("weian-locale", "zh");
-    render(
+    const { container } = render(
       <LanguageProvider>
         <SiteHeader />
         <SiteFooter />
@@ -63,5 +63,24 @@ describe("application shell", () => {
     expect(logos[0]).toHaveAttribute("src", "/brand/weian-logo-reversed.svg");
     expect(logos[1]).toHaveAttribute("src", "/brand/weian-logo-reversed.svg");
     expect(screen.queryByRole("link", { name: /提交|submit/i })).not.toBeInTheDocument();
+    expect(screen.getByRole("link", { name: "搜索" })).toHaveAttribute(
+      "href",
+      "/#home-search",
+    );
+    expect(container.querySelector(".header-actions .github-button")).not.toBeInTheDocument();
+    expect(screen.queryByRole("link", { name: "分类" })).not.toBeInTheDocument();
+    expect(container.querySelector("#home-search")).not.toBeInTheDocument();
+  });
+
+  it("marks the home search target and removes the values section", () => {
+    window.localStorage.setItem("weian-locale", "zh");
+    const { container } = render(
+      <LanguageProvider>
+        <Home />
+      </LanguageProvider>,
+    );
+
+    expect(container.querySelector("#home-search")).toBeInTheDocument();
+    expect(container.querySelector(".values-section")).not.toBeInTheDocument();
   });
 });

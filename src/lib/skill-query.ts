@@ -1,5 +1,10 @@
 import type { CategoryId, Locale, Skill } from "@/types/content";
-import type { SkillFilterState, SkillSort, SkillView } from "@/types/filters";
+import type {
+  SkillFilterState,
+  SkillPeriod,
+  SkillSort,
+  SkillView,
+} from "@/types/filters";
 
 const categoryIds = new Set<CategoryId>([
   "development",
@@ -21,6 +26,7 @@ const sortValues = new Set<SkillSort>([
 ]);
 
 const viewValues = new Set<SkillView>(["grid", "list"]);
+const periodValues = new Set<SkillPeriod>(["30d"]);
 
 function normalize(value: string): string {
   return value.trim().toLocaleLowerCase();
@@ -50,6 +56,21 @@ function createSearchDocument(skill: Skill): string {
       ...skill.useCases.en,
     ].join(" "),
   );
+}
+
+function getPeriodCutoff(
+  collection: Skill[],
+  period?: SkillPeriod,
+): string | undefined {
+  if (period !== "30d" || collection.length === 0) return undefined;
+
+  const latest = collection.reduce(
+    (current, skill) => (skill.addedAt > current ? skill.addedAt : current),
+    collection[0].addedAt,
+  );
+  const cutoff = new Date(`${latest}T00:00:00.000Z`);
+  cutoff.setUTCDate(cutoff.getUTCDate() - 30);
+  return cutoff.toISOString().slice(0, 10);
 }
 
 function sortSkills(collection: Skill[], sort: SkillSort, locale: Locale): Skill[] {
@@ -83,6 +104,7 @@ export function filterSkills(
   locale: Locale,
 ): Skill[] {
   const query = normalize(filters.query ?? "");
+  const periodCutoff = getPeriodCutoff(collection, filters.period);
   const filtered = collection.filter((skill) => {
     const queryMatches = !query || createSearchDocument(skill).includes(query);
     const featuredMatches = !filters.featured || skill.featured;
@@ -91,6 +113,7 @@ export function filterSkills(
     const platformMatches = includesAny(skill.platforms, filters.platforms);
     const licenseMatches = includesAny([skill.license], filters.licenses);
     const tagMatches = includesAny(skill.tags, filters.tags);
+    const periodMatches = !periodCutoff || skill.addedAt >= periodCutoff;
 
     return (
       queryMatches &&
@@ -98,7 +121,8 @@ export function filterSkills(
       categoryMatches &&
       platformMatches &&
       licenseMatches &&
-      tagMatches
+      tagMatches &&
+      periodMatches
     );
   });
 
@@ -160,6 +184,7 @@ export function parseSkillQuery(
     .filter((value): value is CategoryId => categoryIds.has(value as CategoryId));
   const sort = params.get("sort") as SkillSort | null;
   const view = params.get("view") as SkillView | null;
+  const period = params.get("period") as SkillPeriod | null;
   const platforms = params.getAll("platform").filter(Boolean);
   const licenses = params.getAll("license").filter(Boolean);
   const tags = params.getAll("tag").filter(Boolean);
@@ -168,6 +193,7 @@ export function parseSkillQuery(
     query: params.get("q") || undefined,
     featured: params.get("featured") === "true" || undefined,
     focusSearch: params.get("focus") === "search" || undefined,
+    period: period && periodValues.has(period) ? period : undefined,
     categories: categories.length ? categories : undefined,
     platforms: platforms.length ? platforms : undefined,
     licenses: licenses.length ? licenses : undefined,
@@ -184,6 +210,7 @@ export function serializeSkillQuery(
   if (state.query?.trim()) params.set("q", state.query.trim());
   if (state.featured) params.set("featured", "true");
   if (state.focusSearch) params.set("focus", "search");
+  if (state.period) params.set("period", state.period);
   state.categories?.forEach((value) => params.append("category", value));
   state.platforms?.forEach((value) => params.append("platform", value));
   state.licenses?.forEach((value) => params.append("license", value));

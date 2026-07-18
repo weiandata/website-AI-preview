@@ -7,7 +7,7 @@ export function DiscoverySearch() {
   const { locale } = useLanguage();
 
   return (
-    <section className="home-search-section">
+    <section id="home-search" className="home-search-section">
       <div className="container-shell home-search-layout">
         <div>
           <span className="section-kicker">

@@ -72,6 +72,26 @@ describe("skill discovery selectors", () => {
     );
   });
 
+  it("round-trips and applies the latest 30-day catalog window", () => {
+    const catalog = [
+      { ...skills[0], id: "recent", slug: "recent", addedAt: "2026-07-12" },
+      { ...skills[1], id: "boundary", slug: "boundary", addedAt: "2026-06-12" },
+      { ...skills[2], id: "old", slug: "old", addedAt: "2026-06-11" },
+    ];
+    const state = parseSkillQuery("period=30d&sort=added");
+
+    expect(state).toMatchObject({ period: "30d", sort: "added" });
+    expect(serializeSkillQuery(state).toString()).toBe("period=30d&sort=added");
+    expect(filterSkills(catalog, state, "en").map((skill) => skill.slug)).toEqual([
+      "recent",
+      "boundary",
+    ]);
+  });
+
+  it("ignores unsupported period values", () => {
+    expect(parseSkillQuery("period=year").period).toBeUndefined();
+  });
+
   it("ranks same-category and shared-tag skills without returning the source", () => {
     const source = skills.find(
       (skill) => skill.slug === "research-writing-assistant",
