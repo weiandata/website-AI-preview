@@ -6,7 +6,6 @@ import { useLanguage } from "@/components/language/language-provider";
 import { categories } from "@/data/categories";
 import { skills } from "@/data/skills";
 import { localize } from "@/lib/i18n";
-import { cn } from "@/lib/utils";
 
 export function FeaturedSkills() {
   const { locale, t } = useLanguage();
@@ -32,11 +31,8 @@ export function FeaturedSkills() {
           const category = categories.find((item) => item.id === skill.category)!;
           return (
             <Link
-              className={cn(
-                "featured-skill",
-                index === 0 && "featured-skill-primary",
-                index === 2 && "featured-skill-blue",
-              )}
+              className={`featured-skill featured-skill-tone-${index + 1}`}
+              data-tone={String(index + 1)}
               href={`/skills/${skill.slug}`}
               key={skill.id}
             >

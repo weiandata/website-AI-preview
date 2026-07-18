@@ -24,10 +24,6 @@ export function CategoryExplorer({ showHeader = true }: { showHeader?: boolean }
             <h2>{t("home.categoriesTitle")}</h2>
             <p>{t("home.categoriesDescription")}</p>
           </div>
-          <Link className="editorial-link" href="/categories">
-            {locale === "zh" ? "全部分类" : "All categories"}
-            <ArrowUpRight aria-hidden="true" size={15} />
-          </Link>
         </div>
       ) : null}
       <div className="category-grid">
@@ -44,10 +40,12 @@ export function CategoryExplorer({ showHeader = true }: { showHeader?: boolean }
               <strong>{localize(category.name, locale)}</strong>
               <small>{localize(category.description, locale)}</small>
             </span>
-            <span className="category-count">
-              {counts[category.id]} {t("categories.skills")}
+            <span className="category-card-footer">
+              <span className="category-count">
+                {counts[category.id]} {t("categories.skills")}
+              </span>
+              <ArrowUpRight aria-hidden="true" size={18} strokeWidth={1.7} />
             </span>
-            <ArrowUpRight aria-hidden="true" size={18} strokeWidth={1.7} />
           </Link>
         ))}
       </div>

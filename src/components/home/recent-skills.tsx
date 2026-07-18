@@ -4,7 +4,6 @@ import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/components/language/language-provider";
 import { SkillIcon } from "@/components/skills/skill-icon";
-import { buttonClassName } from "@/components/ui/button";
 import { skills } from "@/data/skills";
 import { localize } from "@/lib/i18n";
 import { formatDate } from "@/lib/utils";
@@ -17,12 +16,14 @@ export function RecentSkills() {
 
   return (
     <section className="recent-section">
-      <div className="recent-header">
-        <h2>{t("home.recentTitle")}</h2>
-        <Link
-          href="/skills?sort=added"
-          className={buttonClassName({ variant: "ghost", size: "sm" })}
-        >
+      <div className="section-heading recent-heading">
+        <div>
+          <span className="section-kicker">
+            {locale === "zh" ? "目录更新" : "Catalog updates"}
+          </span>
+          <h2>{t("home.recentTitle")}</h2>
+        </div>
+        <Link href="/skills?period=30d&sort=added" className="editorial-link">
           {t("home.recentLink")}
           <ArrowRight aria-hidden="true" size={15} strokeWidth={1.8} />
         </Link>

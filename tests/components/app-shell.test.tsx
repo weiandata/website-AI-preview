@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { fireEvent, render, screen } from "@testing-library/react";
 import { describe, expect, it, vi } from "vitest";
 import Home from "@/app/page";
 import { LanguageProvider } from "@/components/language/language-provider";
@@ -47,6 +47,14 @@ describe("application shell", () => {
     );
     expect(screen.getByRole("combobox", { name: "搜索 Skill" })).toBeInTheDocument();
     expect(container.querySelectorAll(".category-card")).toHaveLength(8);
+    expect(container.querySelectorAll(".featured-skill[data-tone]")).toHaveLength(3);
+    expect(container.querySelectorAll(".category-card-footer")).toHaveLength(8);
+    expect(screen.getByRole("link", { name: /查看全部更新/ })).toHaveAttribute(
+      "href",
+      "/skills?period=30d&sort=added",
+    );
+    fireEvent.focus(screen.getByRole("combobox", { name: "搜索 Skill" }));
+    expect(container.querySelectorAll(".popular-search-term")).toHaveLength(8);
     expect(screen.queryByText(/一起完善开源 Skill 生态/)).not.toBeInTheDocument();
   });
 

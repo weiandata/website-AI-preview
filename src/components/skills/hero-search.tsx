@@ -148,7 +148,12 @@ export function HeroSearch() {
               <span>{t("search.popular")}</span>
               <div>
                 {popularSearches.map((item) => (
-                  <button key={item} type="button" onClick={() => submit(item)}>
+                  <button
+                    className="popular-search-term"
+                    key={item}
+                    type="button"
+                    onClick={() => submit(item)}
+                  >
                     {item}
                   </button>
                 ))}

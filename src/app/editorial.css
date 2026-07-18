@@ -323,8 +323,6 @@ h3 {
 
 .home-search-layout h2,
 .section-heading h2,
-.values-intro h2,
-.recent-header h2,
 .page-hero-editorial h1,
 .about-mission h2,
 .about-principles h2,
@@ -403,15 +401,26 @@ h3 {
   border-radius: var(--weian-radius);
 }
 
-.search-results button,
-.popular-searches button {
+.search-results button {
   color: var(--weian-ink);
 }
 
 .search-results button:hover,
-.search-results button.is-active,
-.popular-searches button:hover {
+.search-results button.is-active {
   background: var(--weian-soft);
+}
+
+.popular-search-term {
+  border: 1px solid #d7dee6;
+  background: #f7f9fb;
+  color: var(--weian-navy);
+}
+
+.popular-search-term:hover,
+.popular-search-term:focus-visible {
+  border-color: #9fc5df;
+  background: #eaf4fb;
+  color: #174a78;
 }
 
 .featured-section,
@@ -426,8 +435,7 @@ h3 {
   background: var(--weian-white);
 }
 
-.section-heading,
-.recent-header {
+.section-heading {
   display: flex;
   align-items: flex-end;
   justify-content: space-between;
@@ -480,20 +488,23 @@ h3 {
   overflow: hidden;
   padding: 1.75rem;
   border-radius: var(--weian-radius);
-  background: #e2e7ea;
+  border: 1px solid rgba(20, 42, 66, 0.08);
+  background: #f2f5f7;
   color: var(--weian-ink);
   transition: transform 180ms ease, box-shadow 180ms ease;
 }
 
-.featured-skill-primary {
+.featured-skill-tone-1 {
   grid-row: 1 / 3;
-  background: linear-gradient(145deg, var(--weian-navy), #143653);
-  color: #eff7fe;
+  background: #eaf4fb;
 }
 
-.featured-skill-blue {
-  background: var(--weian-blue);
-  color: #fff;
+.featured-skill-tone-2 {
+  background: #f2f5f7;
+}
+
+.featured-skill-tone-3 {
+  background: #e8f5f4;
 }
 
 .featured-skill:hover {
@@ -528,7 +539,7 @@ h3 {
   letter-spacing: -0.035em;
 }
 
-.featured-skill-primary .featured-skill-copy strong {
+.featured-skill-tone-1 .featured-skill-copy strong {
   font-size: clamp(2.2rem, 3.7vw, 3.1rem);
 }
 
@@ -558,11 +569,10 @@ h3 {
 
 .category-grid .category-card {
   position: relative;
-  display: grid;
+  display: flex;
   grid-column: auto;
   min-height: 12rem;
-  grid-template-columns: 1fr auto;
-  align-content: space-between;
+  flex-direction: column;
   gap: 1rem;
   padding: 2.8rem 1.25rem 1.5rem;
   border: 0;
@@ -589,6 +599,7 @@ h3 {
 
 .category-copy {
   display: grid;
+  flex: 1;
   gap: 0.55rem;
 }
 
@@ -605,72 +616,31 @@ h3 {
 }
 
 .category-count {
-  align-self: end;
   color: #87919a;
   font-size: 0.68rem;
 }
 
-.category-card > svg {
-  grid-column: 2;
-  grid-row: 1 / 3;
-  align-self: end;
+.category-card-footer {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  margin-top: auto;
+}
+
+.category-card-footer svg {
+  flex: 0 0 auto;
   color: var(--weian-navy);
   transition: transform 180ms ease;
 }
 
-.category-card:hover > svg {
+.category-card:hover .category-card-footer svg {
   transform: translate(2px, -2px);
 }
 
-.section-space:has(.values-section) {
-  width: 100%;
-  max-width: none;
-  padding-inline: max(1.5rem, calc((100% - 76.25rem) / 2));
-  background: var(--weian-soft);
-}
-
-.values-section {
-  display: grid;
-  grid-template-columns: 0.78fr 1.22fr;
-  gap: 6rem;
-}
-
-.values-intro p {
-  max-width: 25rem;
-  color: var(--weian-muted);
-  line-height: 1.7;
-}
-
-.values-list {
-  border-top: 1px solid #c2c9ce;
-}
-
-.values-list article {
-  display: grid;
-  grid-template-columns: 4.5rem 1fr;
-  gap: 1.5rem;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid #c2c9ce;
-}
-
-.values-list article > span {
-  color: #87919a;
-  font-size: 0.7rem;
-}
-
-.values-list h3,
-.values-list p {
-  margin: 0;
-}
-
-.values-list h3 {
-  margin-bottom: 0.45rem;
-  font-size: 1.05rem;
-}
-
-.values-list p {
-  color: var(--weian-muted);
-  line-height: 1.65;
+.recent-heading {
+  align-items: flex-end;
 }
 
 .section-space:has(.recent-section) {
@@ -1329,7 +1299,6 @@ h3 {
   }
 
   .home-search-layout,
-  .values-section,
   .about-mission,
   .about-usage,
   .about-hero,
@@ -1353,7 +1322,7 @@ h3 {
     min-height: 0;
   }
 
-  .featured-skill-primary {
+  .featured-skill-tone-1 {
     grid-row: auto;
     min-height: 25rem;
   }
@@ -1451,7 +1420,6 @@ h3 {
   }
 
   .home-search-layout,
-  .values-section,
   .about-mission,
   .about-usage {
     gap: 2.5rem;
@@ -1465,13 +1433,12 @@ h3 {
     display: none;
   }
 
-  .section-heading,
-  .recent-header {
+  .section-heading {
     align-items: flex-start;
     flex-direction: column;
   }
 
-  .featured-skill-primary {
+  .featured-skill-tone-1 {
     min-height: 22rem;
   }
 
