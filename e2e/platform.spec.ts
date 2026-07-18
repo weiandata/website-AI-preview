@@ -20,6 +20,19 @@ test("home discovery supports bilingual search and category exploration", async 
     "href",
     "/skills",
   );
+  await expect(page.locator(".header-actions .github-button")).toHaveCount(0);
+  await page.getByRole("link", { name: "搜索" }).click();
+  await expect(page).toHaveURL(/#home-search$/);
+  await expect(page.locator("#home-search")).toBeInViewport();
+
+  await expect(page.getByRole("link", { name: "查看全部更新" })).toHaveAttribute(
+    "href",
+    "/skills?period=30d&sort=added",
+  );
+  await page.getByRole("combobox", { name: "搜索 Skill" }).focus();
+  const popular = page.locator(".popular-search-term").first();
+  await expect(popular).toHaveCSS("color", "rgb(12, 68, 124)");
+  await expect(popular).not.toHaveCSS("background-color", "rgb(0, 0, 0)");
 
   await page.getByRole("button", { name: "EN", exact: true }).click();
   await expect(
@@ -33,15 +46,22 @@ test("home discovery supports bilingual search and category exploration", async 
   await page.getByRole("combobox", { name: "搜索 Skill" }).press("Enter");
   await expect(page).toHaveURL(/\/skills\?q=PDF/);
 
-  await page.goto("/categories");
-  await expect(page.getByRole("heading", { name: "Skill 分类" })).toBeVisible();
+  await page.goto("/");
   await expect(page.locator(".category-card")).toHaveCount(8);
+  for (const card of await page.locator(".category-card").all()) {
+    const countBox = await card.locator(".category-count").boundingBox();
+    const arrowBox = await card.locator(".category-card-footer svg").boundingBox();
+    expect(countBox && arrowBox && countBox.x + countBox.width <= arrowBox.x).toBe(true);
+  }
   await expect(page.getByRole("link", { name: "联系我们" })).toBeVisible();
   await expect(page.getByRole("link", { name: "隐私政策" })).toBeVisible();
   await expect(page.getByText("© 2026 WEIAN DATA。保留所有权利。"))
     .toBeVisible();
   await page.goto("/about#usage");
   await expect(page.locator("#usage")).toBeVisible();
+
+  const categoriesResponse = await page.goto("/categories");
+  expect(categoriesResponse?.status()).toBe(404);
 });
 
 test("skill library keeps filters shareable and supports every result state", async ({
@@ -52,13 +72,24 @@ test("skill library keeps filters shareable and supports every result state", as
   );
 
   await expect(page.getByRole("heading", { name: "开源 Skill 库" })).toBeVisible();
+  await expect(page.locator(".sort-control select")).not.toHaveCSS(
+    "background-color",
+    "rgb(0, 0, 0)",
+  );
   await expect(page.locator(".library-result-count")).toContainText("1");
-  await expect(page.getByText("数据分析助手")).toBeVisible();
+  await expect(page.locator(".library-results .skill-card h3", { hasText: "数据分析助手" }))
+    .toBeVisible();
   await expect(page.locator("[data-filter-chip]")) .toHaveCount(2);
 
   await page.getByRole("button", { name: "清除筛选" }).click();
   await expect(page).toHaveURL("/skills");
   await expect(page.locator(".library-result-count")).toContainText("8");
+
+  const firstCard = page.locator(".skill-card .skill-item-link").first();
+  const destination = await firstCard.getAttribute("href");
+  await firstCard.click();
+  await expect(page).toHaveURL(new RegExp(`${destination}$`));
+  await page.goto("/skills");
 
   await page.getByRole("searchbox", { name: "搜索 Skill 库" }).fill("no-match-term");
   await expect(page.getByRole("heading", { name: "没有找到匹配的 Skill" })).toBeVisible();
@@ -102,6 +133,17 @@ test("skill detail presents guidance, provenance, safe actions, and related Skil
 
   await expect(page.getByRole("heading", { name: "相关 Skills" })).toBeVisible();
   await expect(page.locator(".related-skills .skill-card")).toHaveCount(3);
+
+  for (const id of ["overview", "features", "installation", "usage"]) {
+    await page.locator(`.detail-on-page-nav a[href="#${id}"]`).click();
+    await expect(page).toHaveURL(new RegExp(`#${id}$`));
+    await expect.poll(async () => {
+      const top = await page.locator(`#${id}`).evaluate((element) =>
+        element.getBoundingClientRect().top,
+      );
+      return top >= 80 && top < 220;
+    }).toBe(true);
+  }
 
   await page.goto("/skills/not-a-real-skill");
   await expect(page.getByRole("heading", { name: /未找到 Skill/ })).toBeVisible();

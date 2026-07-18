@@ -410,14 +410,14 @@ h3 {
   background: var(--weian-soft);
 }
 
-.popular-search-term {
+.popular-searches .popular-search-term {
   border: 1px solid #d7dee6;
   background: #f7f9fb;
   color: var(--weian-navy);
 }
 
-.popular-search-term:hover,
-.popular-search-term:focus-visible {
+.popular-searches .popular-search-term:hover,
+.popular-searches .popular-search-term:focus-visible {
   border-color: #9fc5df;
   background: #eaf4fb;
   color: #174a78;
@@ -616,6 +616,7 @@ h3 {
 }
 
 .category-count {
+  position: static;
   color: #87919a;
   font-size: 0.68rem;
 }
@@ -1512,7 +1513,7 @@ h3 {
   }
 
   .header-search {
-    display: none;
+    display: inline-grid;
   }
 
   .language-switcher {
