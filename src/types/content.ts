@@ -67,6 +67,7 @@ export type Skill = {
   officialUrl?: string;
   downloadUrl?: string;
   featured: boolean;
+  featuredRank: number;
   verified: boolean;
   icon: SkillIconKey;
   stars: number;
