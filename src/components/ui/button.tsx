@@ -1,5 +1,5 @@
 import Link from "next/link";
-import type { ButtonHTMLAttributes, ReactNode } from "react";
+import { forwardRef, type ButtonHTMLAttributes, type ReactNode } from "react";
 import { cn } from "@/lib/utils";
 
 type ButtonVariant = "primary" | "secondary" | "ghost";
@@ -29,24 +29,25 @@ export function buttonClassName({
   return cn("button-base", variants[variant], sizes[size], className);
 }
 
-export function Button({
-  variant = "primary",
-  size = "md",
-  className,
-  type = "button",
-  ...props
-}: ButtonHTMLAttributes<HTMLButtonElement> & {
-  variant?: ButtonVariant;
-  size?: ButtonSize;
-}) {
+export const Button = forwardRef<
+  HTMLButtonElement,
+  ButtonHTMLAttributes<HTMLButtonElement> & {
+    variant?: ButtonVariant;
+    size?: ButtonSize;
+  }
+>(function Button(
+  { variant = "primary", size = "md", className, type = "button", ...props },
+  ref,
+) {
   return (
     <button
+      ref={ref}
       type={type}
       className={buttonClassName({ variant, size, className })}
       {...props}
     />
   );
-}
+});
 
 export function ButtonLink({
   href,
