@@ -6,7 +6,6 @@ import {
   BadgeCheck,
   Download,
   GitFork,
-  Globe2,
   PackageOpen,
   ShieldCheck,
   Star,
@@ -77,12 +76,6 @@ export function SkillDetail({ skill }: { skill: Skill }) {
                 {t("detail.github")}
               </ButtonLink>
             ) : null}
-            {skill.officialUrl ? (
-              <ButtonLink href={skill.officialUrl} external variant="ghost">
-                <Globe2 aria-hidden="true" size={16} strokeWidth={1.8} />
-                {t("detail.website")}
-              </ButtonLink>
-            ) : null}
           </div>
         </header>
 
@@ -111,12 +104,12 @@ export function SkillDetail({ skill }: { skill: Skill }) {
 
         <div className="detail-layout detail-editorial-layout">
           <div className="detail-content">
-            <section id="overview">
+            <section className="detail-anchor-section" id="overview">
               <h2>{t("detail.overview")}</h2>
               <p>{localize(skill.longDescription, locale)}</p>
             </section>
 
-            <section className="detail-two-column" id="features">
+            <section className="detail-two-column detail-anchor-section" id="features">
               <div>
                 <h2>{t("detail.features")}</h2>
                 <ul>
@@ -135,7 +128,7 @@ export function SkillDetail({ skill }: { skill: Skill }) {
               </div>
             </section>
 
-            <section id="installation">
+            <section className="detail-anchor-section" id="installation">
               <h2>{t("detail.installation")}</h2>
               <div className="installation-blocks">
                 {skill.installation.map((command) => (
@@ -152,7 +145,7 @@ export function SkillDetail({ skill }: { skill: Skill }) {
               </div>
             </section>
 
-            <section id="usage">
+            <section className="detail-anchor-section" id="usage">
               <h2>{t("detail.usage")}</h2>
               <p>{localize(skill.usage, locale)}</p>
             </section>

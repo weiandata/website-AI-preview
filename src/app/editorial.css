@@ -1043,6 +1043,10 @@ h3 {
   margin-top: 3.5rem;
 }
 
+.detail-anchor-section {
+  scroll-margin-top: 9.5rem;
+}
+
 .detail-two-column > div {
   padding: 1.5rem;
   border: 1px solid var(--weian-line);
@@ -1437,6 +1441,10 @@ h3 {
 }
 
 @media (max-width: 680px) {
+  .detail-anchor-section {
+    scroll-margin-top: 6.5rem;
+  }
+
   .site-header.is-home .header-inner {
     min-height: 68px;
   }
