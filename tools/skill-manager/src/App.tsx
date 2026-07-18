@@ -270,6 +270,13 @@ export function App() {
 
   function reviewChanges(forPublish: boolean): void {
     if (!dirtyKeys.size && !pendingDeletions.size) {
+      // Files saved earlier are already on disk but may never have reached
+      // GitHub, and the server — not this page — knows what is still pending.
+      // Publishing must stay reachable once the edit queue is empty.
+      if (forPublish) {
+        void openPublishReview(savedPaths);
+        return;
+      }
       setStatus("没有待保存修改");
       return;
     }

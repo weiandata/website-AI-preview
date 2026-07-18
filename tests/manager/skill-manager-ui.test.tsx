@@ -333,6 +333,58 @@ describe("local Skill manager UI", () => {
     );
   });
 
+  it("publishes files that were saved earlier in the session", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(await findSkillEntry(/示例 Skill/));
+    await user.type(screen.getByLabelText("英文名称"), "!");
+    await user.click(screen.getByRole("button", { name: "仅保存" }));
+    await user.click(
+      within(await screen.findByRole("dialog", { name: "确认保存修改" })).getByRole(
+        "button",
+        { name: "确认保存" },
+      ),
+    );
+    await user.click(
+      within(await screen.findByRole("dialog", { name: "保存结果" })).getByRole("button", {
+        name: "知道了",
+      }),
+    );
+
+    // Nothing is dirty any more, but the saved file has still never reached GitHub.
+    await user.click(screen.getByRole("button", { name: "保存并发布" }));
+
+    const publish = await screen.findByRole("dialog", { name: "确认发布到 GitHub" });
+    expect(within(publish).getByText("content/skills/example-skill.md")).toBeInTheDocument();
+    expect(within(publish).getByLabelText("发布说明")).toHaveValue(
+      "content: update example-skill",
+    );
+  });
+
+  it("publishes what the server still has pending after a page reload", async () => {
+    const user = userEvent.setup();
+    vi.mocked(api.previewPublish).mockResolvedValue({
+      paths: ["content/skills/ui-skills.md"],
+      inspection: {
+        branch: "main",
+        remoteUrl: "git@github.com:weian/website.git",
+        remoteAhead: 0,
+        dirtyCodePaths: [],
+        conflictedPaths: [],
+      },
+    });
+    render(<App />);
+    await findSkillEntry(/示例 Skill/);
+
+    // This page saved nothing, but the manager process did earlier.
+    await user.click(screen.getByRole("button", { name: "保存并发布" }));
+
+    const publish = await screen.findByRole("dialog", { name: "确认发布到 GitHub" });
+    expect(within(publish).getByText("content/skills/ui-skills.md")).toBeInTheDocument();
+    expect(within(publish).getByRole("button", { name: "确认发布" })).toBeEnabled();
+  });
+
   it("warns about changes publishing will leave untouched", async () => {
     const user = userEvent.setup();
     vi.mocked(api.previewPublish).mockResolvedValue({
