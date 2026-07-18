@@ -53,7 +53,7 @@ export function SiteFooter() {
       <div className="container-shell footer-grid">
         <div className="footer-brand">
           <Image
-            src="/brand/weian-logo-reversed.svg"
+            src="/brand/weian-logo-primary.svg"
             alt="WEIAN DATA TECH"
             width={174}
             height={50}

@@ -69,7 +69,7 @@ describe("application shell", () => {
 
     const logos = screen.getAllByRole("img", { name: "WEIAN DATA TECH" });
     expect(logos[0]).toHaveAttribute("src", "/brand/weian-logo-reversed.svg");
-    expect(logos[1]).toHaveAttribute("src", "/brand/weian-logo-reversed.svg");
+    expect(logos[1]).toHaveAttribute("src", "/brand/weian-logo-primary.svg");
     expect(screen.queryByRole("link", { name: /提交|submit/i })).not.toBeInTheDocument();
     expect(screen.getByRole("link", { name: "搜索" })).toHaveAttribute(
       "href",

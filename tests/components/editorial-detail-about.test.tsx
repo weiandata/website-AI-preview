@@ -42,6 +42,12 @@ describe("editorial detail and about pages", () => {
       screen.getByRole("heading", { name: "让优质开源资源更容易被使用" }),
     ).toBeInTheDocument();
     expect(container.querySelector(".about-editorial-hero")).toBeInTheDocument();
+    expect(container.querySelector(".about-content-grid")).toBeInTheDocument();
+    expect(container.querySelectorAll(".about-section-heading")).toHaveLength(5);
+    expect(container.querySelectorAll(".about-principle-card")).toHaveLength(4);
+    expect(container.querySelector(".about-legal-grid")).toBeInTheDocument();
+    expect(container.querySelectorAll(".about-usage-step")).toHaveLength(3);
+    expect(container.querySelector(".about-mark")).not.toBeInTheDocument();
     expect(screen.queryByText(/欢迎推荐项目/)).not.toBeInTheDocument();
     expect(screen.getByText(/报告失效链接/)).toBeInTheDocument();
   });
