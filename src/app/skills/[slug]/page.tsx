@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import { SkillDetail } from "@/components/skills/skill-detail";
 import { categories } from "@/data/categories";
 import { skills } from "@/data/skills";
+import { absoluteUrl } from "@/lib/site-config";
 
 type SkillPageProps = {
   params: Promise<{ slug: string }>;
@@ -23,10 +24,6 @@ export async function generateMetadata({ params }: SkillPageProps): Promise<Meta
     description: skill.description.zh,
     alternates: {
       canonical,
-      languages: {
-        "zh-CN": canonical,
-        en: `${canonical}?lang=en`,
-      },
     },
     openGraph: {
       title: skill.name,
@@ -51,13 +48,13 @@ export default async function SkillPage({ params }: SkillPageProps) {
   const skill = skills.find((item) => item.slug === slug);
   if (!skill) notFound();
   const category = categories.find((item) => item.id === skill.category)!;
-  const url = `https://skills.weian-data.example/skills/${skill.slug}`;
+  const url = absoluteUrl(`/skills/${skill.slug}`);
   const breadcrumbJsonLd = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
     itemListElement: [
-      { "@type": "ListItem", position: 1, name: "Home", item: "https://skills.weian-data.example" },
-      { "@type": "ListItem", position: 2, name: "Skills", item: "https://skills.weian-data.example/skills" },
+      { "@type": "ListItem", position: 1, name: "Home", item: absoluteUrl() },
+      { "@type": "ListItem", position: 2, name: "Skills", item: absoluteUrl("/skills") },
       { "@type": "ListItem", position: 3, name: skill.name, item: url },
     ],
   };

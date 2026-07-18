@@ -10,6 +10,7 @@ import {
 } from "lucide-react";
 import { useLanguage } from "@/components/language/language-provider";
 import { ButtonLink } from "@/components/ui/button";
+import { siteConfig } from "@/lib/site-config";
 
 const principles = [
   {
@@ -81,6 +82,22 @@ export function AboutContent() {
         </div>
       </section>
 
+      <section className="container-shell about-usage" id="usage">
+        <div>
+          <h2>{locale === "zh" ? "使用说明" : "Using the library"}</h2>
+          <p>
+            {locale === "zh"
+              ? "先核对来源与许可证，再按照项目文档完成安装，并在受控环境中验证 Skill 的输出。"
+              : "Verify the source and license, follow the project documentation, and validate Skill output in a controlled environment."}
+          </p>
+        </div>
+        <ol>
+          <li>{locale === "zh" ? "确认项目来源与维护状态" : "Confirm the source and maintenance status"}</li>
+          <li>{locale === "zh" ? "阅读许可证与安装要求" : "Review the license and installation requirements"}</li>
+          <li>{locale === "zh" ? "测试输出后再接入正式工作流" : "Test outputs before production use"}</li>
+        </ol>
+      </section>
+
       <section className="container-shell attribution-section" id="open-source">
         <div>
           <h2>{locale === "zh" ? "开源归属" : "Open-source attribution"}</h2>
@@ -112,8 +129,12 @@ export function AboutContent() {
               : "Recommend projects, report broken links, or suggest improvements to the directory."}
           </p>
         </div>
-        <ButtonLink href="mailto:hello@weian-data.example" variant="secondary" external>
-          hello@weian-data.example
+        <ButtonLink
+          href={`mailto:${siteConfig.contactEmail}`}
+          variant="secondary"
+          external
+        >
+          {siteConfig.contactEmail}
         </ButtonLink>
       </section>
     </main>

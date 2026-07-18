@@ -20,6 +20,15 @@ npm run dev
 
 Open [http://localhost:3000](http://localhost:3000).
 
+Optional public deployment settings:
+
+```bash
+NEXT_PUBLIC_SITE_URL=https://skills.weiandata.com
+NEXT_PUBLIC_CONTACT_EMAIL=contact@weiandata.com
+```
+
+The values must be a valid absolute HTTP(S) origin and email address. They drive canonical URLs, sitemap and structured-data links, and every contact action.
+
 ## Validation
 
 ```bash
@@ -41,6 +50,8 @@ npx playwright install chromium
 Skill records live in `src/data/skills.ts`. Categories and interface translations live in `src/data/categories.ts` and `src/data/translations.ts`.
 
 Each Skill record contains bilingual presentation copy, platform and license metadata, installation commands, usage notes, changelog entries, FAQ content, and source attribution. Search and filter state is encoded in the URL so result pages can be shared.
+
+The submission page is intentionally client-only in this preview. Valid recommendations show a confirmation but are not transmitted or stored until a reviewed backend service is connected.
 
 ## Main routes
 

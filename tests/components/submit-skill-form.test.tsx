@@ -49,4 +49,26 @@ describe("SubmitSkillForm", () => {
     ).toBeInTheDocument();
     expect(screen.getByText(/当前演示不会将数据发送到服务器/)).toBeInTheDocument();
   });
+
+  it("associates platform errors with the checkbox group and moves focus", async () => {
+    const user = userEvent.setup();
+    renderForm();
+
+    await user.type(screen.getByLabelText("Skill 名称"), "Open Review Helper");
+    await user.type(
+      screen.getByLabelText("GitHub 或项目地址"),
+      "https://example.com/open-review-helper",
+    );
+    await user.type(screen.getByLabelText("简短介绍"), "用于检查开源项目贡献。" );
+    await user.selectOptions(screen.getByLabelText("分类"), "development");
+    await user.selectOptions(screen.getByLabelText("许可证"), "MIT");
+    await user.type(screen.getByLabelText("提交人姓名"), "Lin Wei");
+    await user.type(screen.getByLabelText("提交人邮箱"), "lin@example.com");
+    await user.click(screen.getByRole("button", { name: "提交推荐" }));
+
+    const group = screen.getByRole("group", { name: "支持平台" });
+    expect(group).toHaveAttribute("aria-invalid", "true");
+    expect(group).toHaveAttribute("aria-describedby", "platforms-error");
+    expect(group).toHaveFocus();
+  });
 });

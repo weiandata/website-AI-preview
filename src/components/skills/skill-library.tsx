@@ -105,6 +105,7 @@ export function SkillLibrary() {
   const { locale, t } = useLanguage();
   const [visibleCount, setVisibleCount] = useState(6);
   const [mobileFiltersOpen, setMobileFiltersOpen] = useState(false);
+  const searchInputRef = useRef<HTMLInputElement>(null);
   const filters = useMemo(
     () => parseSkillQuery(searchParams.toString()),
     [searchParams],
@@ -113,6 +114,9 @@ export function SkillLibrary() {
   useEffect(() => {
     latestFilters.current = filters;
   }, [filters]);
+  useEffect(() => {
+    if (filters.focusSearch) searchInputRef.current?.focus();
+  }, [filters.focusSearch]);
   const results = useMemo(
     () => filterSkills(skills, filters, locale),
     [filters, locale],
@@ -182,6 +186,7 @@ export function SkillLibrary() {
         <div className="library-search">
           <Search aria-hidden="true" size={19} strokeWidth={1.8} />
           <input
+            ref={searchInputRef}
             type="search"
             aria-label={locale === "zh" ? "搜索 Skill 库" : "Search Skill library"}
             placeholder={t("search.placeholder")}

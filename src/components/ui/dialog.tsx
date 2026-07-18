@@ -3,6 +3,7 @@
 import { X } from "lucide-react";
 import {
   useEffect,
+  useId,
   useRef,
   type KeyboardEvent as ReactKeyboardEvent,
   type ReactNode,
@@ -15,6 +16,7 @@ export function Dialog({
   title,
   description,
   closeLabel,
+  variant = "modal",
   children,
 }: {
   open: boolean;
@@ -22,19 +24,47 @@ export function Dialog({
   title: string;
   description?: string;
   closeLabel: string;
+  variant?: "modal" | "drawer";
   children: ReactNode;
 }) {
   const panelRef = useRef<HTMLDivElement>(null);
+  const previousFocusRef = useRef<HTMLElement | null>(null);
+  const titleId = useId();
+  const descriptionId = useId();
 
   useEffect(() => {
     if (!open) return;
+    previousFocusRef.current =
+      document.activeElement instanceof HTMLElement
+        ? document.activeElement
+        : null;
     const previousOverflow = document.body.style.overflow;
+    const background = document.getElementById("site-shell-content");
+    const previousInert = background?.inert ?? false;
+    const previousAriaHidden = background
+      ? background.getAttribute("aria-hidden")
+      : null;
     document.body.style.overflow = "hidden";
+    if (background) {
+      background.inert = true;
+      background.setAttribute("aria-hidden", "true");
+    }
     panelRef.current
       ?.querySelector<HTMLElement>("button:not([disabled]), a[href]")
       ?.focus();
     return () => {
       document.body.style.overflow = previousOverflow;
+      if (background) {
+        background.inert = previousInert;
+        if (previousAriaHidden === null) {
+          background.removeAttribute("aria-hidden");
+        } else {
+          background.setAttribute("aria-hidden", previousAriaHidden);
+        }
+      }
+      if (previousFocusRef.current?.isConnected) {
+        previousFocusRef.current.focus();
+      }
     };
   }, [open]);
 
@@ -64,14 +94,18 @@ export function Dialog({
   }
 
   return createPortal(
-    <div className="dialog-backdrop" role="presentation" onMouseDown={onClose}>
+    <div
+      className={`dialog-backdrop dialog-backdrop-${variant}`}
+      role="presentation"
+      onMouseDown={onClose}
+    >
       <div
         ref={panelRef}
-        className="dialog-panel"
+        className={`dialog-panel dialog-panel-${variant}`}
         role="dialog"
         aria-modal="true"
-        aria-labelledby="dialog-title"
-        aria-describedby={description ? "dialog-description" : undefined}
+        aria-labelledby={titleId}
+        aria-describedby={description ? descriptionId : undefined}
         onMouseDown={(event) => event.stopPropagation()}
         onKeyDown={handleKeyDown}
       >
@@ -83,8 +117,8 @@ export function Dialog({
         >
           <X aria-hidden="true" size={18} strokeWidth={1.8} />
         </button>
-        <h2 id="dialog-title">{title}</h2>
-        {description ? <p id="dialog-description">{description}</p> : null}
+        <h2 id={titleId}>{title}</h2>
+        {description ? <p id={descriptionId}>{description}</p> : null}
         {children}
       </div>
     </div>,

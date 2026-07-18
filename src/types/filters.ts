@@ -5,6 +5,8 @@ export type SkillView = "grid" | "list";
 
 export type SkillFilterState = {
   query?: string;
+  featured?: boolean;
+  focusSearch?: boolean;
   categories?: CategoryId[];
   platforms?: string[];
   licenses?: string[];

@@ -20,6 +20,7 @@ import { categories } from "@/data/categories";
 import { skills } from "@/data/skills";
 import { localize } from "@/lib/i18n";
 import { getRelatedSkills } from "@/lib/skill-query";
+import { siteConfig } from "@/lib/site-config";
 import { formatCompactNumber, formatDate } from "@/lib/utils";
 import type { Skill } from "@/types/content";
 import { DownloadDialog } from "./download-dialog";
@@ -241,7 +242,7 @@ export function SkillDetail({ skill }: { skill: Skill }) {
                 </div>
               </div>
               <a
-                href={`mailto:hello@weian-data.example?subject=${encodeURIComponent(`Broken link: ${skill.name}`)}`}
+                href={`mailto:${siteConfig.contactEmail}?subject=${encodeURIComponent(`Broken link: ${skill.name}`)}`}
                 className={buttonClassName({ variant: "ghost", size: "sm" })}
               >
                 {t("detail.report")}

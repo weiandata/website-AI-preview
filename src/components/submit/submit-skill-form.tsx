@@ -77,7 +77,8 @@ export function SubmitSkillForm() {
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    const form = new FormData(event.currentTarget);
+    const formElement = event.currentTarget;
+    const form = new FormData(formElement);
     const values: SkillSubmission = {
       skillName: String(form.get("skillName") ?? ""),
       sourceUrl: String(form.get("sourceUrl") ?? ""),
@@ -91,7 +92,14 @@ export function SubmitSkillForm() {
     };
     const nextErrors = validateSubmission(values, locale);
     setErrors(nextErrors);
-    if (Object.keys(nextErrors).length) return;
+    if (Object.keys(nextErrors).length) {
+      window.setTimeout(() => {
+        formElement
+          .querySelector<HTMLElement>('[aria-invalid="true"]')
+          ?.focus();
+      }, 0);
+      return;
+    }
 
     setStatus("submitting");
     await new Promise((resolve) => window.setTimeout(resolve, 80));
@@ -198,7 +206,12 @@ export function SubmitSkillForm() {
           <FieldError id="license-error" message={errors.license} />
         </label>
 
-        <fieldset className="form-field form-field-wide platform-fieldset">
+        <fieldset
+          className="form-field form-field-wide platform-fieldset"
+          aria-invalid={Boolean(errors.platforms)}
+          aria-describedby={errors.platforms ? "platforms-error" : undefined}
+          tabIndex={errors.platforms ? -1 : undefined}
+        >
           <legend>{t.platforms}</legend>
           <div>
             {platforms.map((platform) => (

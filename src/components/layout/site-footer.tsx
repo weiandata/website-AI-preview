@@ -3,6 +3,7 @@
 import Link from "next/link";
 import { GitFork, Workflow } from "lucide-react";
 import { useLanguage } from "@/components/language/language-provider";
+import { siteConfig } from "@/lib/site-config";
 
 export function SiteFooter() {
   const { locale, t } = useLanguage();
@@ -30,7 +31,10 @@ export function SiteFooter() {
       links: [
         [t("nav.about"), "/about"],
         ["WEIAN DATA", "/about#company"],
-        [locale === "zh" ? "联系我们" : "Contact", "mailto:hello@weian-data.example"],
+        [
+          locale === "zh" ? "联系我们" : "Contact",
+          `mailto:${siteConfig.contactEmail}`,
+        ],
         [locale === "zh" ? "隐私政策" : "Privacy", "/about#privacy"],
       ],
     },

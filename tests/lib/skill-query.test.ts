@@ -62,6 +62,16 @@ describe("skill discovery selectors", () => {
     expect(parseSkillQuery(serializeSkillQuery(state))).toMatchObject(state);
   });
 
+  it("parses and applies featured discovery and search-focus state", () => {
+    const state = parseSkillQuery("featured=true&focus=search");
+
+    expect(state).toMatchObject({ featured: true, focusSearch: true });
+    expect(filterSkills(skills, state, "en")).toHaveLength(6);
+    expect(serializeSkillQuery(state).toString()).toBe(
+      "featured=true&focus=search",
+    );
+  });
+
   it("ranks same-category and shared-tag skills without returning the source", () => {
     const source = skills.find(
       (skill) => skill.slug === "research-writing-assistant",

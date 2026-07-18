@@ -1,7 +1,7 @@
 "use client";
 
 import { Download, ExternalLink, ShieldCheck } from "lucide-react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { useLanguage } from "@/components/language/language-provider";
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
@@ -19,12 +19,10 @@ export function DownloadDialog({
   prominent?: boolean;
 }) {
   const [open, setOpen] = useState(false);
-  const triggerRef = useRef<HTMLButtonElement>(null);
   const { locale, t } = useLanguage();
 
   function close() {
     setOpen(false);
-    triggerRef.current?.focus();
   }
 
   function continueDownload() {
@@ -45,7 +43,6 @@ export function DownloadDialog({
   return (
     <>
       <Button
-        ref={triggerRef}
         variant={compact ? "ghost" : prominent ? "primary" : "secondary"}
         size={compact ? "sm" : "md"}
         disabled={!skill.downloadUrl}

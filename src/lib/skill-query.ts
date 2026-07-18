@@ -85,6 +85,7 @@ export function filterSkills(
   const query = normalize(filters.query ?? "");
   const filtered = collection.filter((skill) => {
     const queryMatches = !query || createSearchDocument(skill).includes(query);
+    const featuredMatches = !filters.featured || skill.featured;
     const categoryMatches =
       !filters.categories?.length || filters.categories.includes(skill.category);
     const platformMatches = includesAny(skill.platforms, filters.platforms);
@@ -93,6 +94,7 @@ export function filterSkills(
 
     return (
       queryMatches &&
+      featuredMatches &&
       categoryMatches &&
       platformMatches &&
       licenseMatches &&
@@ -164,6 +166,8 @@ export function parseSkillQuery(
 
   return {
     query: params.get("q") || undefined,
+    featured: params.get("featured") === "true" || undefined,
+    focusSearch: params.get("focus") === "search" || undefined,
     categories: categories.length ? categories : undefined,
     platforms: platforms.length ? platforms : undefined,
     licenses: licenses.length ? licenses : undefined,
@@ -178,6 +182,8 @@ export function serializeSkillQuery(
 ): URLSearchParams {
   const params = new URLSearchParams();
   if (state.query?.trim()) params.set("q", state.query.trim());
+  if (state.featured) params.set("featured", "true");
+  if (state.focusSearch) params.set("focus", "search");
   state.categories?.forEach((value) => params.append("category", value));
   state.platforms?.forEach((value) => params.append("platform", value));
   state.licenses?.forEach((value) => params.append("license", value));

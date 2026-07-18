@@ -10,17 +10,17 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useEffect, useRef, useState } from "react";
+import { useState } from "react";
 import { categories } from "@/data/categories";
 import { localize } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
 import { LanguageSwitcher } from "@/components/language/language-switcher";
 import { useLanguage } from "@/components/language/language-provider";
 import { buttonClassName } from "@/components/ui/button";
+import { Dialog } from "@/components/ui/dialog";
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
-  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
   const { locale, t } = useLanguage();
   const navItems = [
@@ -30,19 +30,6 @@ export function SiteHeader() {
     { href: "/submit", label: t("nav.submit") },
     { href: "/about", label: t("nav.about") },
   ];
-
-  useEffect(() => {
-    if (!menuOpen) return;
-
-    function closeOnEscape(event: KeyboardEvent) {
-      if (event.key !== "Escape") return;
-      setMenuOpen(false);
-      menuButtonRef.current?.focus();
-    }
-
-    document.addEventListener("keydown", closeOnEscape);
-    return () => document.removeEventListener("keydown", closeOnEscape);
-  }, [menuOpen]);
 
   return (
     <header id="page-top" className="site-header">
@@ -117,7 +104,6 @@ export function SiteHeader() {
             <span>{t("nav.github")}</span>
           </a>
           <button
-            ref={menuButtonRef}
             type="button"
             className="icon-button mobile-menu-button"
             aria-label={menuOpen ? t("nav.closeMenu") : t("nav.openMenu")}
@@ -133,21 +119,25 @@ export function SiteHeader() {
         </div>
       </div>
 
-      {menuOpen ? (
-        <div className="mobile-nav-panel">
-          <nav className="container-shell" aria-label="Mobile navigation">
-            {navItems.map((item) => (
-              <Link
-                href={item.href}
-                key={item.href}
-                onClick={() => setMenuOpen(false)}
-              >
-                {item.label}
-              </Link>
-            ))}
-          </nav>
-        </div>
-      ) : null}
+      <Dialog
+        open={menuOpen}
+        onClose={() => setMenuOpen(false)}
+        title={locale === "zh" ? "导航菜单" : "Navigation menu"}
+        closeLabel={t("nav.closeMenu")}
+        variant="drawer"
+      >
+        <nav className="drawer-nav" aria-label="Mobile navigation">
+          {navItems.map((item) => (
+            <Link
+              href={item.href}
+              key={item.href}
+              onClick={() => setMenuOpen(false)}
+            >
+              {item.label}
+            </Link>
+          ))}
+        </nav>
+      </Dialog>
       <div className="header-divider" />
     </header>
   );
