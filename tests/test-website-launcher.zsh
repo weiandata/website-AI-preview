@@ -4,6 +4,7 @@ set -u
 
 typeset -gr PROJECT_ROOT="${0:A:h:h}"
 typeset -gr LAUNCHER_PATH="$PROJECT_ROOT/测试网站.command"
+typeset -gr MANAGER_LAUNCHER_PATH="$PROJECT_ROOT/启动Skill管理器.command"
 typeset -gi PASSED=0
 typeset -gi FAILED=0
 
@@ -12,9 +13,23 @@ if [[ ! -f "$LAUNCHER_PATH" ]]; then
   exit 1
 fi
 
+if [[ ! -f "$MANAGER_LAUNCHER_PATH" ]]; then
+  print -u2 -r -- "Skill 管理器启动器不存在：$MANAGER_LAUNCHER_PATH"
+  exit 1
+fi
+
+if [[ ! -x "$MANAGER_LAUNCHER_PATH" ]]; then
+  print -u2 -r -- "Skill 管理器启动器不可执行：$MANAGER_LAUNCHER_PATH"
+  exit 1
+fi
+
 export WEIAN_LAUNCHER_SOURCE_ONLY=1
 source "$LAUNCHER_PATH"
 unset WEIAN_LAUNCHER_SOURCE_ONLY
+
+export WEIAN_MANAGER_LAUNCHER_SOURCE_ONLY=1
+source "$MANAGER_LAUNCHER_PATH"
+unset WEIAN_MANAGER_LAUNCHER_SOURCE_ONLY
 
 expect_contains() {
   local actual="$1"
@@ -246,6 +261,90 @@ test_cleanup_stops_only_the_started_server() (
   (( SERVER_WAS_STARTED == 0 ))
 )
 
+
+test_manager_project_dir_is_launcher_location() (
+  local actual
+  actual="$(manager_resolve_project_dir)" || return 1
+
+  [[ "$actual" == "$PROJECT_ROOT" ]]
+)
+
+test_manager_runs_from_project_dir_not_home() (
+  local temp_dir
+  temp_dir="$(mktemp -d)" || return 1
+  trap 'command rm -r -- "$temp_dir"' EXIT
+
+  # A fake npm that records the directory it was invoked from.
+  command mkdir -p "$temp_dir/bin" || return 1
+  command cat > "$temp_dir/bin/npm" <<'FAKE'
+#!/bin/zsh
+print -r -- "$PWD $*" >> "$FAKE_NPM_LOG"
+FAKE
+  command chmod +x "$temp_dir/bin/npm" || return 1
+
+  local output
+  output="$(
+    cd "$HOME" &&
+    FAKE_NPM_LOG="$temp_dir/npm.log" \
+    PATH="$temp_dir/bin:$PATH" \
+    zsh "$MANAGER_LAUNCHER_PATH" </dev/null 2>&1
+  )" || true
+
+  local logged
+  logged="$(command cat "$temp_dir/npm.log" 2>/dev/null)"
+  expect_contains "$logged" "$PROJECT_ROOT run skill-manager" || return 1
+  [[ "$logged" != "$HOME "* ]]
+)
+
+test_manager_missing_node_is_reported() (
+  manager_command_exists() {
+    [[ "$1" != "node" ]]
+  }
+
+  local output
+  output="$(manager_require_runtime 2>&1)"
+  local exit_status=$?
+
+  (( exit_status != 0 )) || return 1
+  expect_contains "$output" "Node.js"
+)
+
+test_manager_old_node_is_rejected() (
+  manager_command_exists() {
+    return 0
+  }
+
+  manager_node_major() {
+    print -r -- "18"
+  }
+
+  local output
+  output="$(manager_require_runtime 2>&1)"
+  local exit_status=$?
+
+  (( exit_status != 0 )) || return 1
+  expect_contains "$output" "20"
+)
+
+test_manager_installs_only_when_dependencies_are_missing() (
+  local temp_dir
+  temp_dir="$(mktemp -d)" || return 1
+  trap 'command rm -r -- "$temp_dir"' EXIT
+
+  npm() {
+    print -r -- "install" >> "$temp_dir/npm.log"
+    return 0
+  }
+
+  command mkdir "$temp_dir/node_modules" || return 1
+  manager_ensure_dependencies "$temp_dir" || return 1
+  [[ ! -e "$temp_dir/npm.log" ]] || return 1
+
+  command rmdir "$temp_dir/node_modules" || return 1
+  manager_ensure_dependencies "$temp_dir" || return 1
+  [[ "$(command wc -l < "$temp_dir/npm.log" | command tr -d ' ')" == "1" ]]
+)
+
 run_test "缺少 Node.js 时给出中文提示" test_missing_node
 run_test "缺少 npm 时给出中文提示" test_missing_npm
 run_test "从任意目录启动时定位到项目目录" test_project_dir_is_launcher_location
@@ -258,6 +357,11 @@ run_test "服务提前退出时报告失败" test_server_exit_before_readiness_i
 run_test "网站启动超时时报告失败" test_readiness_timeout_is_reported
 run_test "网站就绪后才打开浏览器" test_browser_opens_only_after_readiness
 run_test "退出时停止启动器创建的服务" test_cleanup_stops_only_the_started_server
+run_test "管理器启动器定位到项目目录" test_manager_project_dir_is_launcher_location
+run_test "管理器从主目录启动时仍在项目目录运行" test_manager_runs_from_project_dir_not_home
+run_test "管理器缺少 Node.js 时给出中文提示" test_manager_missing_node_is_reported
+run_test "管理器拒绝过低的 Node.js 版本" test_manager_old_node_is_rejected
+run_test "管理器只在依赖缺失时安装" test_manager_installs_only_when_dependencies_are_missing
 
 print -r -- ""
 print -r -- "测试结果：$PASSED 通过，$FAILED 失败"

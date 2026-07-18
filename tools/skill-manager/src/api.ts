@@ -78,6 +78,43 @@ export async function deleteSkill(slug: string): Promise<void> {
   await request(`/api/skills/${encodeURIComponent(slug)}`, { method: "DELETE" });
 }
 
+export type PublishInspection = {
+  branch: string;
+  remoteUrl: string;
+  remoteAhead: number;
+  dirtyCodePaths: string[];
+  conflictedPaths: string[];
+};
+
+export type PublishPreview = {
+  paths: string[];
+  inspection: PublishInspection;
+};
+
+export type PublishResult = {
+  commit: string;
+  pushed: boolean;
+  message: string;
+  pushError?: string;
+};
+
+export async function previewPublish(): Promise<PublishPreview> {
+  return request<PublishPreview>("/api/publish/preview");
+}
+
+/** The server publishes this session's saved paths; the browser cannot choose them. */
+export async function publishSkills(message: string): Promise<PublishResult> {
+  return request<PublishResult>("/api/publish", {
+    method: "POST",
+    headers: jsonHeaders,
+    body: JSON.stringify({ message }),
+  });
+}
+
+export async function retryPublishPush(): Promise<PublishResult> {
+  return request<PublishResult>("/api/publish/retry", { method: "POST" });
+}
+
 export async function getTemplate(): Promise<string> {
   const response = await fetch("/api/template");
   if (!response.ok) throw new Error("无法读取 Skill 模板");

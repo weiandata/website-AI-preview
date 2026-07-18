@@ -15,6 +15,9 @@ vi.mock("../../tools/skill-manager/src/api", () => ({
   saveSkill: vi.fn(),
   deleteSkill: vi.fn(),
   getTemplate: vi.fn(),
+  previewPublish: vi.fn(),
+  publishSkills: vi.fn(),
+  retryPublishPush: vi.fn(),
 }));
 
 let document: SkillDocument;
@@ -99,6 +102,21 @@ describe("local Skill manager UI", () => {
       };
     });
     vi.mocked(api.serializeSkill).mockResolvedValue("markdown");
+    vi.mocked(api.previewPublish).mockResolvedValue({
+      paths: ["content/skills/example-skill.md"],
+      inspection: {
+        branch: "main",
+        remoteUrl: "git@github.com:weian/website.git",
+        remoteAhead: 0,
+        dirtyCodePaths: [],
+        conflictedPaths: [],
+      },
+    });
+    vi.mocked(api.publishSkills).mockResolvedValue({
+      commit: "abc1234",
+      pushed: true,
+      message: "content: update example-skill",
+    });
   });
 
   it("shows every metadata and body field in one form", async () => {
@@ -266,6 +284,155 @@ describe("local Skill manager UI", () => {
     const [saved, originalSlug] = vi.mocked(api.saveSkill).mock.calls[0];
     expect(saved.slug).toBe("focus-planner-v2");
     expect(originalSlug).toBe("focus-planner");
+  });
+
+  it("saves locally without touching Git when only saving", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(await findSkillEntry(/示例 Skill/));
+    await user.type(screen.getByLabelText("英文名称"), "!");
+    await user.click(screen.getByRole("button", { name: "仅保存" }));
+    await user.click(
+      within(await screen.findByRole("dialog", { name: "确认保存修改" })).getByRole(
+        "button",
+        { name: "确认保存" },
+      ),
+    );
+
+    await waitFor(() => expect(api.saveSkill).toHaveBeenCalled());
+    expect(api.publishSkills).not.toHaveBeenCalled();
+    expect(api.previewPublish).not.toHaveBeenCalled();
+  });
+
+  it("confirms the exact files and message before publishing", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+
+    await user.click(await findSkillEntry(/示例 Skill/));
+    await user.type(screen.getByLabelText("英文名称"), "!");
+    await user.click(screen.getByRole("button", { name: "保存并发布" }));
+    await user.click(
+      within(await screen.findByRole("dialog", { name: "确认保存修改" })).getByRole(
+        "button",
+        { name: "确认保存" },
+      ),
+    );
+
+    const publish = await screen.findByRole("dialog", { name: "确认发布到 GitHub" });
+    expect(within(publish).getByText("content/skills/example-skill.md")).toBeInTheDocument();
+    expect(within(publish).getByLabelText("发布说明")).toHaveValue(
+      "content: update example-skill",
+    );
+    expect(api.publishSkills).not.toHaveBeenCalled();
+
+    await user.click(within(publish).getByRole("button", { name: "确认发布" }));
+
+    await waitFor(() =>
+      expect(screen.getByText("GitHub 已接收，Cloudflare 正在发布")).toBeInTheDocument(),
+    );
+  });
+
+  it("warns about changes publishing will leave untouched", async () => {
+    const user = userEvent.setup();
+    vi.mocked(api.previewPublish).mockResolvedValue({
+      paths: ["content/skills/example-skill.md"],
+      inspection: {
+        branch: "main",
+        remoteUrl: "git@github.com:weian/website.git",
+        remoteAhead: 0,
+        dirtyCodePaths: ["src/app/page.tsx"],
+        conflictedPaths: [],
+      },
+    });
+    render(<App />);
+
+    await user.click(await findSkillEntry(/示例 Skill/));
+    await user.type(screen.getByLabelText("英文名称"), "!");
+    await user.click(screen.getByRole("button", { name: "保存并发布" }));
+    await user.click(
+      within(await screen.findByRole("dialog", { name: "确认保存修改" })).getByRole(
+        "button",
+        { name: "确认保存" },
+      ),
+    );
+
+    const publish = await screen.findByRole("dialog", { name: "确认发布到 GitHub" });
+    expect(within(publish).getByText("src/app/page.tsx")).toBeInTheDocument();
+    expect(within(publish).getByText(/不会被发布/)).toBeInTheDocument();
+  });
+
+  it("blocks publishing up front when the repository is not ready", async () => {
+    const user = userEvent.setup();
+    vi.mocked(api.previewPublish).mockResolvedValue({
+      paths: ["content/skills/example-skill.md"],
+      inspection: {
+        branch: "codex/work-in-progress",
+        remoteUrl: "git@github.com:weian/website.git",
+        remoteAhead: 2,
+        dirtyCodePaths: [],
+        conflictedPaths: [],
+      },
+    });
+    render(<App />);
+
+    await user.click(await findSkillEntry(/示例 Skill/));
+    await user.type(screen.getByLabelText("英文名称"), "!");
+    await user.click(screen.getByRole("button", { name: "保存并发布" }));
+    await user.click(
+      within(await screen.findByRole("dialog", { name: "确认保存修改" })).getByRole(
+        "button",
+        { name: "确认保存" },
+      ),
+    );
+
+    const publish = await screen.findByRole("dialog", { name: "确认发布到 GitHub" });
+    expect(within(publish).getByText(/codex\/work-in-progress/)).toBeInTheDocument();
+    expect(within(publish).getByText(/GitHub 上的 main 比本机新 2 个提交/)).toBeInTheDocument();
+    expect(within(publish).getByRole("button", { name: "确认发布" })).toBeDisabled();
+  });
+
+  it("offers a retry and never claims success when push fails", async () => {
+    const user = userEvent.setup();
+    vi.mocked(api.publishSkills).mockResolvedValue({
+      commit: "abc1234",
+      pushed: false,
+      message: "content: update example-skill",
+      pushError: "Could not resolve host: github.com",
+    });
+    vi.mocked(api.retryPublishPush).mockResolvedValue({
+      commit: "abc1234",
+      pushed: true,
+      message: "content: update example-skill",
+    });
+    render(<App />);
+
+    await user.click(await findSkillEntry(/示例 Skill/));
+    await user.type(screen.getByLabelText("英文名称"), "!");
+    await user.click(screen.getByRole("button", { name: "保存并发布" }));
+    await user.click(
+      within(await screen.findByRole("dialog", { name: "确认保存修改" })).getByRole(
+        "button",
+        { name: "确认保存" },
+      ),
+    );
+    await user.click(
+      within(await screen.findByRole("dialog", { name: "确认发布到 GitHub" })).getByRole(
+        "button",
+        { name: "确认发布" },
+      ),
+    );
+
+    await waitFor(() =>
+      expect(screen.getByText("已保存，但 push 失败；可以重试发布")).toBeInTheDocument(),
+    );
+    expect(screen.queryByText("GitHub 已接收，Cloudflare 正在发布")).not.toBeInTheDocument();
+
+    await user.click(screen.getByRole("button", { name: "重试发布" }));
+
+    await waitFor(() =>
+      expect(screen.getByText("GitHub 已接收，Cloudflare 正在发布")).toBeInTheDocument(),
+    );
   });
 
   it("reports which files were saved when one write fails", async () => {

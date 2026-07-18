@@ -2,6 +2,7 @@ import {
   Archive,
   Download,
   FileDown,
+  RefreshCw,
   Save,
   Send,
   Upload,
@@ -13,12 +14,17 @@ import {
   deleteSkill,
   getTemplate,
   listSkills,
+  previewPublish,
+  publishSkills,
+  retryPublishPush,
   saveSkill,
   serializeSkill,
   validateMarkdown,
+  type PublishPreview,
   type StoredSkill,
 } from "./api";
 import { ImportReview, type ImportRecord } from "./components/ImportReview";
+import { PublishReview } from "./components/PublishReview";
 import { SaveResult, SaveReview } from "./components/SaveReview";
 import { SkillForm } from "./components/SkillForm";
 import { SkillList } from "./components/SkillList";
@@ -37,6 +43,17 @@ function downloadBlob(blob: Blob, fileName: string): void {
   anchor.download = fileName;
   anchor.click();
   URL.revokeObjectURL(url);
+}
+
+/** A message the administrator can accept as-is or rewrite before publishing. */
+function defaultCommitMessage(paths: string[]): string {
+  const slugs = paths
+    .map((item) => /content\/skills\/([a-z0-9-]+)\.md$/.exec(item)?.[1])
+    .filter((slug): slug is string => Boolean(slug));
+  const unique = [...new Set(slugs)];
+  if (!unique.length) return "content: update Skills";
+  if (unique.length <= 3) return `content: update ${unique.join(", ")}`;
+  return `content: update ${unique.length} Skills`;
 }
 
 function nextCopySlug(base: string, used: Set<string>): string {
@@ -61,6 +78,9 @@ export function App() {
   const [pendingPlan, setPendingPlan] = useState<{ plan: SavePlan; forPublish: boolean }>();
   const [saveResult, setSaveResult] = useState<{ summary: string; entries: SaveResultEntry[] }>();
   const [savedPaths, setSavedPaths] = useState<string[]>([]);
+  const [publishPreview, setPublishPreview] = useState<PublishPreview>();
+  const [publishMessage, setPublishMessage] = useState("content: update Skills");
+  const [pushFailed, setPushFailed] = useState(false);
   const [busy, setBusy] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -319,14 +339,66 @@ export function App() {
     }
 
     setSaveResult({ summary, entries });
-    setStatus(
-      failed.length
-        ? summary
-        : forPublish
-          ? "已保存到本机；发布到 GitHub 的功能尚未接通"
-          : "已保存到本机",
-    );
+    setStatus(failed.length ? summary : "已保存到本机");
     setBusy(false);
+
+    // Publishing is a second, explicit step and never runs on a partial save.
+    if (forPublish && !failed.length) {
+      await openPublishReview(entries.map((entry) => entry.path));
+    }
+  }
+
+  async function openPublishReview(paths: string[]): Promise<void> {
+    setBusy(true);
+    setStatus("正在检查 GitHub");
+    try {
+      const preview = await previewPublish();
+      setPublishPreview(preview);
+      setPublishMessage(defaultCommitMessage(paths));
+      setStatus("GitHub 检查完成，请确认发布内容");
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "无法检查 GitHub 状态");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  function applyPublishResult(result: Awaited<ReturnType<typeof publishSkills>>): void {
+    if (result.pushed) {
+      setPushFailed(false);
+      setSavedPaths([]);
+      // Cloudflare builds from GitHub; the manager never polls it, so it only
+      // reports that GitHub accepted the commit.
+      setStatus("GitHub 已接收，Cloudflare 正在发布");
+    } else {
+      setPushFailed(true);
+      setStatus("已保存，但 push 失败；可以重试发布");
+    }
+  }
+
+  async function confirmPublish(message: string): Promise<void> {
+    setPublishPreview(undefined);
+    setBusy(true);
+    setStatus("已提交，正在 push");
+    try {
+      applyPublishResult(await publishSkills(message));
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "发布失败");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function retryPublish(): Promise<void> {
+    setBusy(true);
+    setStatus("正在重试 push");
+    try {
+      applyPublishResult(await retryPublishPush());
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "重试发布失败");
+    } finally {
+      setBusy(false);
+    }
   }
 
   async function exportCurrent(): Promise<void> {
@@ -405,6 +477,12 @@ export function App() {
       <footer className="manager-savebar">
         <p aria-live="polite">{status}</p>
         <span>{dirtyKeys.size + pendingDeletions.size ? `${dirtyKeys.size + pendingDeletions.size} 项待保存` : "仓库已同步"}</span>
+        {pushFailed ? (
+          <button type="button" onClick={() => void retryPublish()} disabled={busy}>
+            <RefreshCw aria-hidden="true" size={16} />
+            重试发布
+          </button>
+        ) : null}
         {savedPaths.length ? (
           <span className="manager-savebar-pending-publish">
             本次已保存 {savedPaths.length} 个文件，尚未发布到 GitHub
@@ -434,6 +512,16 @@ export function App() {
           plan={pendingPlan.plan}
           onConfirm={() => void applyPlan()}
           onClose={() => setPendingPlan(undefined)}
+        />
+      ) : null}
+
+      {publishPreview ? (
+        <PublishReview
+          preview={publishPreview}
+          defaultMessage={publishMessage}
+          busy={busy}
+          onConfirm={(message) => void confirmPublish(message)}
+          onClose={() => setPublishPreview(undefined)}
         />
       ) : null}
 

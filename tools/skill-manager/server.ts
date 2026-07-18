@@ -1,3 +1,4 @@
+import { spawn } from "node:child_process";
 import { readFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -9,6 +10,10 @@ import {
 } from "../../src/lib/skills/markdown";
 import type { SkillDocument } from "../../src/lib/skills/schema";
 import {
+  GitPublishError,
+  GitPublisher,
+} from "./lib/git-publisher";
+import {
   SkillConflictError,
   SkillNotFoundError,
   SkillStore,
@@ -17,6 +22,9 @@ import {
 type SkillManagerAppOptions = {
   store: SkillStore;
   templatePath: string;
+  /** Repository root; saved paths are recorded relative to it. */
+  root?: string;
+  publisher?: GitPublisher;
   savedPaths?: Set<string>;
 };
 
@@ -51,6 +59,14 @@ function sendError(error: unknown, response: Response): void {
     } satisfies ApiError);
     return;
   }
+  if (error instanceof GitPublishError) {
+    // Git or network unavailability is a service problem, not a bad request.
+    const unavailable = error.code === "GIT_FAILED" || error.code === "PUSH_FAILED";
+    response.status(unavailable ? 503 : 400).json({
+      error: { code: error.code, message: error.message },
+    } satisfies ApiError);
+    return;
+  }
   if (error instanceof SkillNotFoundError) {
     response.status(404).json({
       error: { code: "NOT_FOUND", message: error.message },
@@ -79,10 +95,18 @@ function routeSlug(request: Request): string {
 export function createSkillManagerApp({
   store,
   templatePath,
+  root = process.cwd(),
+  publisher = new GitPublisher(root),
   savedPaths = new Set<string>(),
 }: SkillManagerAppOptions): Express {
   const app = express();
   app.use(express.json({ limit: "4mb" }));
+
+  /** Records a written file as a repository-relative path for publishing. */
+  const recordSavedPath = (absolutePath: string): void => {
+    savedPaths.add(path.relative(root, absolutePath).split(path.sep).join("/"));
+  };
+  const sessionPaths = (): string[] => [...savedPaths].sort();
 
   app.get(
     "/api/skills",
@@ -143,7 +167,7 @@ export function createSkillManagerApp({
         document,
         originalSlug: request.body.originalSlug,
       });
-      savedPaths.add(saved.path);
+      recordSavedPath(saved.path);
       response.json(saved);
     }),
   );
@@ -151,7 +175,34 @@ export function createSkillManagerApp({
     "/api/skills/:slug",
     asyncRoute(async (request, response) => {
       const result = await store.remove(routeSlug(request));
-      savedPaths.add(result.deletedPath);
+      recordSavedPath(result.deletedPath);
+      response.json(result);
+    }),
+  );
+
+  app.get(
+    "/api/publish/preview",
+    asyncRoute(async (_request, response) => {
+      const paths = sessionPaths();
+      response.json({ paths, inspection: await publisher.inspect(paths) });
+    }),
+  );
+  app.post(
+    "/api/publish",
+    asyncRoute(async (request, response) => {
+      // Paths always come from this session's writes, never from the browser.
+      const paths = sessionPaths();
+      const message = String(request.body?.message ?? "");
+      const result = await publisher.publish(paths, message);
+      if (result.pushed) savedPaths.clear();
+      response.json(result);
+    }),
+  );
+  app.post(
+    "/api/publish/retry",
+    asyncRoute(async (_request, response) => {
+      const result = await publisher.retryPush();
+      if (result.pushed) savedPaths.clear();
       response.json(result);
     }),
   );
@@ -166,6 +217,7 @@ export function createSkillManagerApp({
 async function startSkillManager(): Promise<void> {
   const root = process.cwd();
   const app = createSkillManagerApp({
+    root,
     store: new SkillStore(
       path.join(root, "content/skills"),
       path.join(root, ".skill-manager-trash"),
@@ -178,8 +230,12 @@ async function startSkillManager(): Promise<void> {
     appType: "spa",
   });
   app.use(vite.middlewares);
+  const url = "http://127.0.0.1:4174";
   app.listen(4174, "127.0.0.1", () => {
-    console.log("Skill manager: http://127.0.0.1:4174");
+    console.log(`Skill manager: ${url}`);
+    if (process.platform === "darwin" && process.env.SKILL_MANAGER_NO_OPEN !== "1") {
+      spawn("open", [url], { shell: false, stdio: "ignore" }).unref();
+    }
   });
 }
 
