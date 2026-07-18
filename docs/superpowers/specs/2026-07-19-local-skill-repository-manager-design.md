@@ -83,7 +83,7 @@ downloadUrl: https://github.com/example/example-skill/archive/refs/heads/main.zi
 featured: false
 featuredRank: 0
 verified: false
-icon: chart
+icon: analysis
 stars: 0
 downloads: 0
 ---
