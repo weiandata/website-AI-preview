@@ -66,6 +66,13 @@ test_missing_npm() (
   expect_contains "$output" "npm"
 )
 
+test_project_dir_is_launcher_location() (
+  local actual
+  actual="$(resolve_project_dir)" || return 1
+
+  [[ "$actual" == "$PROJECT_ROOT" ]]
+)
+
 test_install_only_when_dependencies_are_missing() (
   local temp_dir
   temp_dir="$(mktemp -d)" || return 1
@@ -241,6 +248,7 @@ test_cleanup_stops_only_the_started_server() (
 
 run_test "缺少 Node.js 时给出中文提示" test_missing_node
 run_test "缺少 npm 时给出中文提示" test_missing_npm
+run_test "从任意目录启动时定位到项目目录" test_project_dir_is_launcher_location
 run_test "只在依赖缺失时安装" test_install_only_when_dependencies_are_missing
 run_test "依赖安装失败时报告错误" test_dependency_install_failure_is_reported
 run_test "3000 占用时选择 3001" test_port_falls_back_from_3000_to_3001

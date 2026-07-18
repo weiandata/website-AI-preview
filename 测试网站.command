@@ -5,6 +5,8 @@ set -u
 typeset -gr PORT_START=3000
 typeset -gr PORT_END=3010
 typeset -gr READY_ATTEMPTS=60
+typeset -gr LAUNCHER_FILE="${${(%):-%x}:A}"
+typeset -gr LAUNCHER_PROJECT_DIR="${LAUNCHER_FILE:h}"
 typeset -g SERVER_PID=""
 typeset -gi SERVER_WAS_STARTED=0
 
@@ -18,6 +20,10 @@ error() {
 
 command_exists() {
   command -v "$1" >/dev/null 2>&1
+}
+
+resolve_project_dir() {
+  print -r -- "$LAUNCHER_PROJECT_DIR"
 }
 
 require_runtime() {
@@ -171,9 +177,11 @@ wait_for_server() {
 }
 
 main() {
-  local project_dir="${0:A:h}"
+  local project_dir
   local port
   local url
+
+  project_dir="$(resolve_project_dir)" || return 1
 
   trap handle_signal INT TERM
   trap stop_server EXIT
