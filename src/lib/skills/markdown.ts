@@ -1,7 +1,6 @@
 import path from "node:path";
 import matter from "gray-matter";
 import type {
-  Heading,
   List,
   ListItem,
   PhrasingContent,
@@ -63,10 +62,6 @@ function nodeText(node: RootContent | PhrasingContent | ListItem): string {
     return node.children.map((child) => nodeText(child)).join("");
   }
   return "";
-}
-
-function headingText(node: RootContent): string | undefined {
-  return node.type === "heading" ? nodeText(node).trim() : undefined;
 }
 
 function errorAt(

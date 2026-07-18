@@ -442,19 +442,6 @@ h3 {
   background: var(--weian-soft);
 }
 
-.popular-searches .popular-search-term {
-  border: 1px solid #d7dee6;
-  background: #f7f9fb;
-  color: var(--weian-navy);
-}
-
-.popular-searches .popular-search-term:hover,
-.popular-searches .popular-search-term:focus-visible {
-  border-color: #9fc5df;
-  background: #eaf4fb;
-  color: #174a78;
-}
-
 .featured-section,
 .section-space {
   padding-block: 6.5rem;

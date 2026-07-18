@@ -3,11 +3,11 @@
 import { ArrowRight } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/components/language/language-provider";
-import { skills } from "@/data/skills";
 import { localize } from "@/lib/i18n";
 import { formatDate } from "@/lib/utils";
+import type { Skill } from "@/types/content";
 
-export function RecentSkills() {
+export function RecentSkills({ skills }: { skills: Skill[] }) {
   const { locale, t } = useLanguage();
   const recent = [...skills]
     .sort((left, right) => right.addedAt.localeCompare(left.addedAt))

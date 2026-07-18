@@ -90,8 +90,13 @@ function sortSkills(collection: Skill[], sort: SkillSort, locale: Locale): Skill
       return right.downloads - left.downloads;
     }
 
+    const featuredOrder = Number(right.featured) - Number(left.featured);
+    if (featuredOrder) return featuredOrder;
+    if (left.featured && right.featured) {
+      const rankOrder = left.featuredRank - right.featuredRank;
+      if (rankOrder) return rankOrder;
+    }
     return (
-      Number(right.featured) - Number(left.featured) ||
       Number(right.verified) - Number(left.verified) ||
       right.downloads - left.downloads
     );

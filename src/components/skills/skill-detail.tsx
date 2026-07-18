@@ -16,7 +16,6 @@ import { Badge } from "@/components/ui/badge";
 import { ButtonLink, buttonClassName } from "@/components/ui/button";
 import { CopyButton } from "@/components/ui/copy-button";
 import { categories } from "@/data/categories";
-import { skills } from "@/data/skills";
 import { localize } from "@/lib/i18n";
 import { getRelatedSkills } from "@/lib/skill-query";
 import { siteConfig } from "@/lib/site-config";
@@ -26,7 +25,7 @@ import { DownloadDialog } from "./download-dialog";
 import { SkillCard } from "./skill-card";
 import { SkillIcon } from "./skill-icon";
 
-export function SkillDetail({ skill }: { skill: Skill }) {
+export function SkillDetail({ skill, skills }: { skill: Skill; skills: Skill[] }) {
   const { locale, t } = useLanguage();
   const category = categories.find((item) => item.id === skill.category)!;
   const related = getRelatedSkills(skill, skills, 3);

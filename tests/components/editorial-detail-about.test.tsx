@@ -1,18 +1,25 @@
 import { render, screen } from "@testing-library/react";
-import { describe, expect, it, vi } from "vitest";
+import { beforeAll, describe, expect, it, vi } from "vitest";
 import { AboutContent } from "@/components/about/about-content";
 import { LanguageProvider } from "@/components/language/language-provider";
 import { SkillDetail } from "@/components/skills/skill-detail";
-import { skills } from "@/data/skills";
+import { loadTestSkills } from "../helpers/load-test-skills";
+import type { Skill } from "@/types/content";
+
+let skills: Skill[];
 
 vi.mock("next/navigation", () => ({ usePathname: () => "/about" }));
 
 describe("editorial detail and about pages", () => {
+  beforeAll(async () => {
+    skills = await loadTestSkills();
+  });
+
   it("uses GitHub as the project page and aligns every on-page anchor", () => {
     window.localStorage.setItem("weian-locale", "zh");
     const { container } = render(
       <LanguageProvider>
-        <SkillDetail skill={skills[0]} />
+        <SkillDetail skill={skills[0]} skills={skills} />
       </LanguageProvider>,
     );
 

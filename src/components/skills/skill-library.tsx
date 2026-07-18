@@ -15,32 +15,34 @@ import { Button } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
 import { EmptyState } from "@/components/ui/empty-state";
 import { categories } from "@/data/categories";
-import { skills } from "@/data/skills";
 import { localize } from "@/lib/i18n";
 import {
   filterSkills,
   parseSkillQuery,
   serializeSkillQuery,
 } from "@/lib/skill-query";
-import type { CategoryId } from "@/types/content";
+import type { CategoryId, Skill } from "@/types/content";
 import type { SkillFilterState, SkillSort, SkillView } from "@/types/filters";
 import { SkillCard } from "./skill-card";
 import { SkillListRow } from "./skill-list-row";
-
-const allPlatforms = [...new Set(skills.flatMap((skill) => skill.platforms))].sort();
-const allLicenses = [...new Set(skills.map((skill) => skill.license))].sort();
-const allTags = [...new Set(skills.flatMap((skill) => skill.tags))].sort().slice(0, 12);
 
 type FilterGroupKey = "categories" | "platforms" | "licenses" | "tags";
 
 function FilterGroups({
   filters,
   onToggle,
+  skills,
 }: {
   filters: SkillFilterState;
   onToggle: (group: FilterGroupKey, value: string) => void;
+  skills: Skill[];
 }) {
   const { locale, t } = useLanguage();
+  const allPlatforms = [...new Set(skills.flatMap((skill) => skill.platforms))].sort();
+  const allLicenses = [...new Set(skills.map((skill) => skill.license))].sort();
+  const allTags = [...new Set(skills.flatMap((skill) => skill.tags))]
+    .sort()
+    .slice(0, 12);
   const groups = [
     {
       key: "categories" as const,
@@ -98,7 +100,7 @@ function FilterGroups({
   );
 }
 
-export function SkillLibrary() {
+export function SkillLibrary({ skills }: { skills: Skill[] }) {
   const searchParams = useSearchParams();
   const pathname = usePathname();
   const router = useRouter();
@@ -119,7 +121,7 @@ export function SkillLibrary() {
   }, [filters.focusSearch]);
   const results = useMemo(
     () => filterSkills(skills, filters, locale),
-    [filters, locale],
+    [filters, locale, skills],
   );
   const view = filters.view ?? "grid";
 
@@ -227,7 +229,7 @@ export function SkillLibrary() {
               {t("library.filters")}
             </span>
           </div>
-          <FilterGroups filters={filters} onToggle={toggleFilter} />
+          <FilterGroups filters={filters} onToggle={toggleFilter} skills={skills} />
         </aside>
 
         <section className="library-results" aria-live="polite">
@@ -345,7 +347,7 @@ export function SkillLibrary() {
         closeLabel={t("common.cancel")}
       >
         <div className="mobile-filter-dialog">
-          <FilterGroups filters={filters} onToggle={toggleFilter} />
+          <FilterGroups filters={filters} onToggle={toggleFilter} skills={skills} />
           <Button
             variant="secondary"
             onClick={() => {

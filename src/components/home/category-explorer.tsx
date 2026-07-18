@@ -5,11 +5,17 @@ import Link from "next/link";
 import { useLanguage } from "@/components/language/language-provider";
 import { SkillIcon } from "@/components/skills/skill-icon";
 import { categories } from "@/data/categories";
-import { skills } from "@/data/skills";
 import { localize } from "@/lib/i18n";
 import { getCategoryCounts } from "@/lib/skill-query";
+import type { Skill } from "@/types/content";
 
-export function CategoryExplorer({ showHeader = true }: { showHeader?: boolean }) {
+export function CategoryExplorer({
+  skills,
+  showHeader = true,
+}: {
+  skills: Skill[];
+  showHeader?: boolean;
+}) {
   const { locale, t } = useLanguage();
   const counts = getCategoryCounts(skills);
 

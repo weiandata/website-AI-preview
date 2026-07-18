@@ -1,10 +1,13 @@
 import { render, screen } from "@testing-library/react";
 import type { ReactNode } from "react";
-import { describe, expect, it } from "vitest";
+import { beforeAll, describe, expect, it } from "vitest";
 import { LanguageProvider } from "@/components/language/language-provider";
 import { SkillCard } from "@/components/skills/skill-card";
 import { SkillListRow } from "@/components/skills/skill-list-row";
-import { skills } from "@/data/skills";
+import { loadTestSkills } from "../helpers/load-test-skills";
+import type { Skill } from "@/types/content";
+
+let skills: Skill[];
 
 function renderItem(item: ReactNode) {
   window.localStorage.setItem("weian-locale", "zh");
@@ -12,18 +15,25 @@ function renderItem(item: ReactNode) {
 }
 
 describe("Skill collection items", () => {
-  it.each([
-    ["grid", <SkillCard key="grid" skill={skills[0]} />],
-    ["list", <SkillListRow key="list" skill={skills[0]} />],
-  ])("makes the complete %s item the only detail action", (_view, item) => {
-    const { container } = renderItem(item);
-    const links = screen.getAllByRole("link");
+  beforeAll(async () => {
+    skills = await loadTestSkills();
+  });
 
-    expect(links).toHaveLength(1);
-    expect(links[0]).toHaveAttribute("href", `/skills/${skills[0].slug}`);
-    expect(links[0]).toHaveClass("skill-item-link");
-    expect(screen.queryByText("查看详情")).not.toBeInTheDocument();
-    expect(screen.queryByRole("button", { name: /下载/ })).not.toBeInTheDocument();
-    expect(container.querySelector("article > .skill-item-link")).toBeInTheDocument();
+  it("makes each complete collection item the only detail action", () => {
+    for (const item of [
+      <SkillCard key="grid" skill={skills[0]} />,
+      <SkillListRow key="list" skill={skills[0]} />,
+    ]) {
+      const { container, unmount } = renderItem(item);
+      const links = screen.getAllByRole("link");
+
+      expect(links).toHaveLength(1);
+      expect(links[0]).toHaveAttribute("href", `/skills/${skills[0].slug}`);
+      expect(links[0]).toHaveClass("skill-item-link");
+      expect(screen.queryByText("查看详情")).not.toBeInTheDocument();
+      expect(screen.queryByRole("button", { name: /下载/ })).not.toBeInTheDocument();
+      expect(container.querySelector("article > .skill-item-link")).toBeInTheDocument();
+      unmount();
+    }
   });
 });

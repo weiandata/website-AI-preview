@@ -3,7 +3,7 @@
 import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { useLanguage } from "@/components/language/language-provider";
-import { skills } from "@/data/skills";
+import type { SkillTitleRecord } from "@/lib/skills/repository";
 
 const routeTitles = {
   "/": {
@@ -24,7 +24,11 @@ const routeTitles = {
   },
 } as const;
 
-export function LocalizedDocumentTitle() {
+export function LocalizedDocumentTitle({
+  skillTitles,
+}: {
+  skillTitles: SkillTitleRecord[];
+}) {
   const pathname = usePathname();
   const { locale } = useLanguage();
 
@@ -38,7 +42,7 @@ export function LocalizedDocumentTitle() {
     const slug = pathname.startsWith("/skills/")
       ? pathname.slice("/skills/".length)
       : "";
-    const skill = skills.find((item) => item.slug === slug);
+    const skill = skillTitles.find((item) => item.slug === slug);
     if (skill) {
       const name = locale === "zh" ? skill.nameZh ?? skill.name : skill.name;
       document.title =
@@ -46,7 +50,7 @@ export function LocalizedDocumentTitle() {
           ? `${name} | 开源 AI Skill | 惟安数据科技`
           : `${name} | Open-Source AI Skill | WEIAN DATA`;
     }
-  }, [locale, pathname]);
+  }, [locale, pathname, skillTitles]);
 
   return null;
 }

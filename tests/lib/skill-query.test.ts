@@ -1,5 +1,4 @@
-import { describe, expect, it } from "vitest";
-import { skills } from "@/data/skills";
+import { beforeAll, describe, expect, it } from "vitest";
 import {
   filterSkills,
   getCategoryCounts,
@@ -7,8 +6,15 @@ import {
   parseSkillQuery,
   serializeSkillQuery,
 } from "@/lib/skill-query";
+import { loadTestSkills } from "../helpers/load-test-skills";
+import type { Skill } from "@/types/content";
+
+let skills: Skill[];
 
 describe("skill discovery selectors", () => {
+  beforeAll(async () => {
+    skills = await loadTestSkills();
+  });
   it("matches Chinese descriptions and English tags case-insensitively", () => {
     expect(
       filterSkills(skills, { query: "数据质量" }, "zh").map(

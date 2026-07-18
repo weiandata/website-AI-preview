@@ -2,8 +2,9 @@
 
 import { useLanguage } from "@/components/language/language-provider";
 import { HeroSearch } from "@/components/skills/hero-search";
+import type { Skill } from "@/types/content";
 
-export function DiscoverySearch() {
+export function DiscoverySearch({ skills }: { skills: Skill[] }) {
   const { locale } = useLanguage();
 
   return (
@@ -24,7 +25,7 @@ export function DiscoverySearch() {
               : "Search by name, tag, platform, or use case. Every entry includes its source, license, and usage guidance."}
           </p>
         </div>
-        <HeroSearch />
+        <HeroSearch skills={skills} />
       </div>
     </section>
   );

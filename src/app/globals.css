@@ -916,32 +916,6 @@ h3 {
   color: hsl(var(--primary));
 }
 
-.popular-searches {
-  padding: 0.7rem;
-}
-
-.popular-searches > span {
-  color: hsl(var(--muted-foreground));
-  font-size: 0.7rem;
-}
-
-.popular-searches > div {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.4rem;
-  margin-top: 0.65rem;
-}
-
-.popular-searches button {
-  padding: 0.4rem 0.55rem;
-  border: 1px solid hsl(var(--border));
-  border-radius: 0.45rem;
-  background: hsl(var(--secondary));
-  color: hsl(var(--muted-foreground));
-  font-size: 0.7rem;
-  cursor: pointer;
-}
-
 .search-no-results {
   margin: 0;
   padding: 1rem;

@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { Suspense } from "react";
 import { SkillLibrary } from "@/components/skills/skill-library";
+import { getPublishedSkills } from "@/lib/skills/repository";
 
 export const metadata: Metadata = {
   title: "开源 Skill 库｜惟安数据科技",
@@ -10,10 +11,11 @@ export const metadata: Metadata = {
   },
 };
 
-export default function SkillsPage() {
+export default async function SkillsPage() {
+  const skills = await getPublishedSkills();
   return (
     <Suspense fallback={<div className="library-skeleton container-shell" aria-hidden="true" />}>
-      <SkillLibrary />
+      <SkillLibrary skills={skills} />
     </Suspense>
   );
 }

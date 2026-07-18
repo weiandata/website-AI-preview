@@ -3,18 +3,20 @@ import { DiscoverySearch } from "@/components/home/discovery-search";
 import { FeaturedSkills } from "@/components/home/featured-skills";
 import { Hero } from "@/components/home/hero";
 import { RecentSkills } from "@/components/home/recent-skills";
+import { getPublishedSkills } from "@/lib/skills/repository";
 
-export default function Home() {
+export default async function Home() {
+  const skills = await getPublishedSkills();
   return (
     <main>
       <Hero />
-      <DiscoverySearch />
-      <FeaturedSkills />
+      <DiscoverySearch skills={skills} />
+      <FeaturedSkills skills={skills} />
       <div className="container-shell section-space">
-        <CategoryExplorer />
+        <CategoryExplorer skills={skills} />
       </div>
       <div className="container-shell section-space">
-        <RecentSkills />
+        <RecentSkills skills={skills} />
       </div>
     </main>
   );

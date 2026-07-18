@@ -11,11 +11,11 @@ vi.mock("next/navigation", () => ({
 }));
 
 describe("application shell", () => {
-  it("introduces the WEIAN DATA Skill library", () => {
+  it("introduces the WEIAN DATA Skill library", async () => {
     window.localStorage.setItem("weian-locale", "zh");
     render(
       <LanguageProvider>
-        <Home />
+        {await Home()}
       </LanguageProvider>,
     );
 
@@ -24,11 +24,11 @@ describe("application shell", () => {
     ).toBeInTheDocument();
   });
 
-  it("renders the approved video hero and preserved discovery content", () => {
+  it("renders the approved video hero and preserved discovery content", async () => {
     window.localStorage.setItem("weian-locale", "zh");
     const { container } = render(
       <LanguageProvider>
-        <Home />
+        {await Home()}
       </LanguageProvider>,
     );
 
@@ -54,7 +54,8 @@ describe("application shell", () => {
       "/skills?period=30d&sort=added",
     );
     fireEvent.focus(screen.getByRole("combobox", { name: "搜索 Skill" }));
-    expect(container.querySelectorAll(".popular-search-term")).toHaveLength(8);
+    expect(container.querySelector(".popular-searches")).not.toBeInTheDocument();
+    expect(container.querySelector(".popular-search-term")).not.toBeInTheDocument();
     expect(container.querySelector(".hero-search kbd")).not.toBeInTheDocument();
     expect(container.querySelector(".hero-search > button")).not.toBeInTheDocument();
     expect(screen.queryByText(/一起完善开源 Skill 生态/)).not.toBeInTheDocument();
@@ -87,11 +88,11 @@ describe("application shell", () => {
     expect(container.querySelector("#home-search")).not.toBeInTheDocument();
   });
 
-  it("marks the home search target and removes the values section", () => {
+  it("marks the home search target and removes the values section", async () => {
     window.localStorage.setItem("weian-locale", "zh");
     const { container } = render(
       <LanguageProvider>
-        <Home />
+        {await Home()}
       </LanguageProvider>,
     );
 

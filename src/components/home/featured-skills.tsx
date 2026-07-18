@@ -4,12 +4,15 @@ import { ArrowRight, ArrowUpRight, BadgeCheck } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/components/language/language-provider";
 import { categories } from "@/data/categories";
-import { skills } from "@/data/skills";
 import { localize } from "@/lib/i18n";
+import type { Skill } from "@/types/content";
 
-export function FeaturedSkills() {
+export function FeaturedSkills({ skills }: { skills: Skill[] }) {
   const { locale, t } = useLanguage();
-  const featured = skills.filter((skill) => skill.featured).slice(0, 6);
+  const featured = skills
+    .filter((skill) => skill.featured)
+    .sort((left, right) => left.featuredRank - right.featuredRank)
+    .slice(0, 6);
 
   return (
     <section className="featured-section container-shell">

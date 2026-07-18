@@ -2,20 +2,26 @@ import type { Metadata } from "next";
 import { notFound } from "next/navigation";
 import { SkillDetail } from "@/components/skills/skill-detail";
 import { categories } from "@/data/categories";
-import { skills } from "@/data/skills";
 import { absoluteUrl } from "@/lib/site-config";
+import {
+  getPublishedSkillBySlug,
+  getPublishedSkills,
+} from "@/lib/skills/repository";
 
 type SkillPageProps = {
   params: Promise<{ slug: string }>;
 };
 
-export function generateStaticParams() {
+export const dynamicParams = false;
+
+export async function generateStaticParams() {
+  const skills = await getPublishedSkills();
   return skills.map((skill) => ({ slug: skill.slug }));
 }
 
 export async function generateMetadata({ params }: SkillPageProps): Promise<Metadata> {
   const { slug } = await params;
-  const skill = skills.find((item) => item.slug === slug);
+  const skill = await getPublishedSkillBySlug(slug);
   if (!skill) return {};
   const canonical = `/skills/${skill.slug}`;
 
@@ -45,6 +51,7 @@ function safeJson(data: object): string {
 
 export default async function SkillPage({ params }: SkillPageProps) {
   const { slug } = await params;
+  const skills = await getPublishedSkills();
   const skill = skills.find((item) => item.slug === slug);
   if (!skill) notFound();
   const category = categories.find((item) => item.id === skill.category)!;
@@ -85,7 +92,7 @@ export default async function SkillPage({ params }: SkillPageProps) {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: safeJson(creativeWorkJsonLd) }}
       />
-      <SkillDetail skill={skill} />
+      <SkillDetail skill={skill} skills={skills} />
     </>
   );
 }

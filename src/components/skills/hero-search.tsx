@@ -10,12 +10,10 @@ import {
   type KeyboardEvent,
 } from "react";
 import { useLanguage } from "@/components/language/language-provider";
-import { skills } from "@/data/skills";
 import { localize } from "@/lib/i18n";
 import { filterSkills } from "@/lib/skill-query";
+import type { Skill } from "@/types/content";
 import { SkillIcon } from "./skill-icon";
-
-const popularSearches = ["OpenAI", "Claude", "Codex", "数据分析", "PDF", "自动化", "GitHub", "写作"];
 
 function HighlightedText({ text, query }: { text: string; query: string }) {
   const index = text.toLocaleLowerCase().indexOf(query.toLocaleLowerCase());
@@ -29,7 +27,7 @@ function HighlightedText({ text, query }: { text: string; query: string }) {
   );
 }
 
-export function HeroSearch() {
+export function HeroSearch({ skills }: { skills: Skill[] }) {
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [activeIndex, setActiveIndex] = useState(-1);
@@ -38,7 +36,7 @@ export function HeroSearch() {
   const { locale, t } = useLanguage();
   const suggestions = useMemo(
     () => filterSkills(skills, { query }, locale).slice(0, 5),
-    [query, locale],
+    [query, locale, skills],
   );
 
   useEffect(() => {
@@ -106,10 +104,9 @@ export function HeroSearch() {
         />
       </div>
 
-      {open ? (
+      {open && query.trim() ? (
         <div id="hero-search-results" className="search-results" role="listbox">
-          {query ? (
-            suggestions.length ? (
+          {suggestions.length ? (
               suggestions.map((skill, index) => (
                 <button
                   id={`search-option-${index}`}
@@ -136,25 +133,8 @@ export function HeroSearch() {
                   <ArrowRight aria-hidden="true" size={16} strokeWidth={1.8} />
                 </button>
               ))
-            ) : (
-              <p className="search-no-results">{t("empty.title")}</p>
-            )
           ) : (
-            <div className="popular-searches">
-              <span>{t("search.popular")}</span>
-              <div>
-                {popularSearches.map((item) => (
-                  <button
-                    className="popular-search-term"
-                    key={item}
-                    type="button"
-                    onClick={() => submit(item)}
-                  >
-                    {item}
-                  </button>
-                ))}
-              </div>
-            </div>
+            <p className="search-no-results">{t("empty.title")}</p>
           )}
         </div>
       ) : null}
