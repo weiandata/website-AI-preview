@@ -9,7 +9,7 @@ import {
   X,
 } from "lucide-react";
 import { usePathname, useRouter, useSearchParams } from "next/navigation";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { useLanguage } from "@/components/language/language-provider";
 import { Button } from "@/components/ui/button";
 import { Dialog } from "@/components/ui/dialog";
@@ -109,6 +109,10 @@ export function SkillLibrary() {
     () => parseSkillQuery(searchParams.toString()),
     [searchParams],
   );
+  const latestFilters = useRef(filters);
+  useEffect(() => {
+    latestFilters.current = filters;
+  }, [filters]);
   const results = useMemo(
     () => filterSkills(skills, filters, locale),
     [filters, locale],
@@ -116,17 +120,19 @@ export function SkillLibrary() {
   const view = filters.view ?? "grid";
 
   function updateFilters(next: SkillFilterState) {
+    latestFilters.current = next;
     const query = serializeSkillQuery(next).toString();
     router.replace(query ? `${pathname}?${query}` : pathname, { scroll: false });
   }
 
   function toggleFilter(group: FilterGroupKey, value: string) {
-    const current = (filters[group] ?? []) as string[];
+    const currentFilters = latestFilters.current;
+    const current = (currentFilters[group] ?? []) as string[];
     const nextValues = current.includes(value)
       ? current.filter((item) => item !== value)
       : [...current, value];
     updateFilters({
-      ...filters,
+      ...currentFilters,
       [group]: nextValues.length ? nextValues : undefined,
     });
     setVisibleCount(6);
@@ -138,7 +144,7 @@ export function SkillLibrary() {
   }
 
   function setView(nextView: SkillView) {
-    updateFilters({ ...filters, view: nextView });
+    updateFilters({ ...latestFilters.current, view: nextView });
   }
 
   function removeFilter(group: FilterGroupKey, value: string) {
@@ -181,7 +187,10 @@ export function SkillLibrary() {
             placeholder={t("search.placeholder")}
             value={filters.query ?? ""}
             onChange={(event) => {
-              updateFilters({ ...filters, query: event.target.value || undefined });
+              updateFilters({
+                ...latestFilters.current,
+                query: event.target.value || undefined,
+              });
               setVisibleCount(6);
             }}
           />
@@ -189,7 +198,9 @@ export function SkillLibrary() {
             <button
               type="button"
               aria-label={locale === "zh" ? "清除搜索" : "Clear search"}
-              onClick={() => updateFilters({ ...filters, query: undefined })}
+              onClick={() =>
+                updateFilters({ ...latestFilters.current, query: undefined })
+              }
             >
               <X aria-hidden="true" size={17} strokeWidth={1.8} />
             </button>
@@ -228,7 +239,10 @@ export function SkillLibrary() {
                 <select
                   value={filters.sort ?? "recommended"}
                   onChange={(event) =>
-                    updateFilters({ ...filters, sort: event.target.value as SkillSort })
+                    updateFilters({
+                      ...latestFilters.current,
+                      sort: event.target.value as SkillSort,
+                    })
                   }
                 >
                   {sortOptions.map(([value, label]) => (

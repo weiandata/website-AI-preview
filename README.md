@@ -1,125 +1,63 @@
-# WeianData Repository Template
+# WEIAN DATA Skills Platform
 
-The official language-independent starting point for repositories owned or
-maintained by WeianData.
+A polished bilingual website for discovering, evaluating, and sharing open-source AI Skills from WEIAN DATA（惟安数据科技）.
 
-Status: Active
-
-Owner: WEIAN DATA Engineering
-
-## Project Overview
-
-This repository is the golden template for new WeianData software, research,
-documentation, SDK, AI, infrastructure, and static-site repositories. It
-provides the common governance and documentation baseline without choosing a
-programming language, framework, package manager, or deployment model.
-
-After creating a repository from this template, replace this overview with the
-new project's purpose, audience, status, owner, supported use cases, and
-non-goals.
-
-## Features
-
-- A predictable, AI-friendly repository structure.
-- Issue and pull request templates for reviewable work.
-- Language-neutral Markdown and link checks.
-- Contribution, security, versioning, and ownership defaults.
-- Dedicated locations for documentation, examples, and utility scripts.
-
-This template intentionally contains no business logic, source layout, test
-layout, dependency manifest, dataset, container configuration, or
-language-specific automation. Add only the components required by the new
-project and its selected operating mode.
-
-## Repository Structure
-
-```text
-.
-├── .github/
-│   ├── ISSUE_TEMPLATE/
-│   ├── workflows/
-│   └── PULL_REQUEST_TEMPLATE.md
-├── docs/
-├── examples/
-├── scripts/
-├── templates/licensing/
-├── .editorconfig
-├── .gitignore
-├── CHANGELOG.md
-├── CODEOWNERS
-├── CONTRIBUTING.md
-├── PROPRIETARY.md
-├── README.md
-└── SECURITY.md
-```
-
-Language-native source and test directories belong in the generated
-repository, not in this common template.
-
-## Getting Started
-
-1. On GitHub, open this repository and select **Use this template**.
-2. Choose **Create a new repository**.
-3. Enter a lowercase, hyphen-separated repository name and select the correct
-   owner and visibility.
-4. Clone the generated repository and create a short-lived topic branch from
-   `main`.
-5. Select the required files from [licensing profiles](templates/licensing/README.md):
-   R packages use GPL version 2 or later; static websites and WAEF-style
-   frameworks use the proprietary profile.
-6. Add reproducible setup, validation, security, and release automation before
-   the repository is relied on.
-7. Configure branch protection, required checks, and appropriate reviewers in
-   GitHub.
-
-Repository names use lowercase kebab case, for example `irt-engine` or
-`knowledge-base`.
+The platform includes a discovery homepage, shareable search and filters, eight statically generated Skill pages, category browsing, a submission flow, and company information. Chinese and English can be switched without leaving the current route, and the selection persists locally.
 
 ## Development
 
-Changes use short-lived branches named `<category>/<kebab-case-topic>`, such as
-`feature/add-score-export` or `docs/clarify-setup`. Submit changes through a
-pull request and keep `main` releasable. See [CONTRIBUTING.md](CONTRIBUTING.md)
-for commit, review, testing, and evidence requirements.
+Requirements:
 
-The shared workflow checks Markdown style and links. Generated repositories
-must add the language-specific build, test, dependency, security, and release
-checks required by their project.
+- Node.js 20 or newer
+- npm
 
-## Documentation
+Install dependencies and start the development server:
 
-- [Documentation index](docs/README.md)
-- [Repository standard summary](docs/repository-standard.md)
-- [Template development guide](docs/Repository_Template_Development_Guide.md)
-- [WeianData Engineering Handbook](https://github.com/weiandata/.github/blob/main/handbook/README.md)
+```bash
+npm install
+npm run dev
+```
 
-The Engineering Handbook is the normative source for engineering rules. This
-template implements safe defaults and does not replace or redefine those
-standards.
+Open [http://localhost:3000](http://localhost:3000).
 
-## Repository Lifecycle
+## Validation
 
-Every repository moves through planning, development, testing, release,
-maintenance, and eventual archival. The owner must keep purpose, status,
-validation evidence, supported versions, and maintenance expectations current
-throughout that lifecycle.
+```bash
+npm test
+npm run lint
+npm run typecheck
+npm run build
+npm run test:e2e
+```
 
-## Data and Security
+Install Playwright Chromium once before the browser suite if it is not already available:
 
-Do not commit credentials, secrets, personal information, restricted client
-data, or unapproved datasets. Use synthetic, public, or explicitly authorized
-fixtures and follow [SECURITY.md](SECURITY.md) for private vulnerability
-reporting.
+```bash
+npx playwright install chromium
+```
 
-## Support
+## Content
 
-Use the repository's issue templates for non-sensitive defects, features, and
-documentation work. Report security concerns only through the private channels
-listed in [SECURITY.md](SECURITY.md).
+Skill records live in `src/data/skills.ts`. Categories and interface translations live in `src/data/categories.ts` and `src/data/translations.ts`.
 
-## Copyright and licensing
+Each Skill record contains bilingual presentation copy, platform and license metadata, installation commands, usage notes, changelog entries, FAQ content, and source attribution. Search and filter state is encoded in the URL so result pages can be shared.
 
-Copyright (c) 2026 WEIAN DATA TECH (Beijing) Co., Ltd. All rights reserved.
-This template repository is proprietary; see
-[PROPRIETARY.md](PROPRIETARY.md). Generated repositories must apply the
-[profile-specific assets](templates/licensing/README.md) before publication.
+## Main routes
+
+- `/` discovery homepage
+- `/skills` searchable Skill library
+- `/skills/[slug]` static Skill detail pages
+- `/categories` category index
+- `/submit` client-side submission workflow
+- `/about` company, project, attribution, and contact information
+
+## Project documentation
+
+- [Design specification](docs/superpowers/specs/2026-07-18-weian-data-skills-platform-design.md)
+- [Implementation plan](docs/superpowers/plans/2026-07-18-weian-data-skills-platform.md)
+- [Contributing guide](CONTRIBUTING.md)
+- [Security policy](SECURITY.md)
+
+## License
+
+Copyright (c) 2026 WEIAN DATA TECH (Beijing) Co., Ltd. All rights reserved. See [PROPRIETARY.md](PROPRIETARY.md).

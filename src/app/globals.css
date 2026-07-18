@@ -409,6 +409,29 @@ h3 {
   cursor: pointer;
 }
 
+.network-status {
+  position: fixed;
+  bottom: 1.25rem;
+  left: 1.25rem;
+  z-index: 40;
+  display: flex;
+  max-width: min(28rem, calc(100% - 5.5rem));
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.75rem 0.9rem;
+  border-color: hsl(var(--accent) / 0.28);
+  border-radius: 0.8rem;
+  background: hsl(var(--card) / 0.96);
+  color: hsl(var(--foreground));
+  box-shadow: 0 18px 55px hsl(222 80% 2% / 0.42);
+  font-size: 0.76rem;
+}
+
+.network-status svg {
+  flex: none;
+  color: hsl(var(--accent));
+}
+
 .skill-card {
   position: relative;
   display: grid;

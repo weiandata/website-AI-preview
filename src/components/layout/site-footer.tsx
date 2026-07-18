@@ -5,7 +5,7 @@ import { GitFork, Workflow } from "lucide-react";
 import { useLanguage } from "@/components/language/language-provider";
 
 export function SiteFooter() {
-  const { t } = useLanguage();
+  const { locale, t } = useLanguage();
   const columns = [
     {
       title: t("footer.explore"),
@@ -30,8 +30,8 @@ export function SiteFooter() {
       links: [
         [t("nav.about"), "/about"],
         ["WEIAN DATA", "/about#company"],
-        ["Contact", "mailto:hello@weian-data.example"],
-        ["Privacy", "/about#privacy"],
+        [locale === "zh" ? "联系我们" : "Contact", "mailto:hello@weian-data.example"],
+        [locale === "zh" ? "隐私政策" : "Privacy", "/about#privacy"],
       ],
     },
   ];
@@ -70,7 +70,11 @@ export function SiteFooter() {
         ))}
       </div>
       <div className="container-shell footer-bottom">
-        <p>© 2026 WEIAN DATA. All rights reserved.</p>
+        <p>
+          {locale === "zh"
+            ? "© 2026 WEIAN DATA。保留所有权利。"
+            : "© 2026 WEIAN DATA. All rights reserved."}
+        </p>
         <p>{t("footer.notice")}</p>
         <a
           href="https://github.com/topics/ai-agents"

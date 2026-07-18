@@ -10,7 +10,7 @@ import {
 } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { categories } from "@/data/categories";
 import { localize } from "@/lib/i18n";
 import { cn } from "@/lib/utils";
@@ -20,6 +20,7 @@ import { buttonClassName } from "@/components/ui/button";
 
 export function SiteHeader() {
   const [menuOpen, setMenuOpen] = useState(false);
+  const menuButtonRef = useRef<HTMLButtonElement>(null);
   const pathname = usePathname();
   const { locale, t } = useLanguage();
   const navItems = [
@@ -29,6 +30,19 @@ export function SiteHeader() {
     { href: "/submit", label: t("nav.submit") },
     { href: "/about", label: t("nav.about") },
   ];
+
+  useEffect(() => {
+    if (!menuOpen) return;
+
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      setMenuOpen(false);
+      menuButtonRef.current?.focus();
+    }
+
+    document.addEventListener("keydown", closeOnEscape);
+    return () => document.removeEventListener("keydown", closeOnEscape);
+  }, [menuOpen]);
 
   return (
     <header id="page-top" className="site-header">
@@ -103,6 +117,7 @@ export function SiteHeader() {
             <span>{t("nav.github")}</span>
           </a>
           <button
+            ref={menuButtonRef}
             type="button"
             className="icon-button mobile-menu-button"
             aria-label={menuOpen ? t("nav.closeMenu") : t("nav.openMenu")}

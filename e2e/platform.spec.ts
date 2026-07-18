@@ -1,9 +1,11 @@
 import { expect, test } from "@playwright/test";
 
 test.beforeEach(async ({ page }) => {
-  await page.addInitScript(() => {
+  await page.goto("/");
+  await page.evaluate(() => {
     window.localStorage.setItem("weian-locale", "zh");
   });
+  await page.reload();
 });
 
 test("home discovery supports bilingual search and category exploration", async ({
@@ -19,11 +21,11 @@ test("home discovery supports bilingual search and category exploration", async 
     "/skills",
   );
 
-  await page.getByRole("button", { name: "EN" }).click();
+  await page.getByRole("button", { name: "EN", exact: true }).click();
   await expect(
     page.getByRole("heading", { name: /Discover practical open-source AI Skills/ }),
   ).toBeVisible();
-  await page.getByRole("button", { name: "中" }).click();
+  await page.getByRole("button", { name: "中", exact: true }).click();
 
   await page
     .getByRole("combobox", { name: "搜索 Skill" })
@@ -34,6 +36,10 @@ test("home discovery supports bilingual search and category exploration", async 
   await page.goto("/categories");
   await expect(page.getByRole("heading", { name: "Skill 分类" })).toBeVisible();
   await expect(page.locator(".category-card")).toHaveCount(8);
+  await expect(page.getByRole("link", { name: "联系我们" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "隐私政策" })).toBeVisible();
+  await expect(page.getByText("© 2026 WEIAN DATA。保留所有权利。"))
+    .toBeVisible();
 });
 
 test("skill library keeps filters shareable and supports every result state", async ({
@@ -94,4 +100,36 @@ test("skill detail presents guidance, provenance, safe actions, and related Skil
 
   await page.goto("/skills/not-a-real-skill");
   await expect(page.getByRole("heading", { name: /未找到 Skill/ })).toBeVisible();
+});
+
+test("global acceptance preserves state and supports mobile, motion, and offline use", async ({
+  page,
+  context,
+}) => {
+  await page.goto("/skills?q=PDF");
+  await page.getByRole("button", { name: "EN", exact: true }).click();
+  await expect(page.getByRole("heading", { name: "Open-Source Skill Library" })).toBeVisible();
+  await expect(page).toHaveURL(/\/skills\?q=PDF/);
+  await page.reload();
+  await expect(page.getByRole("heading", { name: "Open-Source Skill Library" })).toBeVisible();
+
+  await page.setViewportSize({ width: 390, height: 844 });
+  const hasHorizontalOverflow = await page.evaluate(
+    () => document.documentElement.scrollWidth > window.innerWidth,
+  );
+  expect(hasHorizontalOverflow).toBe(false);
+
+  await page.getByRole("button", { name: "Open menu" }).click();
+  await expect(page.getByRole("navigation", { name: "Mobile navigation" })).toBeVisible();
+  await page.keyboard.press("Escape");
+  await expect(page.getByRole("navigation", { name: "Mobile navigation" })).toBeHidden();
+
+  await page.emulateMedia({ reducedMotion: "reduce" });
+  expect(
+    await page.evaluate(() => getComputedStyle(document.documentElement).scrollBehavior),
+  ).toBe("auto");
+
+  await context.setOffline(true);
+  await expect(page.getByRole("status")).toContainText("offline");
+  await context.setOffline(false);
 });

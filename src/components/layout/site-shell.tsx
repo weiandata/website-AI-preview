@@ -1,4 +1,5 @@
 import type { ReactNode } from "react";
+import { NetworkStatus } from "@/components/ui/network-status";
 import { ScrollToTop } from "@/components/ui/scroll-to-top";
 import { SiteFooter } from "./site-footer";
 import { SiteHeader } from "./site-header";
@@ -9,6 +10,7 @@ export function SiteShell({ children }: { children: ReactNode }) {
       <SiteHeader />
       {children}
       <SiteFooter />
+      <NetworkStatus />
       <ScrollToTop />
     </div>
   );
