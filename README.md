@@ -53,6 +53,31 @@ Each Skill record contains bilingual presentation copy, platform and license met
 
 Draft Markdown records are excluded from public pages, search, static detail routes, and the sitemap.
 
+## Local Skill manager
+
+Skill content is maintained through a local, administrator-facing manager rather than by editing Markdown by hand. It binds to `127.0.0.1` only, is never part of the deployed site, and has no `/admin` route, account system, or production editor.
+
+Start it by double-clicking `启动Skill管理器.command`, or from a terminal:
+
+```bash
+npm run skill-manager   # http://127.0.0.1:4174
+```
+
+The launcher resolves the project directory from its own location, so it works regardless of the current working directory.
+
+The manager offers two distinct actions:
+
+- **仅保存** writes the changed `content/skills/*.md` files atomically and touches nothing else. No network, no Git.
+- **保存并发布** saves, then commits and pushes those same files to `main`.
+
+Publication is deliberately narrow. Only paths matching `content/skills/<slug>.md` may be staged, only paths written during the current manager session are eligible, and each is staged with an explicit `git add -- <path>`. There is no `git add .`, no force push, and no reset. Publishing requires `main`, a GitHub origin, a remote that is not ahead, and a conflict-free tree; otherwise the manager refuses and explains why. A failed push keeps the local commit and offers a retry. Because the manager does not poll Cloudflare, it reports that GitHub accepted the commit — never that a deploy finished.
+
+Deletions move files into `.skill-manager-trash/` and stay recoverable. Import accepts multiple `.md` files at once, classifies them as new/conflicting/invalid, and requires an explicit opt-in before replacing an existing slug; export produces a single file or a zip of every Skill plus the template.
+
+Field behavior: `status: draft` keeps a Skill out of every public page, the search corpus, structured data, static routes, and the sitemap. `slug` determines `/skills/<slug>/`, so changing it on a published Skill retires the old URL and requires a second confirmation. `featured` plus ascending `featuredRank` control the homepage order. `verified` renders the verification badge.
+
+**[完整的中文管理员操作说明](docs/skill-manager-guide.md)** covers startup, both save buttons, import/export, publication states, and recovery from remote-ahead, push failure, invalid Markdown, and failed Cloudflare builds.
+
 ## Cloudflare Pages
 
 Connect Cloudflare Pages to the GitHub repository with these settings:
@@ -67,6 +92,8 @@ Node version: 20 or newer
 
 GitHub is the only production deployment source. A push to `main` triggers a production build; non-production branches may create preview deployments. Cloudflare does not edit or store Skill source content, and this project has no production editor or content database.
 
+To roll back, revert the offending content commit on `main` and push; Cloudflare rebuilds from the restored tree. Every publication from the manager is a separate commit touching only `content/skills/*.md`, so a rollback never disturbs application code.
+
 ## Main routes
 
 - `/` discovery homepage
@@ -78,6 +105,7 @@ GitHub is the only production deployment source. A push to `main` triggers a pro
 
 - [Design specification](docs/superpowers/specs/2026-07-18-weian-data-skills-platform-design.md)
 - [Implementation plan](docs/superpowers/plans/2026-07-18-weian-data-skills-platform.md)
+- [Skill 管理器使用说明（中文）](docs/skill-manager-guide.md)
 - [Contributing guide](CONTRIBUTING.md)
 - [Security policy](SECURITY.md)
 

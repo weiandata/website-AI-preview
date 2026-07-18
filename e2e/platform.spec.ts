@@ -27,6 +27,15 @@ test("home discovery supports bilingual search and category exploration", async 
     await expect(page.locator(".nav-dropdown .dropdown-panel")).toBeVisible();
   }
   await expect(page.locator(".featured-skill")).toHaveCount(6);
+  // Featured order is administrator-controlled through featuredRank in Markdown.
+  await expect(page.locator(".featured-skill")).toContainText([
+    "数据分析助手",
+    "研究写作助手",
+    "GitHub 工作流助手",
+    "PDF 文档工具箱",
+    "工作流自动化工具包",
+    "专注规划助手",
+  ]);
   await page.getByRole("link", { name: "搜索" }).click();
   await expect(page).toHaveURL(/#home-search$/);
   await expect(page.locator("#home-search")).toBeInViewport();
@@ -236,6 +245,15 @@ test("about page stays compact and omits global GitHub actions", async ({ page }
   await expect(page.locator(".about-compact-usage")).toBeVisible();
   await expect(page.locator(".about-compact-bottom")).toBeVisible();
   expect(await page.locator(".about-principle-card").count()).toBe(4);
+});
+
+test("a Skill without a published route returns 404", async ({ page }) => {
+  // Draft Skills never generate a route, so any unbuilt slug must 404.
+  const response = await page.goto("/skills/draft-fixture/");
+
+  expect(response?.status()).toBe(404);
+  await expect(page.getByRole("heading", { name: "未找到 Skill" })).toBeVisible();
+  await expect(page.getByRole("link", { name: "返回 Skill 库" })).toBeVisible();
 });
 
 test("public Skill submission is not a route", async ({ page }) => {
