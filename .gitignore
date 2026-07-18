@@ -15,6 +15,7 @@ node_modules/
 .next/
 out/
 .skill-manager-trash/
+tools/skill-manager/dist/
 coverage/
 playwright-report/
 test-results/
