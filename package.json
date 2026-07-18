@@ -10,11 +10,15 @@
     "typecheck": "tsc --noEmit",
     "test": "vitest run",
     "test:watch": "vitest",
+    "test:manager": "vitest run tests/manager",
     "test:static-output": "node scripts/verify-static-output.mjs",
-    "test:e2e": "playwright test"
+    "test:e2e": "playwright test",
+    "skill-manager": "tsx tools/skill-manager/server.ts"
   },
   "dependencies": {
     "@fontsource/geist-sans": "^5.2.5",
+    "express": "^5.2.1",
+    "fflate": "^0.8.3",
     "gray-matter": "^4.0.3",
     "lucide-react": "^1.25.0",
     "next": "^16.2.10",
@@ -30,6 +34,7 @@
     "@testing-library/jest-dom": "^6.9.1",
     "@testing-library/react": "^16.3.2",
     "@testing-library/user-event": "^14.6.1",
+    "@types/express": "^5.0.6",
     "@types/node": "^26.1.1",
     "@types/react": "^19.2.17",
     "@types/react-dom": "^19.2.3",
@@ -41,6 +46,7 @@
     "tailwindcss": "^4.3.3",
     "tsx": "^4.23.1",
     "typescript": "^6.0.3",
+    "vite": "^8.1.5",
     "vitest": "^4.1.10"
   }
 }
