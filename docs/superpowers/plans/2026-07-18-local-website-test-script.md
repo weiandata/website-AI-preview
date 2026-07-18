@@ -38,7 +38,7 @@
 - Produces: `require_runtime()`, `ensure_dependencies(project_dir)`, `select_available_port(start, end)`, `wait_until_ready(url, attempts)`, `open_site_when_ready(url, attempts)`, `stop_server()`, and `main()` in `测试网站.command`.
 - Produces: an executable Finder entry point that returns status 0 after a normal server shutdown and nonzero on setup or startup failure.
 
-- [ ] **Step 1: Write the failing behavioral test**
+- [x] **Step 1: Write the failing behavioral test**
 
 Create `tests/test-website-launcher.zsh` with this complete content:
 
@@ -302,7 +302,7 @@ print -r -- "测试结果：$PASSED 通过，$FAILED 失败"
 (( FAILED == 0 ))
 ```
 
-- [ ] **Step 2: Run the behavioral test to verify it fails**
+- [x] **Step 2: Run the behavioral test to verify it fails**
 
 Run:
 
@@ -312,7 +312,7 @@ zsh tests/test-website-launcher.zsh
 
 Expected: FAIL before the test summary because `测试网站.command` does not exist.
 
-- [ ] **Step 3: Implement the minimal launcher**
+- [x] **Step 3: Implement the minimal launcher**
 
 Create `测试网站.command` with this complete content:
 
@@ -532,7 +532,7 @@ if [[ "${WEIAN_LAUNCHER_SOURCE_ONLY:-0}" != "1" ]]; then
 fi
 ```
 
-- [ ] **Step 4: Make the Finder launcher executable**
+- [x] **Step 4: Make the Finder launcher executable**
 
 Run:
 
@@ -542,7 +542,7 @@ chmod +x 测试网站.command
 
 Expected: `stat -f '%Sp' 测试网站.command` prints a mode containing `x`, such as `-rwxr-xr-x`.
 
-- [ ] **Step 5: Validate zsh syntax**
+- [x] **Step 5: Validate zsh syntax**
 
 Run:
 
@@ -552,7 +552,7 @@ zsh -n 测试网站.command tests/test-website-launcher.zsh
 
 Expected: exit status 0 with no output.
 
-- [ ] **Step 6: Run the launcher behavioral tests**
+- [x] **Step 6: Run the launcher behavioral tests**
 
 Run:
 
@@ -562,7 +562,7 @@ zsh tests/test-website-launcher.zsh
 
 Expected: exit status 0 and final output `测试结果：11 通过，0 失败`.
 
-- [ ] **Step 7: Run the existing project verification**
+- [x] **Step 7: Run the existing project verification**
 
 Run:
 
@@ -572,7 +572,7 @@ npm test && npm run lint && npm run typecheck && npm run build
 
 Expected: all Vitest tests pass, ESLint exits 0, TypeScript exits 0, and Next.js reports a successful production build.
 
-- [ ] **Step 8: Perform the manual Finder-equivalent smoke test**
+- [x] **Step 8: Perform the manual Finder-equivalent smoke test**
 
 Run from a terminal to preserve the same executable entry point:
 
@@ -582,7 +582,7 @@ Run from a terminal to preserve the same executable entry point:
 
 Expected: the launcher selects an available port between 3000 and 3010, starts Next.js, waits for an HTTP response, opens the default browser to the local site, keeps logs visible, and stops the launched server after Control+C. Confirm the selected port no longer has a listener after shutdown with `lsof -nP -iTCP:<selected-port> -sTCP:LISTEN`.
 
-- [ ] **Step 9: Commit the launcher and tests**
+- [x] **Step 9: Commit the launcher and tests**
 
 ```bash
 git add 测试网站.command tests/test-website-launcher.zsh
