@@ -52,6 +52,11 @@ typeset -gr LAUNCHER_PATH="$PROJECT_ROOT/测试网站.command"
 typeset -gi PASSED=0
 typeset -gi FAILED=0
 
+if [[ ! -f "$LAUNCHER_PATH" ]]; then
+  print -u2 -r -- "启动器不存在：$LAUNCHER_PATH"
+  exit 1
+fi
+
 export WEIAN_LAUNCHER_SOURCE_ONLY=1
 source "$LAUNCHER_PATH"
 unset WEIAN_LAUNCHER_SOURCE_ONLY
@@ -87,9 +92,9 @@ test_missing_node() (
 
   local output
   output="$(require_runtime 2>&1)"
-  local status=$?
+  local exit_status=$?
 
-  (( status != 0 )) || return 1
+  (( exit_status != 0 )) || return 1
   expect_contains "$output" "Node.js"
 )
 
@@ -100,9 +105,9 @@ test_missing_npm() (
 
   local output
   output="$(require_runtime 2>&1)"
-  local status=$?
+  local exit_status=$?
 
-  (( status != 0 )) || return 1
+  (( exit_status != 0 )) || return 1
   expect_contains "$output" "npm"
 )
 
@@ -136,9 +141,9 @@ test_dependency_install_failure_is_reported() (
 
   local output
   output="$(ensure_dependencies "$temp_dir" 2>&1)"
-  local status=$?
+  local exit_status=$?
 
-  (( status != 0 )) || return 1
+  (( exit_status != 0 )) || return 1
   expect_contains "$output" "项目依赖安装失败"
 )
 
@@ -157,9 +162,9 @@ test_all_ports_busy_returns_an_error() (
 
   local output
   output="$(select_available_port 3000 3010 2>&1)"
-  local status=$?
+  local exit_status=$?
 
-  (( status != 0 )) || return 1
+  (( exit_status != 0 )) || return 1
   expect_contains "$output" "3000 到 3010"
 )
 
@@ -197,9 +202,9 @@ test_server_exit_before_readiness_is_reported() (
 
   local output
   output="$(wait_until_ready "http://127.0.0.1:3000" 3 2>&1)"
-  local status=$?
+  local exit_status=$?
 
-  (( status != 0 )) || return 1
+  (( exit_status != 0 )) || return 1
   expect_contains "$output" "启动完成前已退出"
 )
 
@@ -220,9 +225,9 @@ test_readiness_timeout_is_reported() (
 
   local output
   output="$(wait_until_ready "http://127.0.0.1:3000" 2 2>&1)"
-  local status=$?
+  local exit_status=$?
 
-  (( status != 0 )) || return 1
+  (( exit_status != 0 )) || return 1
   expect_contains "$output" "等待网站启动超时"
 )
 
@@ -249,9 +254,9 @@ test_browser_opens_only_after_readiness() (
   }
 
   open_site_when_ready "http://127.0.0.1:3000" 3 >/dev/null 2>&1
-  local status=$?
+  local exit_status=$?
 
-  (( status != 0 )) || return 1
+  (( exit_status != 0 )) || return 1
   [[ "${(j:,:)events}" == "not-ready" ]]
 )
 
@@ -477,11 +482,11 @@ handle_signal() {
 
 wait_for_server() {
   wait "$SERVER_PID"
-  local status=$?
+  local exit_status=$?
 
   SERVER_PID=""
   SERVER_WAS_STARTED=0
-  return "$status"
+  return "$exit_status"
 }
 
 main() {
@@ -514,11 +519,11 @@ main() {
   info "此窗口会继续显示日志。按 Control+C 可停止网站。"
 
   wait_for_server
-  local status=$?
-  if (( status != 0 )); then
-    error "开发服务器已退出，状态码：$status"
+  local exit_status=$?
+  if (( exit_status != 0 )); then
+    error "开发服务器已退出，状态码：$exit_status"
   fi
-  return "$status"
+  return "$exit_status"
 }
 
 if [[ "${WEIAN_LAUNCHER_SOURCE_ONLY:-0}" != "1" ]]; then
