@@ -80,7 +80,7 @@ Field behavior: `status: draft` keeps a Skill out of every public page, the sear
 
 ## Cloudflare Pages
 
-Connect Cloudflare Pages to the GitHub repository with these settings:
+Connect Cloudflare Pages to the GitHub repository with these settings. A step-by-step Chinese walkthrough, including the failure modes worth knowing about, is in [docs/cloudflare-deployment-guide.md](docs/cloudflare-deployment-guide.md).
 
 ```text
 Production branch: main
@@ -89,6 +89,8 @@ Build output directory: out
 Root directory: /
 Node version: 20 or newer
 ```
+
+The build output directory must be `out`. Pointing it at the repository root would serve `tools/skill-manager/` — the local manager's source — as part of the site. Nothing else in the deployment is security-sensitive; the manager is a separate local process bound to `127.0.0.1` and never enters the build.
 
 GitHub is the only production deployment source. A push to `main` triggers a production build; non-production branches may create preview deployments. Cloudflare does not edit or store Skill source content, and this project has no production editor or content database.
 
@@ -105,6 +107,7 @@ To roll back, revert the offending content commit on `main` and push; Cloudflare
 
 - [Design specification](docs/superpowers/specs/2026-07-18-weian-data-skills-platform-design.md)
 - [Implementation plan](docs/superpowers/plans/2026-07-18-weian-data-skills-platform.md)
+- [Cloudflare 上线手册（中文）](docs/cloudflare-deployment-guide.md)
 - [Skill 管理器使用说明（中文）](docs/skill-manager-guide.md)
 - [Contributing guide](CONTRIBUTING.md)
 - [Security policy](SECURITY.md)
