@@ -16,9 +16,9 @@ version: 1.0.0
 license: MIT
 addedAt: 2026-07-19
 updatedAt: 2026-07-19
-githubUrl: https://github.com/example/example-skill
+githubUrl: https://example.com/projects/example-skill
 officialUrl: ""
-downloadUrl: https://github.com/example/example-skill/archive/refs/heads/main.zip
+downloadUrl: https://example.com/downloads/example-skill
 featured: false
 featuredRank: 0
 verified: false
@@ -76,7 +76,7 @@ Provide a fuller English introduction, scope, and limitations.
 # Installation
 
 ```bash
-git clone https://github.com/example/example-skill.git
+git clone https://example.com/projects/example-skill.git
 ```
 
 ```bash
