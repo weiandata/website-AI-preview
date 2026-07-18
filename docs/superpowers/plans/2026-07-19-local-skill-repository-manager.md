@@ -68,6 +68,7 @@
 ### Task 1: Shared Markdown schema, parser, serializer, and template
 
 **Files:**
+
 - Modify: `package.json`
 - Modify: `package-lock.json`
 - Modify: `src/types/content.ts`
@@ -77,6 +78,7 @@
 - Create: `tests/lib/skill-markdown.test.ts`
 
 **Interfaces:**
+
 - Produces: `SkillDocument`, `SkillContentError`, `parseSkillMarkdown(source, fileName)`, `serializeSkillMarkdown(document)`, `validateSkillDocuments(documents)`.
 - Consumes: existing `Skill`, `CategoryId`, `SkillIconKey`, `SkillFaq`, and `SkillChangelog` types.
 
@@ -238,6 +240,7 @@ git commit -m "feat: define Skill Markdown format"
 ### Task 2: Lossless migration of all eight Skills
 
 **Files:**
+
 - Create: `scripts/migrate-skills-to-markdown.ts`
 - Create: `content/skills/data-analysis-assistant.md`
 - Create: `content/skills/research-writing-assistant.md`
@@ -251,6 +254,7 @@ git commit -m "feat: define Skill Markdown format"
 - Delete after migration verification: `scripts/migrate-skills-to-markdown.ts`
 
 **Interfaces:**
+
 - Consumes: `serializeSkillMarkdown`, legacy `skills`, and `SkillDocument`.
 - Produces: eight validated version-1 Markdown source files.
 
@@ -336,6 +340,7 @@ If Git reports the migration script path no longer exists, use `git add -A scrip
 ### Task 3: Build-time repository and public website migration
 
 **Files:**
+
 - Create: `src/lib/skills/repository.ts`
 - Create: `tests/lib/skill-repository.test.ts`
 - Modify: `src/app/layout.tsx`
@@ -358,6 +363,7 @@ If Git reports the migration script path no longer exists, use `git add -A scrip
 - Delete: `src/data/skills.ts`
 
 **Interfaces:**
+
 - Produces: `getSkillDocuments(contentDir?)`, `getPublishedSkills(contentDir?)`, `getPublishedSkillBySlug(slug, contentDir?)`, and `SkillTitleRecord`.
 - Consumes: parser and validator from Task 1 plus Markdown from Task 2.
 
@@ -471,6 +477,7 @@ git commit -m "feat: load Skill catalog from Markdown"
 ### Task 4: Static Next.js export and Cloudflare Pages contract
 
 **Files:**
+
 - Modify: `next.config.ts`
 - Modify: `package.json`
 - Modify: `package-lock.json`
@@ -480,6 +487,7 @@ git commit -m "feat: load Skill catalog from Markdown"
 - Modify: `playwright.config.ts`
 
 **Interfaces:**
+
 - Consumes: published Markdown repository from Task 3.
 - Produces: deterministic `out/` static site compatible with Cloudflare Pages.
 
@@ -573,6 +581,7 @@ git commit -m "build: add Cloudflare Pages static export"
 ### Task 5: Local file store and localhost API
 
 **Files:**
+
 - Modify: `package.json`
 - Modify: `package-lock.json`
 - Create: `tools/skill-manager/lib/skill-store.ts`
@@ -583,6 +592,7 @@ git commit -m "build: add Cloudflare Pages static export"
 - Create: `tests/manager/skill-manager-api.test.ts`
 
 **Interfaces:**
+
 - Produces: `SkillStore.list()`, `get(slug)`, `validate(source, fileName)`, `save(input)`, `remove(slug)`, and API routes under `/api`.
 - Consumes: shared Markdown parser/serializer and schema.
 
@@ -686,6 +696,7 @@ git commit -m "feat: add local Skill content service"
 ### Task 6: Full-field manager UI, import/export, and live preview
 
 **Files:**
+
 - Create: `tools/skill-manager/src/main.tsx`
 - Create: `tools/skill-manager/src/api.ts`
 - Create: `tools/skill-manager/src/App.tsx`
@@ -701,6 +712,7 @@ git commit -m "feat: add local Skill content service"
 - Create: `tests/manager/skill-manager-ui.test.tsx`
 
 **Interfaces:**
+
 - Consumes: manager API from Task 5 and `SkillDocument` from Task 1.
 - Produces: complete no-code create/edit/copy/delete/import/export/save experience.
 
@@ -810,6 +822,7 @@ git commit -m "feat: build local Skill manager interface"
 ### Task 7: Safe Git publication and Mac launcher
 
 **Files:**
+
 - Create: `tools/skill-manager/lib/git-publisher.ts`
 - Modify: `tools/skill-manager/server.ts`
 - Modify: `tools/skill-manager/src/api.ts`
@@ -819,6 +832,7 @@ git commit -m "feat: build local Skill manager interface"
 - Modify: `tests/test-website-launcher.zsh`
 
 **Interfaces:**
+
 - Produces: `GitPublisher.inspect(paths)`, `publish(paths, message)`, and `retryPush()`.
 - Consumes: explicit saved-path set from Task 5.
 
@@ -932,6 +946,7 @@ git commit -m "feat: publish Skill content safely from Mac"
 ### Task 8: End-to-end acceptance, documentation, and cleanup
 
 **Files:**
+
 - Modify: `README.md`
 - Modify: `CONTRIBUTING.md`
 - Modify: `e2e/platform.spec.ts`
@@ -939,6 +954,7 @@ git commit -m "feat: publish Skill content safely from Mac"
 - Delete: obsolete legacy fixtures/imports discovered by `rg`
 
 **Interfaces:**
+
 - Consumes: all prior tasks.
 - Produces: verified maintainer workflow and production-ready static site.
 

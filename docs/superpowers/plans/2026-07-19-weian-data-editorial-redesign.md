@@ -23,6 +23,7 @@
 ### Task 1: Brand assets and editorial application shell
 
 **Files:**
+
 - Create: `public/brand/weian-logo-primary.svg`
 - Create: `public/brand/weian-logo-reversed.svg`
 - Create: `public/brand/weian-mark-primary.svg`
@@ -34,6 +35,7 @@
 - Test: `tests/components/app-shell.test.tsx`
 
 **Interfaces:**
+
 - Consumes: `usePathname()`, `useLanguage()`, `LanguageSwitcher`, `Dialog`, `siteConfig`, and the existing `/skills?focus=search` behavior.
 - Produces: `SiteHeader` with `isHome` visual state, official `<img>` lockups, navigation containing only `/`, `/skills`, `/categories`, and `/about`, plus the shared editorial CSS tokens used by all later tasks.
 
@@ -119,6 +121,7 @@ git commit -m "feat: add editorial brand shell"
 ### Task 2: Full-screen home hero and editorial discovery sections
 
 **Files:**
+
 - Modify: `src/app/page.tsx`
 - Modify: `src/components/home/hero.tsx`
 - Modify: `src/components/skills/hero-search.tsx`
@@ -130,6 +133,7 @@ git commit -m "feat: add editorial brand shell"
 - Test: `tests/components/app-shell.test.tsx`
 
 **Interfaces:**
+
 - Consumes: `skills`, `categories`, `getCategoryCounts`, `localize`, `formatDate`, `HeroSearch`, and translated hero/home strings.
 - Produces: the exact `<video>` hero, functional post-hero search, asymmetric featured links, eight category links, values list, and recent Skill links.
 
@@ -230,6 +234,7 @@ git commit -m "feat: rebuild editorial home page"
 ### Task 3: Refine the Skill library and category page without changing behavior
 
 **Files:**
+
 - Modify: `src/components/skills/skill-library.tsx`
 - Modify: `src/components/skills/skill-card.tsx`
 - Modify: `src/components/skills/skill-list-row.tsx`
@@ -240,6 +245,7 @@ git commit -m "feat: rebuild editorial home page"
 - Test: `e2e/platform.spec.ts`
 
 **Interfaces:**
+
 - Consumes: `parseSkillQuery`, `serializeSkillQuery`, `filterSkills`, current filter-group arrays, mobile `Dialog`, `SkillCard`, and `SkillListRow`.
 - Produces: unchanged shareable query behavior with editorial page hero, desktop rail, toolbar, cards, list rows, category grid, and mobile filter drawer.
 
@@ -317,6 +323,7 @@ git commit -m "feat: refine skill collection pages"
 ### Task 4: Recompose Skill detail and About pages
 
 **Files:**
+
 - Modify: `src/components/skills/skill-detail.tsx`
 - Modify: `src/components/about/about-content.tsx`
 - Modify: `src/app/globals.css`
@@ -324,6 +331,7 @@ git commit -m "feat: refine skill collection pages"
 - Test: `e2e/platform.spec.ts`
 
 **Interfaces:**
+
 - Consumes: the complete `Skill` type, `DownloadDialog`, `CopyButton`, `SkillCard`, existing translations, `siteConfig.contactEmail`, structured data emitted by the route, and all current section IDs.
 - Produces: editorial detail hero/facts/content/sidebar composition and editorial about hero/mission/principles/usage/attribution/contact composition with unchanged functionality.
 
@@ -405,6 +413,7 @@ git commit -m "feat: refine skill detail and company pages"
 ### Task 5: Remove public Skill submission completely
 
 **Files:**
+
 - Delete: `src/app/submit/page.tsx`
 - Delete: `src/components/submit/submit-page-content.tsx`
 - Delete: `src/components/submit/submit-skill-form.tsx`
@@ -420,6 +429,7 @@ git commit -m "feat: refine skill detail and company pages"
 - Test: `tests/lib/sitemap.test.ts`
 
 **Interfaces:**
+
 - Consumes: Next.js filesystem routing and `sitemap()` output.
 - Produces: no `/submit` route, no public submit wording or links, and a sitemap containing only home, skills, categories, about, and Skill detail URLs.
 
@@ -506,11 +516,13 @@ git commit -m "refactor: remove public skill submission"
 ### Task 6: Final responsive, accessibility, and visual acceptance
 
 **Files:**
+
 - Modify: `src/app/globals.css`
 - Modify: `e2e/platform.spec.ts`
 - Modify: `next-env.d.ts` only if Next.js regeneration changed it from the repository baseline
 
 **Interfaces:**
+
 - Consumes: all completed pages and existing launcher script.
 - Produces: a fully verified desktop/mobile site with clean checks and the approved visual composition.
 

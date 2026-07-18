@@ -60,6 +60,7 @@ Each file owns one responsibility: data files define content, `lib` files define
 ### Task 1: Bootstrap the Next.js and Test Toolchain
 
 **Files:**
+
 - Create: `package.json`
 - Create: `tsconfig.json`
 - Create: `next.config.ts`
@@ -73,6 +74,7 @@ Each file owns one responsibility: data files define content, `lib` files define
 - Create: `src/app/page.tsx`
 
 **Interfaces:**
+
 - Produces: `npm run dev`, `npm run test`, `npm run lint`, `npm run typecheck`, `npm run build`, and `npm run test:e2e`.
 
 - [ ] **Step 1: Install the application and verification dependencies**
@@ -133,6 +135,7 @@ git commit -m "chore: bootstrap Next.js skills platform"
 ### Task 2: Define Bilingual Content Types and Data
 
 **Files:**
+
 - Create: `src/types/content.ts`
 - Create: `src/types/filters.ts`
 - Create: `src/data/categories.ts`
@@ -142,6 +145,7 @@ git commit -m "chore: bootstrap Next.js skills platform"
 - Create: `src/lib/i18n.ts`
 
 **Interfaces:**
+
 - Produces: `Locale`, `LocalizedText`, `Category`, `Skill`, `SkillFilterState`, `localize(text, locale)`, `translate(key, locale)`, `skills`, and `categories`.
 
 - [ ] **Step 1: Write the failing localization tests**
@@ -200,10 +204,12 @@ git commit -m "feat: add bilingual skills content model"
 ### Task 3: Implement Pure Search, Filtering, Sorting, and Query State
 
 **Files:**
+
 - Test: `tests/lib/skill-query.test.ts`
 - Create: `src/lib/skill-query.ts`
 
 **Interfaces:**
+
 - Consumes: `Skill`, `SkillFilterState`, `Locale`, `skills`.
 - Produces: `filterSkills`, `getRelatedSkills`, `getCategoryCounts`, `parseSkillQuery`, and `serializeSkillQuery`.
 
@@ -263,6 +269,7 @@ git commit -m "feat: add shareable skill discovery selectors"
 ### Task 4: Build Localization State and Global Layout
 
 **Files:**
+
 - Test: `tests/components/language-provider.test.tsx`
 - Create: `src/components/language/language-provider.tsx`
 - Create: `src/components/language/language-switcher.tsx`
@@ -276,6 +283,7 @@ git commit -m "feat: add shareable skill discovery selectors"
 - Modify: `src/app/globals.css`
 
 **Interfaces:**
+
 - Produces: `useLanguage(): { locale; setLocale; t }` and the global page chrome.
 
 - [ ] **Step 1: Write failing locale persistence tests**
@@ -318,6 +326,7 @@ git commit -m "feat: add bilingual global application shell"
 ### Task 5: Build Reusable Skill Components and Safe Actions
 
 **Files:**
+
 - Test: `tests/components/download-dialog.test.tsx`
 - Create: `src/components/ui/dialog.tsx`
 - Create: `src/components/ui/copy-button.tsx`
@@ -326,6 +335,7 @@ git commit -m "feat: add bilingual global application shell"
 - Create: `src/components/skills/skill-list-row.tsx`
 
 **Interfaces:**
+
 - Consumes: `Skill`, `Locale`, `useLanguage`.
 - Produces: reusable card/list presentation and the only authorized external-download opener.
 
@@ -376,6 +386,7 @@ git commit -m "feat: add reusable skill cards and safe downloads"
 ### Task 6: Compose the Home and Category Pages
 
 **Files:**
+
 - Create: `src/components/skills/hero-search.tsx`
 - Create: `src/components/home/hero.tsx`
 - Create: `src/components/home/category-explorer.tsx`
@@ -385,6 +396,7 @@ git commit -m "feat: add reusable skill cards and safe downloads"
 - Create: `src/app/categories/page.tsx`
 
 **Interfaces:**
+
 - Consumes: `skills`, `categories`, selector/localization APIs, `SkillCard`.
 - Produces: complete home and category discovery experiences.
 
@@ -424,11 +436,13 @@ git commit -m "feat: build Skills discovery homepage"
 ### Task 7: Build the URL-Driven Skill Library
 
 **Files:**
+
 - Create: `src/components/skills/skill-library.tsx`
 - Modify: `src/app/skills/page.tsx`
 - Modify: `e2e/platform.spec.ts`
 
 **Interfaces:**
+
 - Consumes: `parseSkillQuery`, `serializeSkillQuery`, `filterSkills`, card/list components.
 - Produces: complete searchable/filterable `/skills` experience.
 
@@ -469,6 +483,7 @@ git commit -m "feat: add searchable filterable Skill library"
 ### Task 8: Build Static Skill Detail Pages and SEO
 
 **Files:**
+
 - Create: `src/components/skills/skill-detail.tsx`
 - Create: `src/app/skills/[slug]/page.tsx`
 - Create: `src/app/not-found.tsx`
@@ -477,6 +492,7 @@ git commit -m "feat: add searchable filterable Skill library"
 - Modify: `e2e/platform.spec.ts`
 
 **Interfaces:**
+
 - Consumes: `skills`, `getRelatedSkills`, `SkillCard`, `DownloadDialog`, `CopyButton`.
 - Produces: `generateStaticParams`, `generateMetadata`, sitemap, robots rules, JSON-LD detail pages.
 
@@ -515,6 +531,7 @@ git commit -m "feat: add static Skill detail pages and metadata"
 ### Task 9: Build About and Validated Submit Pages
 
 **Files:**
+
 - Test: `tests/lib/submit-validation.test.ts`
 - Test: `tests/components/submit-skill-form.test.tsx`
 - Create: `src/lib/submit-validation.ts`
@@ -523,6 +540,7 @@ git commit -m "feat: add static Skill detail pages and metadata"
 - Create: `src/app/about/page.tsx`
 
 **Interfaces:**
+
 - Produces: `validateSubmission(values, locale)` and the client-only submit workflow.
 
 - [ ] **Step 1: Write failing validation tests**
@@ -561,12 +579,14 @@ git commit -m "feat: add About and Skill submission flows"
 ### Task 10: Final Responsive, Accessibility, and Acceptance Pass
 
 **Files:**
+
 - Modify: `src/app/globals.css`
 - Modify: affected components discovered during inspection
 - Modify: `e2e/platform.spec.ts`
 - Create: `README.md` only if the existing repository README does not already document local development; otherwise update its development section.
 
 **Interfaces:**
+
 - Produces: verified release candidate satisfying all acceptance criteria.
 
 - [ ] **Step 1: Add final acceptance tests before visual fixes**

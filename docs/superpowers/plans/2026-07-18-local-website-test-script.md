@@ -30,10 +30,12 @@
 ### Task 1: Finder-Friendly Local Website Launcher
 
 **Files:**
+
 - Create: `测试网站.command`
 - Test: `tests/test-website-launcher.zsh`
 
 **Interfaces:**
+
 - Consumes: the existing package script `dev: next dev` from `package.json`.
 - Produces: `require_runtime()`, `ensure_dependencies(project_dir)`, `select_available_port(start, end)`, `wait_until_ready(url, attempts)`, `open_site_when_ready(url, attempts)`, `stop_server()`, and `main()` in `测试网站.command`.
 - Produces: an executable Finder entry point that returns status 0 after a normal server shutdown and nonzero on setup or startup failure.
