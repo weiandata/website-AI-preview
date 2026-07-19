@@ -16,6 +16,7 @@ import {
   exitManager,
   getTemplate,
   listSkills,
+  ManagerApiError,
   previewExit,
   previewPublish,
   publishSkills,
@@ -243,7 +244,17 @@ export function App() {
           return {
             fileName: file.name,
             kind: "invalid",
-            error: error instanceof Error ? error.message : "无法解析",
+            // Every problem travels to the review panel so the file can be
+            // repaired in one pass instead of one import per mistake.
+            issues:
+              error instanceof ManagerApiError
+                ? error.issues
+                : [
+                    {
+                      message: error instanceof Error ? error.message : "无法解析",
+                      hint: "确认文件是 UTF-8 编码的 Markdown，并对照 content/skill-template.md 检查",
+                    },
+                  ],
           };
         }
       }),

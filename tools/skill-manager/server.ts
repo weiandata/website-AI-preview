@@ -7,6 +7,7 @@ import { createServer as createViteServer } from "vite";
 import {
   serializeSkillMarkdown,
   SkillContentError,
+  type SkillContentIssue,
 } from "../../src/lib/skills/markdown";
 import type { SkillDocument } from "../../src/lib/skills/schema";
 import {
@@ -41,6 +42,8 @@ type ApiError = {
     fileName?: string;
     section?: string;
     line?: number;
+    /** Every problem in the file, so one edit pass can fix them all. */
+    issues?: SkillContentIssue[];
   };
 };
 
@@ -54,6 +57,7 @@ function sendError(error: unknown, response: Response): void {
         fileName: error.fileName,
         section: error.section,
         line: error.line,
+        issues: error.issues,
       },
     } satisfies ApiError);
     return;

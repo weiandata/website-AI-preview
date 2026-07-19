@@ -40,20 +40,133 @@ type ErrorDetails = {
   line?: number;
 };
 
+/** One problem in a Skill file, described well enough to fix without guessing. */
+export type SkillContentIssue = {
+  message: string;
+  /** Chinese guidance naming the exact edit that resolves the problem. */
+  hint: string;
+  field?: string;
+  section?: string;
+  line?: number;
+};
+
+/**
+ * A validation failure carrying *every* problem found in the file. Parsing
+ * collects issues rather than stopping at the first one, so an administrator
+ * can repair the whole file in a single pass instead of re-importing after
+ * each fix.
+ */
 export class SkillContentError extends Error {
   fileName: string;
   field?: string;
   section?: string;
   line?: number;
+  issues: SkillContentIssue[];
 
-  constructor(message: string, details: ErrorDetails) {
-    super(`${details.fileName}: ${message}`);
+  constructor(message: string, details: ErrorDetails);
+  constructor(fileName: string, issues: SkillContentIssue[]);
+  constructor(
+    messageOrFileName: string,
+    detailsOrIssues: ErrorDetails | SkillContentIssue[],
+  ) {
+    const aggregate = Array.isArray(detailsOrIssues);
+    const fileName = aggregate ? messageOrFileName : detailsOrIssues.fileName;
+    const issues: SkillContentIssue[] = aggregate
+      ? detailsOrIssues
+      : [
+          {
+            message: messageOrFileName,
+            hint: hintFor(messageOrFileName, detailsOrIssues),
+            field: detailsOrIssues.field,
+            section: detailsOrIssues.section,
+            line: detailsOrIssues.line,
+          },
+        ];
+    super(
+      issues.length > 1
+        ? `${fileName}: 发现 ${issues.length} 个问题\n${issues
+            .map((issue, index) => `${index + 1}. ${describeIssue(issue)}`)
+            .join("\n")}`
+        : `${fileName}: ${issues[0]?.message ?? "invalid Skill file"}`,
+    );
     this.name = "SkillContentError";
-    this.fileName = details.fileName;
-    this.field = details.field;
-    this.section = details.section;
-    this.line = details.line;
+    this.fileName = fileName;
+    this.issues = issues;
+    // The first issue stays on the error itself so single-problem callers and
+    // the existing API shape keep working unchanged.
+    this.field = issues[0]?.field;
+    this.section = issues[0]?.section;
+    this.line = issues[0]?.line;
   }
+}
+
+/** Renders one issue as a single line: where it is, what is wrong, how to fix it. */
+export function describeIssue(issue: SkillContentIssue): string {
+  const where = [
+    issue.line ? `第 ${issue.line} 行` : undefined,
+    issue.section ? `区块「${issue.section}」` : undefined,
+    issue.field ? `字段 ${issue.field}` : undefined,
+  ].filter(Boolean);
+  const location = where.length ? `${where.join(" · ")}：` : "";
+  return `${location}${issue.message}${issue.hint ? ` — ${issue.hint}` : ""}`;
+}
+
+/** Field-specific repair instructions; zod's own wording is too terse to act on. */
+const fieldHints: Record<string, string> = {
+  schemaVersion: "写成 schemaVersion: 1",
+  status: "只能是 draft 或 published",
+  slug: "只能用小写字母、数字和连字符，例如 my-skill，并且要和文件名一致",
+  name: "填写英文名称，不能为空",
+  nameZh: "填写中文名称，不能为空",
+  category:
+    "只能是 development、data-analytics、research-writing、content-creation、automation、image-design、files-pdf、productivity 之一",
+  tags: "写成字符串数组，例如 tags: [\"a\", \"b\"]，每项不能为空",
+  platforms: "写成字符串数组，例如 platforms: [\"claude-code\"]，每项不能为空",
+  author: "填写作者名，不能为空",
+  version: "填写版本号，例如 1.0.0",
+  license: "填写许可证，例如 MIT",
+  addedAt: "使用 YYYY-MM-DD 格式的日期",
+  updatedAt: "使用 YYYY-MM-DD 格式的日期",
+  githubUrl: "填写完整网址（含 https://）或留空字符串",
+  officialUrl: "填写完整网址（含 https://）或留空字符串",
+  downloadUrl: "填写完整网址（含 https://）或留空字符串",
+  featured: "写成 true 或 false",
+  featuredRank: "写成 0 或正整数",
+  verified: "写成 true 或 false",
+  icon: "只能是 analysis、automation、code、document、image、productivity、research、writing 之一",
+  stars: "写成 0 或正整数",
+  downloads: "写成 0 或正整数",
+};
+
+const sectionHints: Record<string, string> = {
+  Description: "该区块需要 ## zh 和 ## en 两个子标题，各自写一段非空文字",
+  "Long Description": "该区块需要 ## zh 和 ## en 两个子标题，各自写一段非空文字",
+  Usage: "该区块需要 ## zh 和 ## en 两个子标题，各自写一段非空文字",
+  Features: "该区块需要 ## zh 和 ## en，每个下面各写一个以 - 开头的无序列表",
+  "Use Cases": "该区块需要 ## zh 和 ## en，每个下面各写一个以 - 开头的无序列表",
+  Workflow: "该区块需要 ## zh 和 ## en，每个下面各写一个以 1. 开头的有序列表",
+  Installation: "该区块只能放 bash 代码块（三个反引号加 bash 开头），不能有正文段落",
+  Changelog:
+    "每条用 ## 版本 | YYYY-MM-DD 作标题，下面再写 ### zh 和 ### en",
+  FAQ: "每条用 ## 任意标题，下面写 ### question.zh、### question.en、### answer.zh、### answer.en 四个子标题",
+};
+
+function hintFor(message: string, details: Omit<ErrorDetails, "fileName">): string {
+  if (details.field) {
+    // Nested paths such as `tags.0` still point at their top-level field.
+    const root = details.field.split(".")[0];
+    if (fieldHints[root]) return fieldHints[root];
+  }
+  if (details.section && sectionHints[details.section]) {
+    return sectionHints[details.section];
+  }
+  if (message.includes("unknown top-level section")) {
+    return `顶级标题只能是：${requiredSections.join("、")}，请删除或改名`;
+  }
+  if (message.includes("missing top-level section")) {
+    return "补上这个一级标题（# 标题）及其内容";
+  }
+  return "对照 content/skill-template.md 修正这一处";
 }
 
 function nodeText(node: RootContent | PhrasingContent | ListItem): string {
@@ -107,24 +220,47 @@ function splitByHeading(
   return result;
 }
 
+/** Turns a caught parsing failure into issues on the shared collector. */
+function collectIssues(issues: SkillContentIssue[], error: unknown): void {
+  if (error instanceof SkillContentError) {
+    issues.push(...error.issues);
+    return;
+  }
+  throw error;
+}
+
+/**
+ * Splits the document into its level-one sections, reporting every unknown and
+ * every missing section at once. Returns undefined only when the heading
+ * structure is too broken to attribute later problems to a section.
+ */
 function splitLevelOneSections(
   root: Root,
   fileName: string,
-): Map<string, RootContent[]> {
-  const sections = splitByHeading(root.children, 1, fileName, "document");
+  issues: SkillContentIssue[],
+): Map<string, RootContent[]> | undefined {
+  let sections: Map<string, RootContent[]>;
+  try {
+    sections = splitByHeading(root.children, 1, fileName, "document");
+  } catch (error) {
+    collectIssues(issues, error);
+    return undefined;
+  }
   const expected = new Set<string>(requiredSections);
   for (const section of sections.keys()) {
     if (!expected.has(section)) {
-      throw new SkillContentError(`unknown top-level section "${section}"`, {
-        fileName,
+      issues.push({
+        message: `unknown top-level section "${section}"`,
+        hint: `顶级标题只能是：${requiredSections.join("、")}，请删除或改名`,
         section,
       });
     }
   }
   for (const section of requiredSections) {
     if (!sections.has(section)) {
-      throw new SkillContentError(`missing top-level section "${section}"`, {
-        fileName,
+      issues.push({
+        message: `missing top-level section "${section}"`,
+        hint: sectionHints[section] ?? "补上这个一级标题（# 标题）及其内容",
         section,
       });
     }
@@ -302,17 +438,22 @@ function normalizeFrontmatterDates(data: Record<string, unknown>): Record<string
   );
 }
 
+/** Reports every frontmatter problem at once; zod already found them all. */
 function parseFrontmatter(
   data: Record<string, unknown>,
-  fileName: string,
-): SkillFrontmatter {
+  issues: SkillContentIssue[],
+): SkillFrontmatter | undefined {
   const result = skillFrontmatterSchema.safeParse(normalizeFrontmatterDates(data));
-  if (!result.success) {
-    const issue = result.error.issues[0];
+  if (result.success) return result.data;
+  for (const issue of result.error.issues) {
     const field = issue.path.join(".") || undefined;
-    throw new SkillContentError(issue.message, { fileName, field });
+    issues.push({
+      message: issue.message,
+      hint: hintFor(issue.message, { field }),
+      field,
+    });
   }
-  return result.data;
+  return undefined;
 }
 
 function optionalUrl(value: string | undefined): string | undefined {
@@ -329,17 +470,60 @@ export function parseSkillMarkdown(source: string, fileName: string): SkillDocum
       { fileName },
     );
   }
-  const metadata = parseFrontmatter(parsedMatter.data, fileName);
+  // Everything below accumulates into `issues` so a single import surfaces the
+  // whole repair list, rather than one problem per round trip.
+  const issues: SkillContentIssue[] = [];
+  const metadata = parseFrontmatter(parsedMatter.data, issues);
   const expectedSlug = path.basename(fileName, path.extname(fileName));
-  if (metadata.slug !== expectedSlug) {
-    throw new SkillContentError(
-      `slug "${metadata.slug}" does not match filename "${expectedSlug}"`,
-      { fileName, field: "slug" },
-    );
+  if (metadata && metadata.slug !== expectedSlug) {
+    issues.push({
+      message: `slug "${metadata.slug}" does not match filename "${expectedSlug}"`,
+      hint: `把 slug 改成 ${expectedSlug}，或把文件重命名为 ${metadata.slug}.md`,
+      field: "slug",
+    });
   }
 
   const root = unified().use(remarkParse).parse(parsedMatter.content) as Root;
-  const sections = splitLevelOneSections(root, fileName);
+  const sections = splitLevelOneSections(root, fileName, issues);
+
+  /** Parses one section, recording its failure instead of aborting the rest. */
+  const read = <T>(section: string, parse: (nodes: RootContent[]) => T): T | undefined => {
+    const nodes = sections?.get(section);
+    // A missing section was already reported; do not blame it twice.
+    if (!nodes) return undefined;
+    try {
+      return parse(nodes);
+    } catch (error) {
+      collectIssues(issues, error);
+      return undefined;
+    }
+  };
+
+  const body = {
+    description: read("Description", (nodes) =>
+      readLocalizedText(nodes, fileName, "Description"),
+    ),
+    longDescription: read("Long Description", (nodes) =>
+      readLocalizedText(nodes, fileName, "Long Description"),
+    ),
+    features: read("Features", (nodes) =>
+      readLocalizedList(nodes, false, fileName, "Features"),
+    ),
+    useCases: read("Use Cases", (nodes) =>
+      readLocalizedList(nodes, false, fileName, "Use Cases"),
+    ),
+    installation: read("Installation", (nodes) => readInstallation(nodes, fileName)),
+    usage: read("Usage", (nodes) => readLocalizedText(nodes, fileName, "Usage")),
+    workflow: read("Workflow", (nodes) =>
+      readLocalizedList(nodes, true, fileName, "Workflow"),
+    ),
+    changelog: read("Changelog", (nodes) => readChangelog(nodes, fileName)),
+    faq: read("FAQ", (nodes) => readFaq(nodes, fileName)),
+  };
+
+  if (issues.length || !metadata) {
+    throw new SkillContentError(fileName, issues);
+  }
 
   return {
     ...metadata,
@@ -347,38 +531,15 @@ export function parseSkillMarkdown(source: string, fileName: string): SkillDocum
     githubUrl: optionalUrl(metadata.githubUrl),
     officialUrl: optionalUrl(metadata.officialUrl),
     downloadUrl: optionalUrl(metadata.downloadUrl),
-    description: readLocalizedText(
-      sections.get("Description")!,
-      fileName,
-      "Description",
-    ),
-    longDescription: readLocalizedText(
-      sections.get("Long Description")!,
-      fileName,
-      "Long Description",
-    ),
-    features: readLocalizedList(
-      sections.get("Features")!,
-      false,
-      fileName,
-      "Features",
-    ),
-    useCases: readLocalizedList(
-      sections.get("Use Cases")!,
-      false,
-      fileName,
-      "Use Cases",
-    ),
-    installation: readInstallation(sections.get("Installation")!, fileName),
-    usage: readLocalizedText(sections.get("Usage")!, fileName, "Usage"),
-    workflow: readLocalizedList(
-      sections.get("Workflow")!,
-      true,
-      fileName,
-      "Workflow",
-    ),
-    changelog: readChangelog(sections.get("Changelog")!, fileName),
-    faq: readFaq(sections.get("FAQ")!, fileName),
+    description: body.description!,
+    longDescription: body.longDescription!,
+    features: body.features!,
+    useCases: body.useCases!,
+    installation: body.installation!,
+    usage: body.usage!,
+    workflow: body.workflow!,
+    changelog: body.changelog!,
+    faq: body.faq!,
   };
 }
 

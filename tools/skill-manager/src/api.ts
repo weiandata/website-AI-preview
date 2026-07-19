@@ -1,4 +1,7 @@
+import type { SkillContentIssue } from "../../../src/lib/skills/markdown";
 import type { SkillDocument } from "../../../src/lib/skills/schema";
+
+export type { SkillContentIssue };
 
 export type StoredSkill = {
   document: SkillDocument;
@@ -10,26 +13,48 @@ export class ManagerApiError extends Error {
   code: string;
   field?: string;
   fileName?: string;
+  /** Every problem the server found, not just the first one. */
+  issues: SkillContentIssue[];
 
   constructor(payload: {
     code: string;
     message: string;
     field?: string;
     fileName?: string;
+    section?: string;
+    line?: number;
+    issues?: SkillContentIssue[];
   }) {
     super(payload.message);
     this.name = "ManagerApiError";
     this.code = payload.code;
     this.field = payload.field;
     this.fileName = payload.fileName;
+    this.issues = payload.issues?.length
+      ? payload.issues
+      : [
+          {
+            message: payload.message,
+            hint: "",
+            field: payload.field,
+            section: payload.section,
+            line: payload.line,
+          },
+        ];
   }
 }
 
 async function request<T>(url: string, init?: RequestInit): Promise<T> {
   const response = await fetch(url, init);
   if (!response.ok) {
-    const payload = await response.json();
-    throw new ManagerApiError(payload.error);
+    // A crashed or proxied server can answer with something that is not JSON.
+    const payload = await response.json().catch(() => undefined);
+    throw new ManagerApiError(
+      payload?.error ?? {
+        code: "UNEXPECTED_RESPONSE",
+        message: `服务器返回 ${response.status}，未给出详细原因`,
+      },
+    );
   }
   return response.json() as Promise<T>;
 }

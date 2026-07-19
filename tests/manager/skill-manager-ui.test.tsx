@@ -8,7 +8,11 @@ import type { SkillDocument } from "@/lib/skills/schema";
 import { App } from "../../tools/skill-manager/src/App";
 import * as api from "../../tools/skill-manager/src/api";
 
-vi.mock("../../tools/skill-manager/src/api", () => ({
+vi.mock("../../tools/skill-manager/src/api", async () => ({
+  // The error class stays real; the UI branches on `instanceof`.
+  ManagerApiError: (
+    await vi.importActual<typeof api>("../../tools/skill-manager/src/api")
+  ).ManagerApiError,
   listSkills: vi.fn(),
   validateMarkdown: vi.fn(),
   serializeSkill: vi.fn(),
@@ -611,6 +615,63 @@ describe("local Skill manager UI", () => {
 
     expect(await screen.findByText("0 个新增，1 个冲突")).toBeInTheDocument();
     expect(api.saveSkill).not.toHaveBeenCalled();
+  });
+
+  it("lists every problem in a rejected Markdown file", async () => {
+    const user = userEvent.setup();
+    vi.mocked(api.validateMarkdown).mockRejectedValueOnce(
+      new api.ManagerApiError({
+        code: "VALIDATION_ERROR",
+        message: "broken.md: 发现 2 个问题",
+        fileName: "broken.md",
+        issues: [
+          { message: "Invalid input", hint: "只能是 draft 或 published", field: "status" },
+          {
+            message: 'missing top-level section "FAQ"',
+            hint: "每条用 `## 任意标题`",
+            section: "FAQ",
+            line: 12,
+          },
+        ],
+      }),
+    );
+    render(<App />);
+
+    await user.upload(
+      await screen.findByLabelText("导入 Markdown"),
+      new File(["markdown"], "broken.md", { type: "text/markdown" }),
+    );
+
+    const record = within(await screen.findByRole("group", { name: /broken\.md/ }));
+    // Both the wording and the location of each problem must be readable.
+    expect(record.getByText(/只能是 draft 或 published/)).toBeInTheDocument();
+    expect(record.getByText(/字段 status/)).toBeInTheDocument();
+    expect(record.getByText(/第 12 行/)).toBeInTheDocument();
+    expect(record.getByText(/区块「FAQ」/)).toBeInTheDocument();
+  });
+
+  it("copies the full error report for a rejected file", async () => {
+    const user = userEvent.setup();
+    const writeText = vi.fn().mockResolvedValue(undefined);
+    vi.stubGlobal("navigator", { ...navigator, clipboard: { writeText } });
+    vi.mocked(api.validateMarkdown).mockRejectedValueOnce(
+      new api.ManagerApiError({
+        code: "VALIDATION_ERROR",
+        message: "broken.md: 发现 1 个问题",
+        fileName: "broken.md",
+        issues: [{ message: "Invalid input", hint: "写成 true 或 false", field: "featured" }],
+      }),
+    );
+    render(<App />);
+
+    await user.upload(
+      await screen.findByLabelText("导入 Markdown"),
+      new File(["markdown"], "broken.md", { type: "text/markdown" }),
+    );
+    await user.click(await screen.findByRole("button", { name: "复制报错详情" }));
+
+    expect(writeText).toHaveBeenCalledWith(expect.stringContaining("写成 true 或 false"));
+    vi.unstubAllGlobals();
   });
 
   it("queues a copied draft without saving it", async () => {

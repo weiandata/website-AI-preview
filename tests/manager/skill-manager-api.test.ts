@@ -94,4 +94,22 @@ describe("local Skill manager API", () => {
       error: { code: "VALIDATION_ERROR", fileName: "broken.md" },
     });
   });
+
+  it("returns every validation issue in one response", async () => {
+    const response = await fetch(`${baseUrl}/api/validate`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({
+        source: "---\nschemaVersion: 1\nstatus: draft\n---\n\n# Description\n",
+        fileName: "broken.md",
+      }),
+    });
+
+    const payload = await response.json();
+    expect(payload.error.issues.length).toBeGreaterThan(1);
+    expect(payload.error.issues[0]).toMatchObject({
+      message: expect.any(String),
+      hint: expect.any(String),
+    });
+  });
 });
