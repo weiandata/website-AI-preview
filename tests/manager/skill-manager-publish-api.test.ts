@@ -6,6 +6,7 @@ import { afterEach, beforeEach, describe, expect, it } from "vitest";
 import { parseSkillMarkdown } from "@/lib/skills/markdown";
 import type { SkillDocument } from "@/lib/skills/schema";
 import { GitPublisher, type GitRunner } from "../../tools/skill-manager/lib/git-publisher";
+import type { LinkProblem } from "../../tools/skill-manager/lib/link-check";
 import { SkillStore } from "../../tools/skill-manager/lib/skill-store";
 import { createSkillManagerApp } from "../../tools/skill-manager/server";
 
@@ -15,10 +16,12 @@ describe("local Skill manager publish API", () => {
   let baseUrl: string;
   let document: SkillDocument;
   let calls: string[][];
+  let linkProblems: LinkProblem[];
 
   beforeEach(async () => {
     root = await mkdtemp(path.join(os.tmpdir(), "weian-skill-publish-"));
     calls = [];
+    linkProblems = [];
     const templatePath = path.join(process.cwd(), "content/skill-template.md");
     document = parseSkillMarkdown(await readFile(templatePath, "utf8"), "example-skill.md");
 
@@ -43,6 +46,7 @@ describe("local Skill manager publish API", () => {
       templatePath,
       root,
       publisher: new GitPublisher(root, runner),
+      linkChecker: async () => linkProblems,
     });
     await new Promise<void>((resolve, reject) => {
       server = app.listen(0, "127.0.0.1", (error?: Error) => (error ? reject(error) : resolve()));
@@ -79,6 +83,49 @@ describe("local Skill manager publish API", () => {
     expect(await response.json()).toMatchObject({ commit: "abc1234", pushed: true });
     expect(calls).toContainEqual(["add", "--", "content/skills/example-skill.md"]);
     expect(calls).not.toContainEqual(expect.arrayContaining(["add", "."]));
+  });
+
+  it("refuses to publish a Skill whose link is dead", async () => {
+    await saveExample();
+    linkProblems = [
+      {
+        path: "content/skills/example-skill.md",
+        url: "https://weian.test/gone",
+        reason: "打不开（HTTP 404）",
+        blocking: true,
+      },
+    ];
+
+    const response = await fetch(`${baseUrl}/api/publish`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ message: "content: update example" }),
+    });
+
+    expect(response.status).toBe(400);
+    expect((await response.json()).error).toMatchObject({ code: "LINK_BROKEN" });
+    expect(calls).not.toContainEqual(["add", "--", "content/skills/example-skill.md"]);
+  });
+
+  it("publishes when a link merely could not be confirmed", async () => {
+    await saveExample();
+    linkProblems = [
+      {
+        path: "content/skills/example-skill.md",
+        url: "https://weian.test/slow",
+        reason: "检查超时，没能确认",
+        blocking: false,
+      },
+    ];
+
+    const response = await fetch(`${baseUrl}/api/publish`, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ message: "content: update example" }),
+    });
+
+    expect(response.status).toBe(200);
+    expect(calls).toContainEqual(["add", "--", "content/skills/example-skill.md"]);
   });
 
   it("ignores any paths the browser tries to supply", async () => {

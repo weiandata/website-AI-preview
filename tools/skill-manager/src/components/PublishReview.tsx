@@ -3,9 +3,16 @@ import { useState } from "react";
 import type { PublishPreview } from "../api";
 
 /** Conditions that must be clear before the manager may commit anything. */
-export function publishBlockers({ paths, inspection }: PublishPreview): string[] {
+export function publishBlockers({
+  paths,
+  inspection,
+  linkProblems = [],
+}: PublishPreview): string[] {
   const reasons: string[] = [];
   if (!paths.length) reasons.push("这一次没有保存任何 Skill 内容文件，没有可发布的修改。");
+  for (const problem of linkProblems) {
+    if (problem.blocking) reasons.push(`链接${problem.reason}：${problem.url}`);
+  }
   if (inspection.branch !== "main") {
     reasons.push(`只能从 main 分支发布，当前分支是 ${inspection.branch}。`);
   }
@@ -86,6 +93,26 @@ export function PublishReview({
               ))}
             </ul>
           </section>
+
+          {preview.linkProblems?.some((problem) => !problem.blocking) ? (
+            <section className="manager-save-group">
+              <h3>这些链接没能确认</h3>
+              <p className="manager-publish-untouched">
+                <AlertTriangle aria-hidden="true" size={14} />
+                多半是网络问题，不影响发布；如果 GitHub 上报错，回来看这里。
+              </p>
+              <ul>
+                {preview.linkProblems
+                  .filter((problem) => !problem.blocking)
+                  .map((problem) => (
+                    <li key={problem.url}>
+                      <code>{problem.url}</code>
+                      <small>{problem.reason}</small>
+                    </li>
+                  ))}
+              </ul>
+            </section>
+          ) : null}
 
           {inspection.dirtyCodePaths.length ? (
             <section className="manager-save-group">

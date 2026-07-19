@@ -50,6 +50,8 @@ export class SkillStore {
   constructor(
     private contentDir: string,
     private trashDir: string,
+    /** Applies repository Markdown style before the file reaches disk. */
+    private fixStyle: (source: string) => Promise<string> = async (source) => source,
   ) {}
 
   async list(): Promise<StoredSkill[]> {
@@ -114,8 +116,10 @@ export class SkillStore {
   }
 
   async save(input: SaveSkillInput): Promise<StoredSkill> {
-    const source = serializeSkillMarkdown(input.document);
     const fileName = `${input.document.slug}.md`;
+    // Style is repaired before validation so a fix can never write a file the
+    // site would fail to parse.
+    const source = await this.fixStyle(serializeSkillMarkdown(input.document));
     const document = this.validate(source, fileName);
     const target = path.join(this.contentDir, fileName);
     const originalTarget = input.originalSlug

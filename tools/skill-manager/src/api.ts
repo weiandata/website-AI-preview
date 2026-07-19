@@ -86,9 +86,18 @@ export type PublishInspection = {
   conflictedPaths: string[];
 };
 
+export type LinkProblem = {
+  path: string;
+  url: string;
+  reason: string;
+  /** Dead links block publishing; unreachable ones only warn. */
+  blocking: boolean;
+};
+
 export type PublishPreview = {
   paths: string[];
   inspection: PublishInspection;
+  linkProblems: LinkProblem[];
 };
 
 export type PublishResult = {

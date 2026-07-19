@@ -18,6 +18,7 @@ node_modules/
 .next/
 out/
 .skill-manager-trash/
+.skill-manager-tmp/
 tools/skill-manager/dist/
 coverage/
 playwright-report/

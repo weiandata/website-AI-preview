@@ -111,6 +111,7 @@ describe("local Skill manager UI", () => {
         dirtyCodePaths: [],
         conflictedPaths: [],
       },
+      linkProblems: [],
     });
     vi.mocked(api.publishSkills).mockResolvedValue({
       commit: "abc1234",
@@ -373,6 +374,7 @@ describe("local Skill manager UI", () => {
         dirtyCodePaths: [],
         conflictedPaths: [],
       },
+      linkProblems: [],
     });
     render(<App />);
     await findSkillEntry(/示例 Skill/);
@@ -396,6 +398,7 @@ describe("local Skill manager UI", () => {
         dirtyCodePaths: ["src/app/page.tsx"],
         conflictedPaths: [],
       },
+      linkProblems: [],
     });
     render(<App />);
 
@@ -425,6 +428,7 @@ describe("local Skill manager UI", () => {
         dirtyCodePaths: [],
         conflictedPaths: [],
       },
+      linkProblems: [],
     });
     render(<App />);
 

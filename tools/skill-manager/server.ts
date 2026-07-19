@@ -13,6 +13,8 @@ import {
   GitPublishError,
   GitPublisher,
 } from "./lib/git-publisher";
+import { checkLinks, type LinkProblem } from "./lib/link-check";
+import { createMarkdownStyleFixer } from "./lib/markdown-style";
 import {
   SkillConflictError,
   SkillNotFoundError,
@@ -26,6 +28,7 @@ type SkillManagerAppOptions = {
   root?: string;
   publisher?: GitPublisher;
   savedPaths?: Set<string>;
+  linkChecker?: typeof checkLinks;
 };
 
 type ApiError = {
@@ -98,9 +101,21 @@ export function createSkillManagerApp({
   root = process.cwd(),
   publisher = new GitPublisher(root),
   savedPaths = new Set<string>(),
+  linkChecker = checkLinks,
 }: SkillManagerAppOptions): Express {
   const app = express();
   app.use(express.json({ limit: "4mb" }));
+
+  /** Reads the files about to be published; a deleted path contributes nothing. */
+  const publishableSources = async (paths: string[]) =>
+    Promise.all(
+      paths.map(async (relativePath) => ({
+        path: relativePath,
+        source: await readFile(path.join(root, relativePath), "utf8").catch(() => ""),
+      })),
+    );
+  const linkProblemsFor = async (paths: string[]): Promise<LinkProblem[]> =>
+    linkChecker(await publishableSources(paths));
 
   /** Records a written file as a repository-relative path for publishing. */
   const recordSavedPath = (absolutePath: string): void => {
@@ -184,7 +199,11 @@ export function createSkillManagerApp({
     "/api/publish/preview",
     asyncRoute(async (_request, response) => {
       const paths = sessionPaths();
-      response.json({ paths, inspection: await publisher.inspect(paths) });
+      response.json({
+        paths,
+        inspection: await publisher.inspect(paths),
+        linkProblems: await linkProblemsFor(paths),
+      });
     }),
   );
   app.post(
@@ -193,6 +212,15 @@ export function createSkillManagerApp({
       // Paths always come from this session's writes, never from the browser.
       const paths = sessionPaths();
       const message = String(request.body?.message ?? "");
+      // Re-checked here so a dead link cannot reach GitHub even if the browser
+      // asks for it directly.
+      const broken = (await linkProblemsFor(paths)).filter((problem) => problem.blocking);
+      if (broken.length) {
+        throw new GitPublishError(
+          "LINK_BROKEN",
+          `以下链接打不开，修好后再发布：${broken.map((item) => item.url).join("、")}`,
+        );
+      }
       const result = await publisher.publish(paths, message);
       if (result.pushed) savedPaths.clear();
       response.json(result);
@@ -216,14 +244,20 @@ export function createSkillManagerApp({
 
 async function startSkillManager(): Promise<void> {
   const root = process.cwd();
+  // Skills saved before a restart are still unpublished; adopt them so the
+  // administrator never has to hunt for work the manager forgot.
+  const savedPaths = new Set(await new GitPublisher(root).pendingContentPaths());
   const app = createSkillManagerApp({
     root,
+    savedPaths,
     store: new SkillStore(
       path.join(root, "content/skills"),
       path.join(root, ".skill-manager-trash"),
+      createMarkdownStyleFixer(root),
     ),
     templatePath: path.join(root, "content/skill-template.md"),
   });
+
   const vite = await createViteServer({
     root: path.join(root, "tools/skill-manager"),
     server: { middlewareMode: true },
