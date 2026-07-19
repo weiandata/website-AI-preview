@@ -53,6 +53,10 @@ npx markdownlint-cli2 "**/*.md"
 
 Link checking uses lychee in CI, configured to skip loopback addresses; `example.com` is reserved for documentation and is never resolved. This workflow is independent of the site build — a red check there does not mean the deployed site is broken.
 
+Discovery, sitemap, and shell tests load `tests/fixtures/skills/` rather than `content/skills/`. Editors add and retire real Skills routinely, and a filter test that breaks because a Skill was removed is testing the catalogue, not the selector — which is exactly what happened when the seeded placeholders were retired. Assertions that would otherwise hard-code editorial facts (how many Skills are featured, which detail URL exists) assert structure instead. Only `tests/lib/skill-import-template.test.ts` reads real project files, deliberately, to keep the agent-facing template parseable.
+
+CI runs Markdown style and link checks only; the test suite, typecheck, and build are not gated there, so run them locally before pushing.
+
 ## Content
 
 Each Skill is maintained as one Markdown file in `content/skills/`. The versioned format is documented by `content/skill-template.md`. Categories and interface translations live in `src/data/categories.ts` and `src/data/translations.ts`.
@@ -61,17 +65,25 @@ Each Skill record contains bilingual presentation copy, platform and license met
 
 Draft Markdown records are excluded from public pages, search, static detail routes, and the sitemap.
 
+The frontmatter schema is `.strict()`, so an unrecognised key fails the parse rather than being ignored. Removing a field therefore means updating the schema, every content file, the fixtures, and the template in the same change — and a Skill manager left running on the old schema can no longer read content until it is restarted.
+
+There is no download counter. The catalogue indexes third-party repositories and has no download telemetry, so the field read zero everywhere and was removed; `stars` comes from the GitHub API and is what the library sorts and tie-breaks on.
+
 ## Local Skill manager
 
 Skill content is maintained through a local, administrator-facing manager rather than by editing Markdown by hand. It binds to `127.0.0.1` only, is never part of the deployed site, and has no `/admin` route, account system, or production editor.
 
-Start it by double-clicking `启动Skill管理器.command`, or from a terminal:
+Start it by double-clicking `打开 Skill 管理器.app`, or from a terminal:
 
 ```bash
 npm run skill-manager   # http://127.0.0.1:4174
 ```
 
-The launcher resolves the project directory from its own location, so it works regardless of the current working directory.
+Four AppleScript launchers sit in the project root: open/stop for the manager, and open/stop for a local site preview on port 3000. They exist because double-clicking a `.command` always spawns a Terminal window that means nothing to a non-programmer, and because running the server in the foreground made re-launching start a second instance instead of reopening the interface. All four are thin shells over `tools/skill-manager/launcher.sh`, which holds the logic so it stays testable; regenerate them with `./scripts/build-launchers.sh`.
+
+Opening is idempotent: it starts the service only when the port is free, and otherwise just reopens the browser, so closing the tab is recoverable. Stopping walks the recorded process tree rather than matching command lines — `pkill -f` also matches unrelated processes that merely mention the path. The preview additionally requires its recorded PID to be alive before claiming port 3000 is its own, since that port is common enough that another project's dev server would otherwise be adopted and killed.
+
+A GUI launch inherits `PATH=/usr/bin:/bin:/usr/sbin:/sbin`, which contains neither Homebrew nor any Node version manager, so the launcher widens `PATH` before probing for Node. Verifying this needs `env -i`; running `osascript` from a shell inherits that shell's environment and hides the failure.
 
 The manager offers two distinct actions:
 
@@ -121,6 +133,8 @@ To roll back, revert the offending content commit on `main` and push; Cloudflare
 - [Implementation plan](docs/superpowers/plans/2026-07-18-weian-data-skills-platform.md)
 - [Skill manager design](docs/superpowers/specs/2026-07-19-local-skill-repository-manager-design.md)
 - [Skill manager exit design](docs/superpowers/specs/2026-07-19-skill-manager-exit-design.md)
+- [Handover notes](docs/project-status.md) — published state, open editorial
+  decisions, and the traps that cost time in this project
 - [Cloudflare 上线手册（中文）](docs/cloudflare-deployment-guide.md)
 - [Skill 管理器使用说明（中文）](docs/skill-manager-guide.md)
 - [Skill 导入模板](docs/skill-import-template.md) and the [agent 填写说明书（中文）](docs/skill-agent-authoring-guide.md)
