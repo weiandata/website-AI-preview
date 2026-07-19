@@ -18,7 +18,7 @@ author: ibelick
 version: 0.2.3
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-19'
+updatedAt: '2026-07-17'
 githubUrl: 'https://github.com/ibelick/ui-skills'
 officialUrl: 'https://www.ui-skills.com'
 downloadUrl: 'https://github.com/ibelick/ui-skills/archive/refs/heads/main.zip'
@@ -26,7 +26,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 5000
+stars: 5233
 downloads: 0
 ---
 # Description

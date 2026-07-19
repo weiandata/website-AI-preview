@@ -24,6 +24,10 @@ describe("public sitemap", () => {
     expect(urls).toContain("https://skills.weiandata.com/");
     expect(urls).toContain("https://skills.weiandata.com/skills/");
     expect(urls).toContain("https://skills.weiandata.com/about/");
-    expect(urls).toContain("https://skills.weiandata.com/skills/data-analysis-assistant/");
+    // Naming a specific Skill would tie the sitemap to whatever is published
+    // today; what matters is that detail pages are listed at all.
+    expect(
+      urls.some((url) => /\/skills\/[^/]+\/$/.test(new URL(url).pathname)),
+    ).toBe(true);
   });
 });

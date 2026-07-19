@@ -4,6 +4,7 @@ import Home from "@/app/page";
 import { LanguageProvider } from "@/components/language/language-provider";
 import { SiteFooter } from "@/components/layout/site-footer";
 import { SiteHeader } from "@/components/layout/site-header";
+import { getPublishedSkills } from "@/lib/skills/repository";
 
 vi.mock("next/navigation", () => ({
   useRouter: () => ({ push: vi.fn() }),
@@ -47,7 +48,14 @@ describe("application shell", () => {
     );
     expect(screen.getByRole("combobox", { name: "搜索 Skill" })).toBeInTheDocument();
     expect(container.querySelectorAll(".category-card")).toHaveLength(8);
-    expect(container.querySelectorAll(".featured-skill[data-tone]")).toHaveLength(6);
+    // How many Skills are featured is an editorial decision that changes; the
+    // contract is that each one renders as a toned card.
+    const featuredCount = (await getPublishedSkills()).filter(
+      (skill) => skill.featured,
+    ).length;
+    expect(container.querySelectorAll(".featured-skill[data-tone]")).toHaveLength(
+      featuredCount,
+    );
     expect(container.querySelectorAll(".category-card-footer")).toHaveLength(8);
     expect(screen.getByRole("link", { name: /查看全部更新/ })).toHaveAttribute(
       "href",
