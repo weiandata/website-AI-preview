@@ -2,7 +2,7 @@ import { mkdtemp, readFile, rm } from "node:fs/promises";
 import type { Server } from "node:http";
 import os from "node:os";
 import path from "node:path";
-import { afterEach, beforeEach, describe, expect, it } from "vitest";
+import { afterEach, beforeEach, describe, expect, it, vi } from "vitest";
 import { parseSkillMarkdown } from "@/lib/skills/markdown";
 import type { SkillDocument } from "@/lib/skills/schema";
 import { GitPublisher, type GitRunner } from "../../tools/skill-manager/lib/git-publisher";
@@ -17,11 +17,13 @@ describe("local Skill manager publish API", () => {
   let document: SkillDocument;
   let calls: string[][];
   let linkProblems: LinkProblem[];
+  let exits: number;
 
   beforeEach(async () => {
     root = await mkdtemp(path.join(os.tmpdir(), "weian-skill-publish-"));
     calls = [];
     linkProblems = [];
+    exits = 0;
     const templatePath = path.join(process.cwd(), "content/skill-template.md");
     document = parseSkillMarkdown(await readFile(templatePath, "utf8"), "example-skill.md");
 
@@ -47,6 +49,9 @@ describe("local Skill manager publish API", () => {
       root,
       publisher: new GitPublisher(root, runner),
       linkChecker: async () => linkProblems,
+      onExit: () => {
+        exits += 1;
+      },
     });
     await new Promise<void>((resolve, reject) => {
       server = app.listen(0, "127.0.0.1", (error?: Error) => (error ? reject(error) : resolve()));
@@ -126,6 +131,27 @@ describe("local Skill manager publish API", () => {
 
     expect(response.status).toBe(200);
     expect(calls).toContainEqual(["add", "--", "content/skills/example-skill.md"]);
+  });
+
+  it("reports what is still unfinished before exiting", async () => {
+    await saveExample();
+
+    const response = await fetch(`${baseUrl}/api/exit/preview`);
+
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({
+      unpublishedPaths: ["content/skills/example-skill.md"],
+      pendingPush: false,
+    });
+  });
+
+  it("answers the exit request before stopping the manager", async () => {
+    const response = await fetch(`${baseUrl}/api/exit`, { method: "POST" });
+
+    expect(response.status).toBe(200);
+    expect(await response.json()).toEqual({ stopped: true });
+    // The browser needs the reply, so the process may only stop afterwards.
+    await vi.waitFor(() => expect(exits).toBe(1));
   });
 
   it("ignores any paths the browser tries to supply", async () => {

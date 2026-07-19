@@ -192,6 +192,11 @@ export class GitPublisher {
     return this.push();
   }
 
+  /** A commit that reached the local repository but never reached GitHub. */
+  hasPendingPush(): boolean {
+    return Boolean(this.pending);
+  }
+
   async retryPush(): Promise<PublishResult> {
     if (!this.pending) {
       throw new GitPublishError("NOTHING_PENDING", "没有等待 push 的本地提交。");

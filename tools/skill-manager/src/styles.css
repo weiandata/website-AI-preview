@@ -1219,3 +1219,37 @@ button:disabled {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Separated from the export group: this one stops the local service. */
+.manager-exit-button {
+  margin-left: 5px;
+  padding-left: 17px;
+  border-left: 1px solid var(--manager-border);
+  border-radius: 0;
+}
+
+.manager-farewell {
+  display: grid;
+  min-height: 100vh;
+  padding: 0 24px;
+  color: var(--manager-muted);
+  font-size: 13px;
+  text-align: center;
+  place-content: center;
+  justify-items: center;
+}
+
+.manager-farewell h1 {
+  margin: 14px 0 6px;
+  color: var(--manager-text);
+  font-size: 20px;
+}
+
+.manager-farewell p {
+  margin: 0;
+}
+
+.manager-farewell-hint {
+  margin-top: 10px;
+  font-size: 12px;
+}

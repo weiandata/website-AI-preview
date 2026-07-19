@@ -18,6 +18,8 @@ vi.mock("../../tools/skill-manager/src/api", () => ({
   previewPublish: vi.fn(),
   publishSkills: vi.fn(),
   retryPublishPush: vi.fn(),
+  previewExit: vi.fn(),
+  exitManager: vi.fn(),
 }));
 
 let document: SkillDocument;
@@ -118,6 +120,11 @@ describe("local Skill manager UI", () => {
       pushed: true,
       message: "content: update example-skill",
     });
+    vi.mocked(api.previewExit).mockResolvedValue({
+      unpublishedPaths: [],
+      pendingPush: false,
+    });
+    vi.mocked(api.exitManager).mockResolvedValue(undefined);
   });
 
   it("shows every metadata and body field in one form", async () => {
@@ -520,6 +527,77 @@ describe("local Skill manager UI", () => {
     expect(within(report).getByText("1 个已保存，1 个失败")).toBeInTheDocument();
     expect(within(report).getByText(/content\/skills\/example-skill\.md/)).toBeInTheDocument();
     expect(within(report).getByText(/磁盘写入失败/)).toBeInTheDocument();
+  });
+
+  it("names what is unfinished before letting the manager stop", async () => {
+    const user = userEvent.setup();
+    vi.mocked(api.previewExit).mockResolvedValue({
+      unpublishedPaths: ["content/skills/ui-skills.md"],
+      pendingPush: false,
+    });
+    render(<App />);
+
+    await user.click(await findSkillEntry(/示例 Skill/));
+    await user.type(screen.getByLabelText("英文名称"), "!");
+    await user.click(screen.getByRole("button", { name: "退出" }));
+
+    const review = await screen.findByRole("dialog", { name: "确认退出管理器" });
+    expect(within(review).getByText("1 项修改还没保存到本机")).toBeInTheDocument();
+    expect(
+      within(review).getByText("1 个 Skill 已保存但没发布到 GitHub"),
+    ).toBeInTheDocument();
+    expect(within(review).getByText("content/skills/ui-skills.md")).toBeInTheDocument();
+    expect(api.exitManager).not.toHaveBeenCalled();
+  });
+
+  it("returns to work instead of stopping when asked", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await findSkillEntry(/示例 Skill/);
+
+    await user.click(screen.getByRole("button", { name: "退出" }));
+    await user.click(
+      within(await screen.findByRole("dialog", { name: "确认退出管理器" })).getByRole(
+        "button",
+        { name: "返回处理" },
+      ),
+    );
+
+    expect(api.exitManager).not.toHaveBeenCalled();
+    expect(screen.getByRole("button", { name: "退出" })).toBeInTheDocument();
+  });
+
+  it("stops the manager and says so when nothing is left unfinished", async () => {
+    const user = userEvent.setup();
+    render(<App />);
+    await findSkillEntry(/示例 Skill/);
+
+    await user.click(screen.getByRole("button", { name: "退出" }));
+    const review = await screen.findByRole("dialog", { name: "确认退出管理器" });
+    expect(within(review).getByText("一切都已发布")).toBeInTheDocument();
+    await user.click(within(review).getByRole("button", { name: "仍然退出" }));
+
+    expect(await screen.findByText("Skill 管理器已退出")).toBeInTheDocument();
+    expect(api.exitManager).toHaveBeenCalledTimes(1);
+    expect(screen.queryByRole("button", { name: "保存并发布" })).not.toBeInTheDocument();
+  });
+
+  it("still shows the farewell when the server drops the connection", async () => {
+    const user = userEvent.setup();
+    // The process can die before the reply lands; the manager is gone either way.
+    vi.mocked(api.exitManager).mockRejectedValue(new Error("Failed to fetch"));
+    render(<App />);
+    await findSkillEntry(/示例 Skill/);
+
+    await user.click(screen.getByRole("button", { name: "退出" }));
+    await user.click(
+      within(await screen.findByRole("dialog", { name: "确认退出管理器" })).getByRole(
+        "button",
+        { name: "仍然退出" },
+      ),
+    );
+
+    expect(await screen.findByText("Skill 管理器已退出")).toBeInTheDocument();
   });
 
   it("reviews Markdown conflicts without writing files", async () => {

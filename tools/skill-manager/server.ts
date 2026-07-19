@@ -29,6 +29,8 @@ type SkillManagerAppOptions = {
   publisher?: GitPublisher;
   savedPaths?: Set<string>;
   linkChecker?: typeof checkLinks;
+  /** Stops the manager; injected so tests never end their own process. */
+  onExit?: () => void;
 };
 
 type ApiError = {
@@ -102,6 +104,7 @@ export function createSkillManagerApp({
   publisher = new GitPublisher(root),
   savedPaths = new Set<string>(),
   linkChecker = checkLinks,
+  onExit = () => process.exit(0),
 }: SkillManagerAppOptions): Express {
   const app = express();
   app.use(express.json({ limit: "4mb" }));
@@ -234,6 +237,21 @@ export function createSkillManagerApp({
       response.json(result);
     }),
   );
+
+  app.get(
+    "/api/exit/preview",
+    asyncRoute(async (_request, response) => {
+      response.json({
+        unpublishedPaths: await publisher.pendingContentPaths(),
+        pendingPush: publisher.hasPendingPush(),
+      });
+    }),
+  );
+  app.post("/api/exit", (_request, response) => {
+    // Answer first: the browser has to be able to show the farewell page.
+    response.json({ stopped: true });
+    response.on("finish", onExit);
+  });
 
   app.use((error: unknown, _request: Request, response: Response, next: NextFunction) => {
     void next;

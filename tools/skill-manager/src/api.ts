@@ -124,6 +124,19 @@ export async function retryPublishPush(): Promise<PublishResult> {
   return request<PublishResult>("/api/publish/retry", { method: "POST" });
 }
 
+export type ExitPreview = {
+  unpublishedPaths: string[];
+  pendingPush: boolean;
+};
+
+export async function previewExit(): Promise<ExitPreview> {
+  return request<ExitPreview>("/api/exit/preview");
+}
+
+export async function exitManager(): Promise<void> {
+  await request("/api/exit", { method: "POST" });
+}
+
 export async function getTemplate(): Promise<string> {
   const response = await fetch("/api/template");
   if (!response.ok) throw new Error("无法读取 Skill 模板");

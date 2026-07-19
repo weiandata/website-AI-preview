@@ -2,6 +2,7 @@ import {
   Archive,
   Download,
   FileDown,
+  LogOut,
   RefreshCw,
   Save,
   Send,
@@ -12,17 +13,21 @@ import { strToU8, zipSync } from "fflate";
 import type { SkillDocument } from "../../../src/lib/skills/schema";
 import {
   deleteSkill,
+  exitManager,
   getTemplate,
   listSkills,
+  previewExit,
   previewPublish,
   publishSkills,
   retryPublishPush,
   saveSkill,
   serializeSkill,
   validateMarkdown,
+  type ExitPreview,
   type PublishPreview,
   type StoredSkill,
 } from "./api";
+import { ExitFarewell, ExitReview } from "./components/ExitReview";
 import { ImportReview, type ImportRecord } from "./components/ImportReview";
 import { PublishReview } from "./components/PublishReview";
 import { SaveResult, SaveReview } from "./components/SaveReview";
@@ -81,6 +86,8 @@ export function App() {
   const [publishPreview, setPublishPreview] = useState<PublishPreview>();
   const [publishMessage, setPublishMessage] = useState("content: update Skills");
   const [pushFailed, setPushFailed] = useState(false);
+  const [exitPreview, setExitPreview] = useState<ExitPreview>();
+  const [exited, setExited] = useState(false);
   const [busy, setBusy] = useState(false);
   const fileInputRef = useRef<HTMLInputElement>(null);
 
@@ -408,6 +415,32 @@ export function App() {
     }
   }
 
+  async function openExitReview(): Promise<void> {
+    setBusy(true);
+    setStatus("正在检查还有没有没发完的内容");
+    try {
+      setExitPreview(await previewExit());
+      setStatus("请确认是否退出");
+    } catch (error) {
+      setStatus(error instanceof Error ? error.message : "无法检查退出前状态");
+    } finally {
+      setBusy(false);
+    }
+  }
+
+  async function confirmExit(): Promise<void> {
+    setBusy(true);
+    try {
+      await exitManager();
+    } catch {
+      // The server can drop the connection as it stops; the manager is gone
+      // either way, so the farewell page is still the honest thing to show.
+    }
+    setExitPreview(undefined);
+    setExited(true);
+    setBusy(false);
+  }
+
   async function exportCurrent(): Promise<void> {
     if (!activeDocument) return;
     const source = await serializeSkill(activeDocument);
@@ -425,6 +458,8 @@ export function App() {
     ]));
     downloadBlob(new Blob([zip], { type: "application/zip" }), "weian-skills.zip");
   }
+
+  if (exited) return <ExitFarewell />;
 
   return (
     <div className="manager-app">
@@ -453,6 +488,16 @@ export function App() {
           <button type="button" onClick={() => void exportAll()} disabled={!documents.length}>
             <Archive aria-hidden="true" size={16} />
             导出全部
+          </button>
+          {/* Kept away from the save bar: a stray click stops the service. */}
+          <button
+            className="manager-exit-button"
+            type="button"
+            onClick={() => void openExitReview()}
+            disabled={busy}
+          >
+            <LogOut aria-hidden="true" size={16} />
+            退出
           </button>
         </div>
       </header>
@@ -529,6 +574,16 @@ export function App() {
           busy={busy}
           onConfirm={(message) => void confirmPublish(message)}
           onClose={() => setPublishPreview(undefined)}
+        />
+      ) : null}
+
+      {exitPreview ? (
+        <ExitReview
+          preview={exitPreview}
+          unsavedCount={dirtyKeys.size + pendingDeletions.size}
+          busy={busy}
+          onConfirm={() => void confirmExit()}
+          onClose={() => setExitPreview(undefined)}
         />
       ) : null}
 
