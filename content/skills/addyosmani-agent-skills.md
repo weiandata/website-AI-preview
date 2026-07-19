@@ -1,6 +1,6 @@
 ---
 schemaVersion: 1
-status: draft
+status: published
 slug: addyosmani-agent-skills
 name: Agent Skills
 nameZh: 工程级开发技能集

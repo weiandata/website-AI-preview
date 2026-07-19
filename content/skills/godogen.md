@@ -1,6 +1,6 @@
 ---
 schemaVersion: 1
-status: draft
+status: published
 slug: godogen
 name: Godogen
 nameZh: 游戏自动开发技能

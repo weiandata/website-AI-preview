@@ -1,6 +1,6 @@
 ---
 schemaVersion: 1
-status: draft
+status: published
 slug: superpowers
 name: Superpowers
 nameZh: Superpowers 开发方法论

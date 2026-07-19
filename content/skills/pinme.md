@@ -1,6 +1,6 @@
 ---
 schemaVersion: 1
-status: draft
+status: published
 slug: pinme
 name: PinMe
 nameZh: 一键部署技能

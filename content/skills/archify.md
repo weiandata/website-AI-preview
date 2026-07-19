@@ -1,6 +1,6 @@
 ---
 schemaVersion: 1
-status: draft
+status: published
 slug: archify
 name: Archify
 nameZh: 架构图生成技能

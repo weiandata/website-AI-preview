@@ -1,6 +1,6 @@
 ---
 schemaVersion: 1
-status: draft
+status: published
 slug: caveman
 name: Caveman
 nameZh: Caveman 输出精简技能

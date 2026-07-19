@@ -1,6 +1,6 @@
 ---
 schemaVersion: 1
-status: draft
+status: published
 slug: storybloq
 name: Storybloq
 nameZh: 跨会话上下文管理

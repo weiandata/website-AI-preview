@@ -1,6 +1,6 @@
 ---
 schemaVersion: 1
-status: draft
+status: published
 slug: anthropic-agent-skills
 name: Anthropic Agent Skills
 nameZh: Anthropic 官方技能示例库

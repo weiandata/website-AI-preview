@@ -1,6 +1,6 @@
 ---
 schemaVersion: 1
-status: draft
+status: published
 slug: agents-best-practices
 name: Agents Best Practices
 nameZh: 智能体架构设计实践
