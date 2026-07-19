@@ -123,6 +123,7 @@ To roll back, revert the offending content commit on `main` and push; Cloudflare
 - [Skill manager exit design](docs/superpowers/specs/2026-07-19-skill-manager-exit-design.md)
 - [Cloudflare 上线手册（中文）](docs/cloudflare-deployment-guide.md)
 - [Skill 管理器使用说明（中文）](docs/skill-manager-guide.md)
+- [Skill 导入模板](docs/skill-import-template.md) and the [agent 填写说明书（中文）](docs/skill-agent-authoring-guide.md)
 - [Contributing guide](CONTRIBUTING.md)
 - [Security policy](SECURITY.md)
 

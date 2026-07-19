@@ -147,6 +147,17 @@ GitHub 已接收，Cloudflare 正在发布
 
 一个 `.md` 文件就是一个完整的 Skill，可以直接备份、交给别人、或者以后再导入回来。
 
+### 让 AI 帮你整理一个新 Skill
+
+如果你想收录一个在 GitHub 上看到的 Skill，可以把这两份文档交给 AI 助手，让它照着整理：
+
+- [skill-import-template.md](skill-import-template.md)：空白模板
+- [skill-agent-authoring-guide.md](skill-agent-authoring-guide.md)：告诉 AI 每个字段该从 GitHub 页面的哪里取、什么情况下不许猜
+
+拿到 AI 产出的 `.md` 文件后，用「导入 Markdown」加进来，**自己核对一遍内容**，再把状态从「草稿」改成「已发布」。
+
+说明书里明确要求 AI 不许自行决定「精选」和「已核验」，也不许把状态设成已发布——这些是你的决定。拿不准的字段它会标成 `TODO` 并单独告诉你，而不是编一个填上。
+
 ---
 
 ## 7. 删除与找回
