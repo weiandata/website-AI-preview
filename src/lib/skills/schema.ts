@@ -50,7 +50,6 @@ export const skillFrontmatterSchema = z
       "writing",
     ]),
     stars: z.number().int().nonnegative(),
-    downloads: z.number().int().nonnegative(),
   })
   .strict();
 

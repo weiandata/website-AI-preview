@@ -158,7 +158,6 @@ describe("local Skill manager UI", () => {
       "已核验",
       "图标",
       "Stars",
-      "Downloads",
       "简短描述",
       "详细介绍",
       "核心功能",

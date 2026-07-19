@@ -192,9 +192,6 @@ export function SkillForm({ value, onChange, errors }: SkillFormProps) {
           <Field label="Stars" error={errors.stars}>
             <input type="number" min={0} value={value.stars} onChange={(event) => patch("stars", Number(event.target.value))} />
           </Field>
-          <Field label="Downloads" error={errors.downloads}>
-            <input type="number" min={0} value={value.downloads} onChange={(event) => patch("downloads", Number(event.target.value))} />
-          </Field>
         </div>
         <StringListEditor label="标签" items={value.tags} onChange={(items) => patch("tags", items)} />
         <StringListEditor label="平台" items={value.platforms} onChange={(items) => patch("platforms", items)} />

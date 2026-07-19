@@ -135,7 +135,6 @@ const fieldHints: Record<string, string> = {
   verified: "写成 true 或 false",
   icon: "只能是 analysis、automation、code、document、image、productivity、research、writing 之一",
   stars: "写成 0 或正整数",
-  downloads: "写成 0 或正整数",
 };
 
 const sectionHints: Record<string, string> = {
@@ -612,7 +611,6 @@ export function serializeSkillMarkdown(document: SkillDocument): string {
     verified: document.verified,
     icon: document.icon,
     stars: document.stars,
-    downloads: document.downloads,
   };
   const body = `${serializeBody(document)}\n`;
   return matter.stringify(body, metadata);

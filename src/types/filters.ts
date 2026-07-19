@@ -1,6 +1,6 @@
 import type { CategoryId } from "./content";
 
-export type SkillSort = "recommended" | "updated" | "added" | "name" | "downloads";
+export type SkillSort = "recommended" | "updated" | "added" | "name" | "stars";
 export type SkillView = "grid" | "list";
 export type SkillPeriod = "30d";
 

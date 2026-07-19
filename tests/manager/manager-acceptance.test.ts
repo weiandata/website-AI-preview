@@ -95,7 +95,6 @@ describe("administrator workflow acceptance", () => {
       license: "Apache-2.0",
       verified: true,
       stars: 42,
-      downloads: 108,
       description: { zh: "验收用的中文描述。", en: "Acceptance English description." },
       longDescription: { zh: "更完整的中文说明。", en: "Longer English explanation." },
       features: { zh: ["功能一", "功能二"], en: ["Feature one", "Feature two"] },

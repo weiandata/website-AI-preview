@@ -28,7 +28,6 @@ featuredRank: 0
 verified: true
 icon: automation
 stars: 38038
-downloads: 0
 ---
 # Description
 

@@ -43,10 +43,10 @@ describe("skill discovery selectors", () => {
     expect(result[0].slug).toBe("data-analysis-assistant");
   });
 
-  it("supports tag filters and download sorting", () => {
+  it("supports tag filters and star sorting", () => {
     const result = filterSkills(
       skills,
-      { tags: ["Writing"], sort: "downloads" },
+      { tags: ["Writing"], sort: "stars" },
       "en",
     );
 

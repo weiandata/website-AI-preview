@@ -191,7 +191,7 @@ export function SkillLibrary({ skills }: { skills: Skill[] }) {
     ["updated", t("library.sortUpdated")],
     ["added", t("library.sortAdded")],
     ["name", t("library.sortName")],
-    ["downloads", t("library.sortDownloads")],
+    ["stars", t("library.sortStars")],
   ];
 
   return (

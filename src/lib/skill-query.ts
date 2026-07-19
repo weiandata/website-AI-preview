@@ -22,7 +22,7 @@ const sortValues = new Set<SkillSort>([
   "updated",
   "added",
   "name",
-  "downloads",
+  "stars",
 ]);
 
 const viewValues = new Set<SkillView>(["grid", "list"]);
@@ -86,8 +86,8 @@ function sortSkills(collection: Skill[], sort: SkillSort, locale: Locale): Skill
       const rightName = locale === "zh" ? right.nameZh ?? right.name : right.name;
       return leftName.localeCompare(rightName, locale === "zh" ? "zh-CN" : "en");
     }
-    if (sort === "downloads") {
-      return right.downloads - left.downloads;
+    if (sort === "stars") {
+      return right.stars - left.stars;
     }
 
     const featuredOrder = Number(right.featured) - Number(left.featured);
@@ -98,7 +98,7 @@ function sortSkills(collection: Skill[], sort: SkillSort, locale: Locale): Skill
     }
     return (
       Number(right.verified) - Number(left.verified) ||
-      right.downloads - left.downloads
+      right.stars - left.stars
     );
   });
 }
@@ -154,7 +154,7 @@ export function getRelatedSkills(
     })
     .sort(
       (left, right) =>
-        right.score - left.score || right.skill.downloads - left.skill.downloads,
+        right.score - left.score || right.skill.stars - left.skill.stars,
     )
     .slice(0, limit)
     .map(({ skill }) => skill);

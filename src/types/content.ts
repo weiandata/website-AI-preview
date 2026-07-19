@@ -71,7 +71,6 @@ export type Skill = {
   verified: boolean;
   icon: SkillIconKey;
   stars: number;
-  downloads: number;
   features: LocalizedTextList;
   useCases: LocalizedTextList;
   installation: string[];

@@ -26,7 +26,6 @@ featuredRank: 0
 verified: true
 icon: image
 stars: 5191
-downloads: 0
 ---
 # Description
 

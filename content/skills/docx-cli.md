@@ -26,7 +26,6 @@ featuredRank: 0
 verified: true
 icon: document
 stars: 144
-downloads: 0
 ---
 # Description
 
