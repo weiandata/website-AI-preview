@@ -27,6 +27,8 @@ import { SkillCard } from "./skill-card";
 import { SkillListRow } from "./skill-list-row";
 
 type FilterGroupKey = "categories" | "platforms" | "licenses" | "tags";
+/** Removable chips cover the list groups plus the standalone featured flag. */
+type ActiveFilterKey = FilterGroupKey | "featured";
 
 function FilterGroups({
   filters,
@@ -153,18 +155,30 @@ export function SkillLibrary({ skills }: { skills: Skill[] }) {
     updateFilters({ ...latestFilters.current, view: nextView });
   }
 
-  function removeFilter(group: FilterGroupKey, value: string) {
+  function removeFilter(group: ActiveFilterKey, value: string) {
+    if (group === "featured") {
+      const { featured, ...rest } = latestFilters.current;
+      void featured;
+      updateFilters(rest);
+      setVisibleCount(6);
+      return;
+    }
     toggleFilter(group, value);
   }
 
-  const activeFilters = [
+  // `featured` narrows the library just like the others and arrives from the
+  // homepage link, so it has to appear here — otherwise it filters invisibly
+  // and there is no control anywhere to switch it back off.
+  const activeFilters: Array<{ group: ActiveFilterKey; value: string }> = [
+    ...(filters.featured ? [{ group: "featured" as const, value: "featured" }] : []),
     ...(filters.categories ?? []).map((value) => ({ group: "categories" as const, value })),
     ...(filters.platforms ?? []).map((value) => ({ group: "platforms" as const, value })),
     ...(filters.licenses ?? []).map((value) => ({ group: "licenses" as const, value })),
     ...(filters.tags ?? []).map((value) => ({ group: "tags" as const, value })),
   ];
 
-  function filterLabel(group: FilterGroupKey, value: string) {
+  function filterLabel(group: ActiveFilterKey, value: string) {
+    if (group === "featured") return t("library.featured");
     if (group === "categories") {
       const category = categories.find((item) => item.id === value as CategoryId);
       return category ? localize(category.name, locale) : value;
