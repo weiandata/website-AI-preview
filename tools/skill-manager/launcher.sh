@@ -16,6 +16,29 @@ typeset -gr MANAGER_PROJECT_DIR="${MANAGER_SCRIPT_DIR:h:h}"
 typeset -gr MANAGER_LOG="${MANAGER_PROJECT_DIR}/.skill-manager.log"
 typeset -gr MANAGER_PID_FILE="${MANAGER_PROJECT_DIR}/.skill-manager.pid"
 
+# A double-clicked app inherits PATH=/usr/bin:/bin:/usr/sbin:/sbin from
+# LaunchServices — no Homebrew, no version manager. Node is installed and still
+# "not found", which is the confusing failure this repairs.
+manager_widen_path() {
+  local candidate
+  for candidate in \
+    /opt/homebrew/bin /usr/local/bin /opt/local/bin \
+    "${HOME}/.volta/bin" "${HOME}/.local/bin"
+  do
+    [[ -d "$candidate" ]] && PATH="${candidate}:${PATH}"
+  done
+
+  # nvm, fnm, and asdf only exist once a shell has sourced its profile, so ask a
+  # login shell where things are rather than guessing their layouts.
+  if ! command -v node >/dev/null 2>&1; then
+    local login_path
+    login_path="$(/bin/zsh -lc 'print -rn -- $PATH' 2>/dev/null)"
+    [[ -n "$login_path" ]] && PATH="${login_path}:${PATH}"
+  fi
+
+  export PATH
+}
+
 manager_port_busy() {
   # Listening socket, not process table: this is what actually blocks a restart.
   lsof -nP -iTCP:"${MANAGER_PORT}" -sTCP:LISTEN >/dev/null 2>&1
@@ -59,6 +82,7 @@ manager_node_major() {
 }
 
 manager_require_runtime() {
+  manager_widen_path
   if ! command -v node >/dev/null 2>&1 || ! command -v npm >/dev/null 2>&1; then
     manager_alert "未找到 Node.js。请先安装 Node.js ${MANAGER_MIN_NODE_MAJOR} 或更高版本，再打开管理器。"
     return 1
@@ -181,6 +205,11 @@ manager_stop() {
   manager_notify "管理器已停止。"
   return 0
 }
+
+# Allows tests to source the functions without running an action.
+if [[ -n "${MANAGER_SOURCE_ONLY:-}" ]]; then
+  return 0 2>/dev/null || exit 0
+fi
 
 case "${1:-}" in
   status) manager_status ;;

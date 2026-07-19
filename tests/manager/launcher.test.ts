@@ -38,4 +38,22 @@ describe("Skill manager launcher", () => {
   it("rejects an unknown action instead of silently doing nothing", async () => {
     await expect(launch("restart")).rejects.toMatchObject({ code: 64 });
   });
+
+  it("finds Node under the bare PATH a double-clicked app inherits", async () => {
+    // LaunchServices hands a GUI app this PATH — no Homebrew, no nvm. Without
+    // widening it the launcher claims Node is missing on a machine that has it.
+    const { stdout } = await run(
+      "/bin/zsh",
+      ["-c", `source ${JSON.stringify(launcher)}; manager_widen_path; command -v node`],
+      {
+        env: {
+          HOME: process.env.HOME ?? "",
+          PATH: "/usr/bin:/bin:/usr/sbin:/sbin",
+          MANAGER_SOURCE_ONLY: "1",
+        },
+      },
+    );
+
+    expect(stdout.trim()).not.toBe("");
+  });
 });
