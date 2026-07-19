@@ -4,11 +4,11 @@ import {
   ArrowLeft,
   ArrowUpRight,
   BadgeCheck,
-  Download,
   GitFork,
   PackageOpen,
   ShieldCheck,
   Star,
+  User,
 } from "lucide-react";
 import Link from "next/link";
 import { useLanguage } from "@/components/language/language-provider";
@@ -85,9 +85,9 @@ export function SkillDetail({ skill, skills }: { skill: Skill; skills: Skill[] }
             {t("common.stars")}
           </span>
           <span>
-            <Download aria-hidden="true" size={16} strokeWidth={1.8} />
-            <strong>{formatCompactNumber(skill.downloads, locale)}</strong>
-            {t("common.downloads")}
+            <User aria-hidden="true" size={16} strokeWidth={1.8} />
+            <strong>{skill.author}</strong>
+            {t("common.author")}
           </span>
           <span>
             <PackageOpen aria-hidden="true" size={16} strokeWidth={1.8} />
