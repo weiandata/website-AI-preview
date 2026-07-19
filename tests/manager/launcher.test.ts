@@ -47,7 +47,9 @@ describe("Skill manager launcher", () => {
       ["-c", `source ${JSON.stringify(launcher)}; manager_widen_path; command -v node`],
       {
         env: {
-          HOME: process.env.HOME ?? "",
+          ...process.env,
+          // The only variable that matters here: strip it back to what a GUI
+          // launch actually gets.
           PATH: "/usr/bin:/bin:/usr/sbin:/sbin",
           MANAGER_SOURCE_ONLY: "1",
         },
