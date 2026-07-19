@@ -45,6 +45,14 @@ Install Playwright Chromium once before the browser suite if it is not already a
 npx playwright install chromium
 ```
 
+The `Repository checks` workflow validates every tracked Markdown file's style and links on each push. Both halves run locally too:
+
+```bash
+npx markdownlint-cli2 "**/*.md"
+```
+
+Link checking uses lychee in CI, configured to skip loopback addresses; `example.com` is reserved for documentation and is never resolved. This workflow is independent of the site build — a red check there does not mean the deployed site is broken.
+
 ## Content
 
 Each Skill is maintained as one Markdown file in `content/skills/`. The versioned format is documented by `content/skill-template.md`. Categories and interface translations live in `src/data/categories.ts` and `src/data/translations.ts`.
@@ -70,13 +78,17 @@ The manager offers two distinct actions:
 - **仅保存** writes the changed `content/skills/*.md` files atomically and touches nothing else. No network, no Git.
 - **保存并发布** saves, then commits and pushes those same files to `main`.
 
-Publication is deliberately narrow. Only paths matching `content/skills/<slug>.md` may be staged, only paths written during the current manager session are eligible, and each is staged with an explicit `git add -- <path>`. There is no `git add .`, no force push, and no reset. Publishing requires `main`, a GitHub origin, a remote that is not ahead, and a conflict-free tree; otherwise the manager refuses and explains why. A failed push keeps the local commit and offers a retry. Because the manager does not poll Cloudflare, it reports that GitHub accepted the commit — never that a deploy finished.
+Publication is deliberately narrow. Only paths matching `content/skills/<slug>.md` may be staged, each with an explicit `git add -- <path>`. There is no `git add .`, no force push, and no reset. The publishable set is derived from `git status` at startup, so a Skill saved before a restart stays publishable instead of being stranded. Publishing requires `main`, a GitHub origin, a remote that is not ahead, and a conflict-free tree; otherwise the manager refuses and explains why. A failed push keeps the local commit and offers a retry. Because the manager does not poll Cloudflare, it reports that GitHub accepted the commit — never that a deploy finished.
+
+Two preflight checks keep published content from failing the repository checks after the fact. Saving repairs Markdown style with the same `markdownlint-cli2` binary and `.markdownlint-cli2.yaml` config CI uses, so the two cannot drift. Publishing resolves every link in the files being published, including frontmatter URLs: a dead one blocks the publish and names itself, while one the network merely could not confirm only warns.
+
+**退出** stops the local service from the interface, after listing what is unfinished — unsaved edits, Skills saved but never published, and a commit that never reached GitHub. It informs rather than forbids, since nothing is lost from disk.
 
 Deletions move files into `.skill-manager-trash/` and stay recoverable. Import accepts multiple `.md` files at once, classifies them as new/conflicting/invalid, and requires an explicit opt-in before replacing an existing slug; export produces a single file or a zip of every Skill plus the template.
 
 Field behavior: `status: draft` keeps a Skill out of every public page, the search corpus, structured data, static routes, and the sitemap. `slug` determines `/skills/<slug>/`, so changing it on a published Skill retires the old URL and requires a second confirmation. `featured` plus ascending `featuredRank` control the homepage order. `verified` renders the verification badge.
 
-**[完整的中文管理员操作说明](docs/skill-manager-guide.md)** covers startup, both save buttons, import/export, publication states, and recovery from remote-ahead, push failure, invalid Markdown, and failed Cloudflare builds.
+**[完整的中文管理员操作说明](docs/skill-manager-guide.md)** covers startup and exit, both save buttons, import/export, publication states, and recovery from remote-ahead, push failure, dead links, invalid Markdown, and failed Cloudflare builds.
 
 ## Cloudflare Pages
 
@@ -107,6 +119,8 @@ To roll back, revert the offending content commit on `main` and push; Cloudflare
 
 - [Design specification](docs/superpowers/specs/2026-07-18-weian-data-skills-platform-design.md)
 - [Implementation plan](docs/superpowers/plans/2026-07-18-weian-data-skills-platform.md)
+- [Skill manager design](docs/superpowers/specs/2026-07-19-local-skill-repository-manager-design.md)
+- [Skill manager exit design](docs/superpowers/specs/2026-07-19-skill-manager-exit-design.md)
 - [Cloudflare 上线手册（中文）](docs/cloudflare-deployment-guide.md)
 - [Skill 管理器使用说明（中文）](docs/skill-manager-guide.md)
 - [Contributing guide](CONTRIBUTING.md)

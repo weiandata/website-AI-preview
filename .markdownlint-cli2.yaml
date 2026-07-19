@@ -6,4 +6,6 @@ config:
 
 ignores:
   - .git/**
+  # Absent in CI, so ignoring it locally is what makes the two runs agree.
+  - node_modules/**
   - docs/Repository_Template_Development_Guide.md

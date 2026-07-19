@@ -94,9 +94,8 @@ the administrator workflow; if you do, run `npm test` to confirm the record
 still parses.
 
 Keep content commits separate from code commits. A publication from the manager
-stages only `content/skills/*.md` paths from the current session, so a content
-change never carries application code with it. Use a `content:` prefix for these
-commits.
+stages only `content/skills/*.md` paths, so a content change never carries
+application code with it. Use a `content:` prefix for these commits.
 
 Behavior that must not regress:
 
@@ -107,6 +106,12 @@ Behavior that must not regress:
 - There is no popular-search UI and no search analytics collection.
 - Publishing never force-pushes, resets, or stages a path outside
   `content/skills/`.
+- Saving repairs Markdown style with the same tool and config the
+  `Repository checks` workflow runs, and publishing blocks on a dead link.
+  Keep the local checks and CI on one source of truth rather than
+  reimplementing either.
+- A Skill saved but not yet published stays publishable across a manager
+  restart.
 
 See [docs/skill-manager-guide.md](docs/skill-manager-guide.md) for the
 administrator-facing operating instructions.
