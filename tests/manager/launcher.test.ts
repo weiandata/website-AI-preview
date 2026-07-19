@@ -9,8 +9,8 @@ const launcher = path.join(process.cwd(), "tools/skill-manager/launcher.sh");
 /** Headless keeps the script off `osascript`, which would block on a dialog. */
 const env = { ...process.env, MANAGER_HEADLESS: "1" };
 
-async function launch(action: string) {
-  return run("/bin/zsh", [launcher, action], { env });
+async function launch(action: string, service = "manager") {
+  return run("/bin/zsh", [launcher, service, action], { env });
 }
 
 /**
@@ -37,6 +37,7 @@ describe("Skill manager launcher", () => {
 
   it("rejects an unknown action instead of silently doing nothing", async () => {
     await expect(launch("restart")).rejects.toMatchObject({ code: 64 });
+    await expect(launch("status", "nonsense")).rejects.toMatchObject({ code: 64 });
   });
 
   it("finds Node under the bare PATH a double-clicked app inherits", async () => {
@@ -44,7 +45,7 @@ describe("Skill manager launcher", () => {
     // widening it the launcher claims Node is missing on a machine that has it.
     const { stdout } = await run(
       "/bin/zsh",
-      ["-c", `source ${JSON.stringify(launcher)}; manager_widen_path; command -v node`],
+      ["-c", `source ${JSON.stringify(launcher)}; launcher_widen_path; command -v node`],
       {
         env: {
           ...process.env,

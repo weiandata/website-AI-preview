@@ -12,8 +12,10 @@ Thumbs.db
 
 # Local tooling scratch state
 .superpowers/
-.skill-manager.log
-.skill-manager.pid
+.manager-launcher.log
+.manager-launcher.pid
+.preview-launcher.log
+.preview-launcher.pid
 
 # JavaScript build and test output
 node_modules/
