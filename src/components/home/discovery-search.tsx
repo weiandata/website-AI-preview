@@ -12,17 +12,17 @@ export function DiscoverySearch({ skills }: { skills: Skill[] }) {
       <div className="container-shell home-search-layout">
         <div>
           <span className="section-kicker">
-            {locale === "zh" ? "从任务开始" : "Start with the work"}
+            {locale === "zh" ? "不知道从哪开始？" : "Not sure where to start?"}
           </span>
           <h2>
             {locale === "zh"
-              ? "找到适合当前任务的工作流。"
-              : "Find the workflow for the task at hand."}
+              ? "直接说你想做的事。"
+              : "Just say what you need done."}
           </h2>
           <p>
             {locale === "zh"
-              ? "按名称、标签、平台或使用场景搜索。所有条目均提供来源、许可证与使用说明。"
-              : "Search by name, tag, platform, or use case. Every entry includes its source, license, and usage guidance."}
+              ? "不用记专业名词，像跟人说话那样搜就行。每个技能都写清楚了它能帮你做什么、怎么装、怎么用。"
+              : "No jargon needed — search the way you would ask a person. Every Skill spells out what it does for you, how to install it, and how to use it."}
           </p>
         </div>
         <HeroSearch skills={skills} />

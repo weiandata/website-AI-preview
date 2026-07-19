@@ -21,7 +21,7 @@ describe("application shell", () => {
     );
 
     expect(
-      screen.getByRole("heading", { name: /发现真正好用的开源 AI Skills/i }),
+      screen.getByRole("heading", { name: /给你的 AI装上专业技能/i }),
     ).toBeInTheDocument();
   });
 
@@ -42,7 +42,7 @@ describe("application shell", () => {
       "src",
       "https://d8j0ntlcm91z4.cloudfront.net/user_38xzZboKViGWJOttwIXH07lWA1P/hf_20260508_215831_c6a8989c-d716-4d8d-8745-e972a2eec711.mp4",
     );
-    expect(screen.getByRole("link", { name: /浏览全部 Skills/i })).toHaveAttribute(
+    expect(screen.getByRole("link", { name: /看看能装哪些技能/i })).toHaveAttribute(
       "href",
       "/skills",
     );
@@ -67,6 +67,25 @@ describe("application shell", () => {
     expect(container.querySelector(".hero-search kbd")).not.toBeInTheDocument();
     expect(container.querySelector(".hero-search > button")).not.toBeInTheDocument();
     expect(screen.queryByText(/一起完善开源 Skill 生态/)).not.toBeInTheDocument();
+  });
+
+  it("closes the loop with install guidance for first-time visitors", async () => {
+    window.localStorage.setItem("weian-locale", "zh");
+    const { container } = render(
+      <LanguageProvider>
+        {await Home()}
+      </LanguageProvider>,
+    );
+
+    expect(
+      screen.getByRole("heading", { name: /下载之后，怎么让 AI 用起来/ }),
+    ).toBeInTheDocument();
+    // Three install steps and the tips that follow them.
+    expect(container.querySelectorAll(".start-step")).toHaveLength(3);
+    expect(container.querySelectorAll(".start-tips li")).toHaveLength(4);
+    // The guidance must stay the last thing on the page, after the listings.
+    const sections = [...container.querySelectorAll(".recent-section, .getting-started")];
+    expect(sections.at(-1)).toHaveClass("getting-started");
   });
 
   it("uses official brand lockups and excludes submission navigation", () => {

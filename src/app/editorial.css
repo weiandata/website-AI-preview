@@ -716,6 +716,105 @@ h3 {
   line-height: 1.5;
 }
 
+/* Getting started: the last thing a first-time visitor reads, so it stays
+   flat and light rather than becoming a dark call-to-action block. */
+.start-steps {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(16rem, 1fr));
+  gap: 0;
+  margin: 0;
+  padding: 0;
+  border-top: 1px solid var(--weian-line);
+  list-style: none;
+}
+
+.start-step {
+  display: grid;
+  align-content: start;
+  gap: 0.6rem;
+  padding: 1.9rem 1.4rem 1.7rem;
+  border-bottom: 1px solid var(--weian-line);
+}
+
+.start-step + .start-step {
+  border-left: 1px solid var(--weian-line);
+}
+
+.start-step-mark {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.55rem;
+  color: var(--weian-blue);
+}
+
+.start-step-mark em {
+  font-size: 0.72rem;
+  font-style: normal;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  opacity: 0.75;
+}
+
+.start-step strong {
+  color: var(--weian-ink);
+  font-size: 1.02rem;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+.start-step p {
+  margin: 0;
+  color: var(--weian-muted);
+  font-size: 0.86rem;
+  line-height: 1.65;
+}
+
+.start-tips {
+  margin-top: 2.2rem;
+  padding: 1.6rem 1.7rem;
+  border: 1px solid var(--weian-line);
+  border-radius: var(--weian-radius);
+  background: var(--weian-white);
+}
+
+.start-tips h3 {
+  margin: 0 0 1rem;
+  color: var(--weian-ink);
+  font-size: 0.95rem;
+  font-weight: 620;
+}
+
+/* Two columns, so four tips split evenly instead of leaving one stranded. */
+.start-tips ul {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(26rem, 1fr));
+  gap: 0.8rem 2.4rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.start-tips li {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.6rem;
+  align-items: start;
+  color: var(--weian-muted);
+  font-size: 0.86rem;
+  line-height: 1.6;
+}
+
+.start-tips li svg {
+  margin-top: 0.2rem;
+  color: var(--weian-blue);
+}
+
+@media (max-width: 640px) {
+  .start-step + .start-step {
+    border-left: 0;
+  }
+}
+
 .page-hero-editorial {
   padding-block: 5rem 4.5rem;
 }
