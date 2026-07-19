@@ -53,6 +53,27 @@ function makePublisher(overrides: Overrides = {}): GitPublisher {
   return new GitPublisher(ROOT, makeRunner(overrides));
 }
 
+describe("pending content paths", () => {
+  it("adopts uncommitted Skill files and never application code", async () => {
+    const publisher = new GitPublisher("/repo", async () => ({
+      stdout: [
+        "?? content/skills/ui-skills.md",
+        " M content/skills/pdf-toolkit.md",
+        " M src/app/page.tsx",
+        " M README.md",
+        "",
+      ].join("\n"),
+      stderr: "",
+      exitCode: 0,
+    }));
+
+    expect(await publisher.pendingContentPaths()).toEqual([
+      "content/skills/pdf-toolkit.md",
+      "content/skills/ui-skills.md",
+    ]);
+  });
+});
+
 describe("GitPublisher", () => {
   beforeEach(() => {
     calls = [];

@@ -120,6 +120,21 @@ export class GitPublisher {
     };
   }
 
+  /**
+   * Skill files that differ from the last commit, so restarting the manager
+   * does not strand work the administrator already saved. Still only ever
+   * content paths: application code can no more be published this way than
+   * through a save.
+   */
+  async pendingContentPaths(): Promise<string[]> {
+    const status = (await this.gitOrThrow("status", "--porcelain")).stdout;
+    return status
+      .split("\n")
+      .map((line) => line.slice(3).trim())
+      .filter((entry) => CONTENT_PATH_PATTERN.test(entry))
+      .sort();
+  }
+
   async publish(paths: string[], message: string): Promise<PublishResult> {
     const contentPaths = [...new Set(paths.map(assertContentPath))];
     if (!contentPaths.length) {
