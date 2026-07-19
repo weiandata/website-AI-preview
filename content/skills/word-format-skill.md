@@ -14,19 +14,18 @@ platforms:
 author: yeap531
 version: TODO
 license: Apache-2.0
-addedAt: 2026-07-19
-updatedAt: 2026-04-27
-githubUrl: https://github.com/yeap531/word-format-skill
-officialUrl: ""
-downloadUrl: https://github.com/yeap531/word-format-skill/archive/refs/heads/main.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-04-27'
+githubUrl: 'https://github.com/yeap531/word-format-skill'
+officialUrl: ''
+downloadUrl: 'https://github.com/yeap531/word-format-skill/archive/refs/heads/main.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: document
 stars: 217
 downloads: 0
 ---
-
 # Description
 
 ## zh

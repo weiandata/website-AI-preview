@@ -16,19 +16,18 @@ platforms:
 author: Gadi Cohen
 version: 4.0.0
 license: MIT
-addedAt: 2026-07-19
-updatedAt: 2026-07-14
-githubUrl: https://github.com/gadicc/yahoo-finance2
-officialUrl: ""
-downloadUrl: https://github.com/gadicc/yahoo-finance2/archive/refs/heads/dev.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-07-14'
+githubUrl: 'https://github.com/gadicc/yahoo-finance2'
+officialUrl: ''
+downloadUrl: 'https://github.com/gadicc/yahoo-finance2/archive/refs/heads/dev.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: analysis
 stars: 767
 downloads: 0
 ---
-
 # Description
 
 ## zh

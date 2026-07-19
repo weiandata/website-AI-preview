@@ -16,19 +16,18 @@ platforms:
 author: blader
 version: TODO
 license: MIT
-addedAt: 2026-07-19
-updatedAt: 2026-06-29
-githubUrl: https://github.com/blader/humanizer
-officialUrl: ""
-downloadUrl: https://github.com/blader/humanizer/archive/refs/heads/main.zip
-featured: false
-featuredRank: 0
-verified: false
+addedAt: '2026-07-19'
+updatedAt: '2026-06-29'
+githubUrl: 'https://github.com/blader/humanizer'
+officialUrl: ''
+downloadUrl: 'https://github.com/blader/humanizer/archive/refs/heads/main.zip'
+featured: true
+featuredRank: 4
+verified: true
 icon: writing
 stars: 29845
 downloads: 0
 ---
-
 # Description
 
 ## zh

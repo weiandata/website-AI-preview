@@ -18,19 +18,18 @@ platforms:
 author: Agents365-ai
 version: 1.34.0
 license: MIT
-addedAt: 2026-07-19
-updatedAt: 2026-07-17
-githubUrl: https://github.com/Agents365-ai/drawio-skill
-officialUrl: https://agents365-ai.github.io/drawio-skill/
-downloadUrl: https://github.com/Agents365-ai/drawio-skill/archive/refs/heads/main.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-07-17'
+githubUrl: 'https://github.com/Agents365-ai/drawio-skill'
+officialUrl: 'https://agents365-ai.github.io/drawio-skill/'
+downloadUrl: 'https://github.com/Agents365-ai/drawio-skill/archive/refs/heads/main.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: analysis
 stars: 6014
 downloads: 0
 ---
-
 # Description
 
 ## zh

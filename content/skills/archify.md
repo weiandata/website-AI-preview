@@ -22,7 +22,7 @@ updatedAt: '2026-07-16'
 githubUrl: 'https://github.com/tt-a1i/archify'
 officialUrl: 'https://tt-a1i.github.io/archify/'
 downloadUrl: 'https://github.com/tt-a1i/archify/archive/refs/heads/main.zip'
-featured: true
+featured: false
 featuredRank: 0
 verified: true
 icon: code

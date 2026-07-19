@@ -15,19 +15,18 @@ platforms:
 author: himself65
 version: 9.0.0
 license: MIT
-addedAt: 2026-07-19
-updatedAt: 2026-06-14
-githubUrl: https://github.com/himself65/finance-skills
-officialUrl: https://skills.himself65.com
-downloadUrl: https://github.com/himself65/finance-skills/archive/refs/heads/main.zip
-featured: false
-featuredRank: 0
-verified: false
+addedAt: '2026-07-19'
+updatedAt: '2026-06-14'
+githubUrl: 'https://github.com/himself65/finance-skills'
+officialUrl: 'https://skills.himself65.com'
+downloadUrl: 'https://github.com/himself65/finance-skills/archive/refs/heads/main.zip'
+featured: true
+featuredRank: 3
+verified: true
 icon: analysis
 stars: 3030
 downloads: 0
 ---
-
 # Description
 
 ## zh

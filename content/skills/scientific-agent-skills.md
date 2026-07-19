@@ -17,19 +17,19 @@ platforms:
 author: K-Dense AI
 version: 2.53.0
 license: MIT
-addedAt: 2026-07-19
-updatedAt: 2026-07-15
-githubUrl: https://github.com/K-Dense-AI/scientific-agent-skills
-officialUrl: https://k-dense.ai
-downloadUrl: https://github.com/K-Dense-AI/scientific-agent-skills/archive/refs/heads/main.zip
-featured: false
-featuredRank: 0
-verified: false
+addedAt: '2026-07-19'
+updatedAt: '2026-07-15'
+githubUrl: 'https://github.com/K-Dense-AI/scientific-agent-skills'
+officialUrl: 'https://k-dense.ai'
+downloadUrl: >-
+  https://github.com/K-Dense-AI/scientific-agent-skills/archive/refs/heads/main.zip
+featured: true
+featuredRank: 5
+verified: true
 icon: research
 stars: 31177
 downloads: 0
 ---
-
 # Description
 
 ## zh

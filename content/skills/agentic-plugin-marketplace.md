@@ -18,19 +18,18 @@ platforms:
 author: wshobson
 version: TODO
 license: MIT
-addedAt: 2026-07-19
-updatedAt: 2026-07-18
-githubUrl: https://github.com/wshobson/agents
-officialUrl: https://sethhobson.com
-downloadUrl: https://github.com/wshobson/agents/archive/refs/heads/main.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-07-18'
+githubUrl: 'https://github.com/wshobson/agents'
+officialUrl: 'https://sethhobson.com'
+downloadUrl: 'https://github.com/wshobson/agents/archive/refs/heads/main.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: automation
 stars: 38038
 downloads: 0
 ---
-
 # Description
 
 ## zh

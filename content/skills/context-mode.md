@@ -15,19 +15,18 @@ platforms:
 author: mksglu
 version: 1.0.169
 license: Elastic-2.0
-addedAt: 2026-07-19
-updatedAt: 2026-07-19
-githubUrl: https://github.com/mksglu/context-mode
-officialUrl: https://context-mode.com
-downloadUrl: https://github.com/mksglu/context-mode/archive/refs/heads/main.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-07-19'
+githubUrl: 'https://github.com/mksglu/context-mode'
+officialUrl: 'https://context-mode.com'
+downloadUrl: 'https://github.com/mksglu/context-mode/archive/refs/heads/main.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: productivity
 stars: 19075
 downloads: 0
 ---
-
 # Description
 
 ## zh

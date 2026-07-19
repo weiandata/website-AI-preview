@@ -15,19 +15,18 @@ platforms:
 author: mvanhorn
 version: 3.16.0
 license: MIT
-addedAt: 2026-07-19
-updatedAt: 2026-07-16
-githubUrl: https://github.com/mvanhorn/last30days-skill
-officialUrl: ""
-downloadUrl: https://github.com/mvanhorn/last30days-skill/archive/refs/heads/main.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-07-16'
+githubUrl: 'https://github.com/mvanhorn/last30days-skill'
+officialUrl: ''
+downloadUrl: 'https://github.com/mvanhorn/last30days-skill/archive/refs/heads/main.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: research
 stars: 52715
 downloads: 0
 ---
-
 # Description
 
 ## zh

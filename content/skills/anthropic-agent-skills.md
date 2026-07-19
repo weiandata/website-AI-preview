@@ -23,7 +23,7 @@ githubUrl: 'https://github.com/anthropics/skills'
 officialUrl: 'https://agentskills.io'
 downloadUrl: 'https://github.com/anthropics/skills/archive/refs/heads/main.zip'
 featured: true
-featuredRank: 0
+featuredRank: 2
 verified: true
 icon: code
 stars: 162532

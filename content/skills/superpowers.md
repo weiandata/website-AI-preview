@@ -25,7 +25,7 @@ githubUrl: 'https://github.com/obra/superpowers'
 officialUrl: ''
 downloadUrl: 'https://github.com/obra/superpowers/archive/refs/heads/main.zip'
 featured: true
-featuredRank: 0
+featuredRank: 1
 verified: true
 icon: code
 stars: 257267

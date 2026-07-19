@@ -16,19 +16,18 @@ platforms:
 author: kepano
 version: TODO
 license: MIT
-addedAt: 2026-07-19
-updatedAt: 2026-06-08
-githubUrl: https://github.com/kepano/obsidian-skills
-officialUrl: ""
-downloadUrl: https://github.com/kepano/obsidian-skills/archive/refs/heads/main.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-06-08'
+githubUrl: 'https://github.com/kepano/obsidian-skills'
+officialUrl: ''
+downloadUrl: 'https://github.com/kepano/obsidian-skills/archive/refs/heads/main.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: productivity
 stars: 42577
 downloads: 0
 ---
-
 # Description
 
 ## zh

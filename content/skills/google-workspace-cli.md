@@ -16,19 +16,18 @@ platforms:
 author: googleworkspace
 version: 0.22.5
 license: Apache-2.0
-addedAt: 2026-07-19
-updatedAt: 2026-07-17
-githubUrl: https://github.com/googleworkspace/cli
-officialUrl: https://developers.google.com/workspace
-downloadUrl: https://github.com/googleworkspace/cli/archive/refs/heads/main.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-07-17'
+githubUrl: 'https://github.com/googleworkspace/cli'
+officialUrl: 'https://developers.google.com/workspace'
+downloadUrl: 'https://github.com/googleworkspace/cli/archive/refs/heads/main.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: automation
 stars: 29820
 downloads: 0
 ---
-
 # Description
 
 ## zh

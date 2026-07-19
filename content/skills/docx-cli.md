@@ -16,19 +16,18 @@ platforms:
 author: kklimuk
 version: 0.21.0
 license: MIT
-addedAt: 2026-07-19
-updatedAt: 2026-07-18
-githubUrl: https://github.com/kklimuk/docx-cli
-officialUrl: ""
-downloadUrl: https://github.com/kklimuk/docx-cli/archive/refs/heads/main.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-07-18'
+githubUrl: 'https://github.com/kklimuk/docx-cli'
+officialUrl: ''
+downloadUrl: 'https://github.com/kklimuk/docx-cli/archive/refs/heads/main.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: document
 stars: 144
 downloads: 0
 ---
-
 # Description
 
 ## zh

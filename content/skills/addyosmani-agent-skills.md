@@ -20,7 +20,7 @@ updatedAt: '2026-07-18'
 githubUrl: 'https://github.com/addyosmani/agent-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/addyosmani/agent-skills/archive/refs/heads/main.zip'
-featured: true
+featured: false
 featuredRank: 0
 verified: true
 icon: code

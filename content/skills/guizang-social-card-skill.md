@@ -15,19 +15,19 @@ platforms:
 author: op7418
 version: TODO
 license: AGPL-3.0
-addedAt: 2026-07-19
-updatedAt: 2026-07-01
-githubUrl: https://github.com/op7418/guizang-social-card-skill
-officialUrl: ""
-downloadUrl: https://github.com/op7418/guizang-social-card-skill/archive/refs/heads/main.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-07-01'
+githubUrl: 'https://github.com/op7418/guizang-social-card-skill'
+officialUrl: ''
+downloadUrl: >-
+  https://github.com/op7418/guizang-social-card-skill/archive/refs/heads/main.zip
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: image
 stars: 5191
 downloads: 0
 ---
-
 # Description
 
 ## zh

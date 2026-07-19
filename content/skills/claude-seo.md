@@ -15,19 +15,18 @@ platforms:
 author: AgriciDaniel
 version: 2.2.0
 license: MIT
-addedAt: 2026-07-19
-updatedAt: 2026-07-06
-githubUrl: https://github.com/AgriciDaniel/claude-seo
-officialUrl: ""
-downloadUrl: https://github.com/AgriciDaniel/claude-seo/archive/refs/heads/main.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-07-06'
+githubUrl: 'https://github.com/AgriciDaniel/claude-seo'
+officialUrl: ''
+downloadUrl: 'https://github.com/AgriciDaniel/claude-seo/archive/refs/heads/main.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: writing
 stars: 11769
 downloads: 0
 ---
-
 # Description
 
 ## zh

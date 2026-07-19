@@ -17,19 +17,18 @@ platforms:
 author: virgiliojr94
 version: 1.2.0
 license: MIT
-addedAt: 2026-07-19
-updatedAt: 2026-07-16
-githubUrl: https://github.com/virgiliojr94/book-to-skill
-officialUrl: ""
-downloadUrl: https://github.com/virgiliojr94/book-to-skill/archive/refs/heads/master.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-07-16'
+githubUrl: 'https://github.com/virgiliojr94/book-to-skill'
+officialUrl: ''
+downloadUrl: 'https://github.com/virgiliojr94/book-to-skill/archive/refs/heads/master.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: research
 stars: 8775
 downloads: 0
 ---
-
 # Description
 
 ## zh

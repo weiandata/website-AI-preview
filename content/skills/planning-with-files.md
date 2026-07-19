@@ -16,19 +16,18 @@ platforms:
 author: OthmanAdi
 version: 3.7.0
 license: MIT
-addedAt: 2026-07-19
-updatedAt: 2026-07-18
-githubUrl: https://github.com/OthmanAdi/planning-with-files
-officialUrl: ""
-downloadUrl: https://github.com/OthmanAdi/planning-with-files/archive/refs/heads/master.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-07-18'
+githubUrl: 'https://github.com/OthmanAdi/planning-with-files'
+officialUrl: ''
+downloadUrl: 'https://github.com/OthmanAdi/planning-with-files/archive/refs/heads/master.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: automation
 stars: 25482
 downloads: 0
 ---
-
 # Description
 
 ## zh

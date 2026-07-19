@@ -15,19 +15,18 @@ platforms:
 author: nexu-io
 version: 0.15.1
 license: Apache-2.0
-addedAt: 2026-07-19
-updatedAt: 2026-07-19
-githubUrl: https://github.com/nexu-io/open-design
-officialUrl: https://open-design.ai
-downloadUrl: https://github.com/nexu-io/open-design/archive/refs/heads/main.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-07-19'
+githubUrl: 'https://github.com/nexu-io/open-design'
+officialUrl: 'https://open-design.ai'
+downloadUrl: 'https://github.com/nexu-io/open-design/archive/refs/heads/main.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: image
 stars: 79602
 downloads: 0
 ---
-
 # Description
 
 ## zh

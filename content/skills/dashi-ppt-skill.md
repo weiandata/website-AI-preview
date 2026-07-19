@@ -15,19 +15,18 @@ platforms:
 author: chuspeeism
 version: TODO
 license: AGPL-3.0
-addedAt: 2026-07-19
-updatedAt: 2026-07-17
-githubUrl: https://github.com/chuspeeism/dashi-ppt-skill
-officialUrl: ""
-downloadUrl: https://github.com/chuspeeism/dashi-ppt-skill/archive/refs/heads/main.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-07-17'
+githubUrl: 'https://github.com/chuspeeism/dashi-ppt-skill'
+officialUrl: ''
+downloadUrl: 'https://github.com/chuspeeism/dashi-ppt-skill/archive/refs/heads/main.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: document
 stars: 3847
 downloads: 0
 ---
-
 # Description
 
 ## zh

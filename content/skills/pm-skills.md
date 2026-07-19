@@ -15,19 +15,18 @@ platforms:
 author: phuryn
 version: 2.1.0
 license: MIT
-addedAt: 2026-07-19
-updatedAt: 2026-07-03
-githubUrl: https://github.com/phuryn/pm-skills
-officialUrl: https://www.productcompass.pm/p/pm-skills-2-red-team-ship
-downloadUrl: https://github.com/phuryn/pm-skills/archive/refs/heads/main.zip
+addedAt: '2026-07-19'
+updatedAt: '2026-07-03'
+githubUrl: 'https://github.com/phuryn/pm-skills'
+officialUrl: 'https://www.productcompass.pm/p/pm-skills-2-red-team-ship'
+downloadUrl: 'https://github.com/phuryn/pm-skills/archive/refs/heads/main.zip'
 featured: false
 featuredRank: 0
-verified: false
+verified: true
 icon: productivity
 stars: 23990
 downloads: 0
 ---
-
 # Description
 
 ## zh
