@@ -1,0 +1,7 @@
+name: "website-AI-preview"
+owner: "web-engineering"
+status: "active"
+purpose: "Operate the bilingual WeianData AI Skills website"
+risk: "controlled"
+publication: "allowed"
+language: "TypeScript/Next.js"

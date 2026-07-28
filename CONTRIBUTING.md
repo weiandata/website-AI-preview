@@ -115,3 +115,10 @@ Behavior that must not regress:
 
 See [docs/skill-manager-guide.md](docs/skill-manager-guide.md) for the
 administrator-facing operating instructions.
+
+<!-- WAEF:START -->
+<!-- WAEF-TEMPLATE-VERSION: 4.3 -->
+<!-- markdownlint-disable-file MD041 -->
+Read `.waef/waef.lock.yml`, then follow the Issue, approved plan, categorized
+branch, Pull Request, validation, accountable review, and release sequence.
+<!-- WAEF:END -->
