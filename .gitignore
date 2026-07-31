@@ -30,3 +30,6 @@ test-results/
 output/playwright/
 .playwright-cli/
 *.tsbuildinfo
+
+# WAEF local cache
+.waef/cache/
