@@ -17,10 +17,10 @@ platforms:
   - OpenCode
   - GitHub Copilot
 author: HashiCorp
-version: TODO
+version: 1.0.0
 license: MPL-2.0
 addedAt: '2026-07-31'
-updatedAt: '2026-07-29'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/hashicorp/agent-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/hashicorp/agent-skills/archive/refs/heads/main.zip'
@@ -28,7 +28,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 767
+stars: 911
 ---
 # Description
 
@@ -116,15 +116,15 @@ After installing the most relevant skill, provide the Terraform version, cloud p
 
 # Changelog
 
-## TODO | 2026-07-29
+## 1.0.0 | 2026-08-04
 
 ### zh
 
-仓库尚未发布带版本号的 Release；此处记录最近更新时间，具体变更请查看提交历史。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-The repository has no versioned release yet; this records its latest update date. See the commit history for details.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

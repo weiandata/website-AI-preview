@@ -8,10 +8,10 @@ category: development
 tags: [Engineering, Code Review, Debugging]
 platforms: [Agent Skills]
 author: Matt Pocock
-version: 1.1.0
+version: 1.3.2
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-29'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/mattpocock/skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/mattpocock/skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 197376
+stars: 312289
 ---
 # Description
 
@@ -97,15 +97,15 @@ Provide repository structure, problem evidence, constraints, and acceptance crit
 
 # Changelog
 
-## 1.1.0 | 2026-07-08
+## 1.3.2 | 2026-10-29
 
 ### zh
 
-对应仓库发布的 1.1.0 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 1.1.0 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

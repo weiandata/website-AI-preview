@@ -16,7 +16,7 @@ author: chuspeeism
 version: TODO
 license: AGPL-3.0
 addedAt: '2026-07-19'
-updatedAt: '2026-07-17'
+updatedAt: '2026-09-12'
 githubUrl: 'https://github.com/chuspeeism/dashi-ppt-skill'
 officialUrl: ''
 downloadUrl: 'https://github.com/chuspeeism/dashi-ppt-skill/archive/refs/heads/main.zip'
@@ -24,7 +24,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: document
-stars: 3847
+stars: 10357
 ---
 # Description
 
@@ -116,7 +116,7 @@ Give the document or your key points to an agent with the skill installed, choos
 
 # Changelog
 
-## TODO | 2026-07-17
+## TODO | 2026-09-12
 
 ### zh
 

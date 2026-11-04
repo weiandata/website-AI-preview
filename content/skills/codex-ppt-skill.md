@@ -8,10 +8,10 @@ category: content-creation
 tags: [PowerPoint, Image Generation, Presentations]
 platforms: [Codex, Agent Skills]
 author: ningzimu
-version: 0.5.5
+version: 0.6.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-13'
+updatedAt: '2026-10-13'
 githubUrl: 'https://github.com/ningzimu/codex-ppt-skill'
 officialUrl: 'https://ppt-skill.ningzimu.vip'
 downloadUrl: 'https://github.com/ningzimu/codex-ppt-skill/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: writing
-stars: 4378
+stars: 7630
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## 0.5.5 | 2026-07-13
+## 0.6.0 | 2026-09-12
 
 ### zh
 
-对应仓库发布的 0.5.5 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 0.5.5 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

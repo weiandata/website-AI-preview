@@ -15,10 +15,10 @@ platforms:
   - GitHub Copilot
   - Amp
 author: virgiliojr94
-version: 1.2.0
+version: 1.4.0
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-16'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/virgiliojr94/book-to-skill'
 officialUrl: ''
 downloadUrl: 'https://github.com/virgiliojr94/book-to-skill/archive/refs/heads/master.zip'
@@ -26,7 +26,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: research
-stars: 8775
+stars: 36929
 ---
 # Description
 
@@ -118,7 +118,7 @@ Point it at the book or folder, get a skill directory, and install that into whi
 
 # Changelog
 
-## 1.2.0 | 2026-07-16
+## 1.4.0 | 2026-08-10
 
 ### zh
 

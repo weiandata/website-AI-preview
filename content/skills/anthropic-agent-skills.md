@@ -18,7 +18,7 @@ author: Anthropic
 version: TODO
 license: Unlicensed
 addedAt: '2026-07-19'
-updatedAt: '2026-07-17'
+updatedAt: '2026-10-28'
 githubUrl: 'https://github.com/anthropics/skills'
 officialUrl: 'https://agentskills.io'
 downloadUrl: 'https://github.com/anthropics/skills/archive/refs/heads/main.zip'
@@ -26,7 +26,7 @@ featured: true
 featuredRank: 2
 verified: true
 icon: code
-stars: 162532
+stars: 187276
 ---
 # Description
 
@@ -122,7 +122,7 @@ Register the repository as a plugin marketplace in Claude Code, then install eit
 
 # Changelog
 
-## TODO | 2026-07-17
+## TODO | 2026-10-28
 
 ### zh
 

@@ -13,10 +13,10 @@ tags:
 platforms:
   - Claude Code
 author: Bitwize Music Studio
-version: 0.101.0
+version: 0.103.0
 license: CC0-1.0
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-10-28'
 githubUrl: 'https://github.com/bitwize-music-studio/claude-ai-music-skills'
 officialUrl: 'https://www.bitwizemusic.com'
 downloadUrl: 'https://github.com/bitwize-music-studio/claude-ai-music-skills/archive/refs/heads/main.zip'
@@ -24,7 +24,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: writing
-stars: 396
+stars: 628
 ---
 # Description
 
@@ -116,15 +116,15 @@ After installation and repository setup, provide style references, instrumentati
 
 # Changelog
 
-## 0.101.0 | 2026-07-21
+## 0.103.0 | 2026-10-13
 
 ### zh
 
-对应仓库发布的 0.101.0 版本；后续提交活动记录在 GitHub 仓库中。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 0.101.0 release; subsequent activity is recorded in the GitHub repository.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

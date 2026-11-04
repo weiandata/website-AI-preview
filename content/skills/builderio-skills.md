@@ -11,7 +11,7 @@ author: BuilderIO
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-29'
+updatedAt: '2026-11-02'
 githubUrl: 'https://github.com/BuilderIO/skills'
 officialUrl: 'https://www.agent-native.com/'
 downloadUrl: 'https://github.com/BuilderIO/skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 3871
+stars: 4638
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## TODO | 2026-07-29
+## TODO | 2026-11-02
 
 ### zh
 

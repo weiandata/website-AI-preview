@@ -19,7 +19,7 @@ author: SamurAIGPT
 version: TODO
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-18'
+updatedAt: '2026-09-29'
 githubUrl: 'https://github.com/SamurAIGPT/Generative-Media-Skills'
 officialUrl: ''
 downloadUrl: >-
@@ -28,7 +28,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: image
-stars: 3842
+stars: 33
 ---
 # Description
 
@@ -120,7 +120,7 @@ Once installed, configure credentials for the model service, then describe what 
 
 # Changelog
 
-## TODO | 2026-07-18
+## TODO | 2026-09-29
 
 ### zh
 

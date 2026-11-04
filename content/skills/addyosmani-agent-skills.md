@@ -13,10 +13,10 @@ tags:
 platforms:
   - Claude Code
 author: Addy Osmani
-version: 0.6.4
+version: 0.6.15
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-18'
+updatedAt: '2026-11-01'
 githubUrl: 'https://github.com/addyosmani/agent-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/addyosmani/agent-skills/archive/refs/heads/main.zip'
@@ -24,7 +24,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 79201
+stars: 113167
 ---
 # Description
 
@@ -116,7 +116,7 @@ Use the command that matches your phase: /spec to define what to build, /plan to
 
 # Changelog
 
-## 0.6.4 | 2026-07-18
+## 0.6.15 | 2026-10-31
 
 ### zh
 

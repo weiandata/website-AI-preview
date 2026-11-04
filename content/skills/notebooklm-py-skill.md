@@ -8,10 +8,10 @@ category: research-writing
 tags: [NotebookLM, Research, Python API]
 platforms: [Claude Code, Codex, OpenClaw]
 author: Teng Lin
-version: 0.7.3
+version: 0.8.6
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-29'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/teng-lin/notebooklm-py'
 officialUrl: 'https://github.com/teng-lin/notebooklm-py'
 downloadUrl: 'https://github.com/teng-lin/notebooklm-py/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: research
-stars: 18372
+stars: 20092
 ---
 # Description
 
@@ -97,15 +97,15 @@ Check current authentication instructions before setup and use only authorized s
 
 # Changelog
 
-## 0.7.3 | 2026-06-30
+## 0.8.6 | 2026-10-29
 
 ### zh
 
-对应仓库发布的 0.7.3 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 0.7.3 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

@@ -11,7 +11,7 @@ author: Feisky
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-27'
+updatedAt: '2026-09-27'
 githubUrl: 'https://github.com/feiskyer/claude-code-settings'
 officialUrl: 'https://feisky.xyz/claude-code-settings/'
 downloadUrl: 'https://github.com/feiskyer/claude-code-settings/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 1611
+stars: 1672
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start with one skill and inspect commands, hooks, and write scope in a test proj
 
 # Changelog
 
-## TODO | 2026-07-27
+## TODO | 2026-09-27
 
 ### zh
 

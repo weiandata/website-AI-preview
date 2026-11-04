@@ -14,10 +14,10 @@ platforms:
   - Claude Code
   - Codex
 author: Gadi Cohen
-version: 4.0.0
+version: 4.0.5
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-14'
+updatedAt: '2026-10-30'
 githubUrl: 'https://github.com/gadicc/yahoo-finance2'
 officialUrl: ''
 downloadUrl: 'https://github.com/gadicc/yahoo-finance2/archive/refs/heads/dev.zip'
@@ -25,7 +25,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: analysis
-stars: 767
+stars: 814
 ---
 # Description
 
@@ -117,15 +117,15 @@ Installed as an Agent Skill, your AI calls it whenever it needs quotes or compan
 
 # Changelog
 
-## 4.0.0 | 2026-07-14
+## 4.0.5 | 2026-10-21
 
 ### zh
 
-对应仓库当前发布的主版本。从 v3 升级请查看仓库中的升级说明文档。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the current major release. See the repository's upgrade notes when moving from v3.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

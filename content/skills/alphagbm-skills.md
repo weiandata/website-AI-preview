@@ -11,7 +11,7 @@ author: AlphaGBM
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-09'
+updatedAt: '2026-10-06'
 githubUrl: 'https://github.com/AlphaGBM/skills'
 officialUrl: 'https://www.alphagbm.com/skills'
 downloadUrl: 'https://github.com/AlphaGBM/skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: analysis
-stars: 1622
+stars: 2878
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with task-matched skills and bounded input
 
 # Changelog
 
-## TODO | 2026-07-09
+## TODO | 2026-10-06
 
 ### zh
 

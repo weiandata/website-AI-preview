@@ -14,10 +14,10 @@ platforms:
   - Codex
   - Cursor
 author: OthmanAdi
-version: 3.7.0
+version: 3.28.0
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-18'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/OthmanAdi/planning-with-files'
 officialUrl: ''
 downloadUrl: 'https://github.com/OthmanAdi/planning-with-files/archive/refs/heads/master.zip'
@@ -25,7 +25,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: automation
-stars: 25482
+stars: 27873
 ---
 # Description
 
@@ -117,15 +117,15 @@ Once installed, hand the agent a sizeable task and it writes the plan to a file 
 
 # Changelog
 
-## 3.7.0 | 2026-07-18
+## 3.28.0 | 2026-11-03
 
 ### zh
 
-对应仓库当前发布的版本。v3.0.0 引入了可选的自主模式、门控模式与完成检查。完整变更请查看 GitHub Releases。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the release currently published. v3.0.0 introduced the optional autonomous and gated modes and the completion gate. See GitHub Releases for the full history.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

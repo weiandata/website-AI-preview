@@ -13,10 +13,10 @@ platforms:
   - Claude Code
   - Codex
 author: mvanhorn
-version: 3.16.0
+version: 3.31.0
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-16'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/mvanhorn/last30days-skill'
 officialUrl: ''
 downloadUrl: 'https://github.com/mvanhorn/last30days-skill/archive/refs/heads/main.zip'
@@ -24,7 +24,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: research
-stars: 52715
+stars: 66561
 ---
 # Description
 
@@ -120,15 +120,15 @@ Once installed, name the topic and it searches the relevant discussion, organisi
 
 # Changelog
 
-## 3.16.0 | 2026-07-16
+## 3.31.0 | 2026-10-27
 
 ### zh
 
-对应仓库当前发布的版本，README 说明的是 v3 流程。完整变更请查看 GitHub Releases。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the release currently published; the README documents the v3 pipeline. See GitHub Releases for the full history.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

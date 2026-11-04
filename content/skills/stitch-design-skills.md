@@ -21,7 +21,7 @@ author: Google Labs Code
 version: '1.0'
 license: Apache-2.0
 addedAt: '2026-07-31'
-updatedAt: '2026-07-30'
+updatedAt: '2026-08-17'
 githubUrl: 'https://github.com/google-labs-code/stitch-skills'
 officialUrl: 'https://stitch.withgoogle.com/docs/mcp/setup'
 downloadUrl: 'https://github.com/google-labs-code/stitch-skills/archive/refs/heads/main.zip'
@@ -29,7 +29,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: image
-stars: 7873
+stars: 8674
 ---
 # Description
 

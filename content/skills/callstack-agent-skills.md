@@ -20,7 +20,7 @@ author: Callstack Incubator
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-25'
+updatedAt: '2026-10-08'
 githubUrl: 'https://github.com/callstackincubator/agent-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/callstackincubator/agent-skills/archive/refs/heads/main.zip'
@@ -28,7 +28,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 1574
+stars: 1699
 ---
 # Description
 
@@ -116,7 +116,7 @@ After installation, provide the React Native version, target platforms, native d
 
 # Changelog
 
-## TODO | 2026-07-25
+## TODO | 2026-10-08
 
 ### zh
 

@@ -18,7 +18,7 @@ author: Gooseworks AI
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-23'
+updatedAt: '2026-10-27'
 githubUrl: 'https://github.com/gooseworks-ai/goose-skills'
 officialUrl: 'https://gooseworks.ai/cli'
 downloadUrl: 'https://github.com/gooseworks-ai/goose-skills/archive/refs/heads/main.zip'
@@ -26,7 +26,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: writing
-stars: 1074
+stars: 1280
 ---
 # Description
 
@@ -120,7 +120,7 @@ After installation and login, search the catalog for the most relevant skill, th
 
 # Changelog
 
-## TODO | 2026-07-23
+## TODO | 2026-10-27
 
 ### zh
 

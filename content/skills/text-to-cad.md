@@ -8,10 +8,10 @@ category: image-design
 tags: [CAD, CAM, G-code]
 platforms: [Agent Skills]
 author: Jake Read
-version: 0.3.13
+version: 0.10.3
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/earthtojake/text-to-cad'
 officialUrl: 'https://www.cadskills.xyz'
 downloadUrl: 'https://github.com/earthtojake/text-to-cad/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: image
-stars: 12174
+stars: 25342
 ---
 # Description
 
@@ -97,15 +97,15 @@ State units, material, tolerances, equipment, and output format. Validate toolpa
 
 # Changelog
 
-## 0.3.13 | 2026-07-31
+## 0.10.3 | 2026-11-03
 
 ### zh
 
-对应仓库发布的 0.3.13 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 0.3.13 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

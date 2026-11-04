@@ -17,10 +17,10 @@ platforms:
   - GitHub Copilot
   - OpenCode
 author: obra
-version: 6.1.1
+version: 7.0.2
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-17'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/obra/superpowers'
 officialUrl: ''
 downloadUrl: 'https://github.com/obra/superpowers/archive/refs/heads/main.zip'
@@ -28,7 +28,7 @@ featured: true
 featuredRank: 1
 verified: true
 icon: code
-stars: 257267
+stars: 312171
 ---
 # Description
 
@@ -120,7 +120,7 @@ Nothing to invoke once installed. When you ask to build or change something, the
 
 # Changelog
 
-## 6.1.1 | 2026-07-17
+## 7.0.2 | 2026-11-03
 
 ### zh
 

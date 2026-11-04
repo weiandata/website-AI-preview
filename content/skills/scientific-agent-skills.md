@@ -15,10 +15,10 @@ platforms:
   - Cursor
   - Codex
 author: K-Dense AI
-version: 2.53.0
+version: 2.72.0
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-15'
+updatedAt: '2026-11-02'
 githubUrl: 'https://github.com/K-Dense-AI/scientific-agent-skills'
 officialUrl: 'https://k-dense.ai'
 downloadUrl: >-
@@ -27,7 +27,7 @@ featured: true
 featuredRank: 5
 verified: true
 icon: research
-stars: 31177
+stars: 56057
 ---
 # Description
 
@@ -119,7 +119,7 @@ Once installed, describe the task — find literature on a gene, run a particula
 
 # Changelog
 
-## 2.53.0 | 2026-07-15
+## 2.72.0 | 2026-10-01
 
 ### zh
 

@@ -14,10 +14,10 @@ platforms:
   - Codex
   - Cursor
 author: blader
-version: TODO
+version: 3.1.0
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-06-29'
+updatedAt: '2026-10-28'
 githubUrl: 'https://github.com/blader/humanizer'
 officialUrl: ''
 downloadUrl: 'https://github.com/blader/humanizer/archive/refs/heads/main.zip'
@@ -25,7 +25,7 @@ featured: true
 featuredRank: 4
 verified: true
 icon: writing
-stars: 29845
+stars: 64654
 ---
 # Description
 
@@ -121,15 +121,15 @@ Once installed, hand over the text and ask for the AI feel removed. It adjusts p
 
 # Changelog
 
-## TODO | 2026-06-29
+## 3.1.0 | 2026-09-28
 
 ### zh
 
-仓库未发布带版本号的 Release，此处记录最近一次更新日期。请查看提交历史了解变更。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-The repository publishes no versioned releases; this records the most recent update date. See the commit history for changes.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

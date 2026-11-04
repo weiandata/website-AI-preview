@@ -13,10 +13,10 @@ tags:
 platforms:
   - Claude Code
 author: Conor Luddy
-version: 1.4.0
+version: 1.7.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-06-18'
+updatedAt: '2026-10-19'
 githubUrl: 'https://github.com/conorluddy/ios-simulator-skill'
 officialUrl: 'https://www.conor.fyi'
 downloadUrl: 'https://github.com/conorluddy/ios-simulator-skill/archive/refs/heads/main.zip'
@@ -24,7 +24,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 1193
+stars: 1311
 ---
 # Description
 
@@ -118,15 +118,15 @@ After confirming macOS, Xcode, and Python, provide the project path, scheme, tar
 
 # Changelog
 
-## 1.4.0 | 2026-04-12
+## 1.7.0 | 2026-10-19
 
 ### zh
 
-对应仓库发布的 1.4.0 版本；后续提交活动记录在 GitHub 仓库中。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 1.4.0 release; subsequent activity is recorded in the GitHub repository.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

@@ -19,7 +19,7 @@ author: wshobson
 version: TODO
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-18'
+updatedAt: '2026-11-02'
 githubUrl: 'https://github.com/wshobson/agents'
 officialUrl: 'https://sethhobson.com'
 downloadUrl: 'https://github.com/wshobson/agents/archive/refs/heads/main.zip'
@@ -27,7 +27,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: automation
-stars: 38038
+stars: 42182
 ---
 # Description
 
@@ -123,7 +123,7 @@ Register the repository as a plugin marketplace, then install the plugins you ne
 
 # Changelog
 
-## TODO | 2026-07-18
+## TODO | 2026-11-02
 
 ### zh
 

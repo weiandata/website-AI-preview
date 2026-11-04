@@ -11,7 +11,7 @@ author: ReScienceLab
 version: v1.0.10
 license: Apache-2.0
 addedAt: '2026-07-31'
-updatedAt: '2026-02-23'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/ReScienceLab/opc-skills'
 officialUrl: 'https://opc.dev'
 downloadUrl: 'https://github.com/ReScienceLab/opc-skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: productivity
-stars: 1186
+stars: 1892
 ---
 # Description
 

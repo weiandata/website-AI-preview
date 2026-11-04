@@ -16,7 +16,7 @@ author: wuyoscar
 version: 0.2.0
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-01'
+updatedAt: '2026-09-30'
 githubUrl: 'https://github.com/wuyoscar/GPT-Image2-Skill'
 officialUrl: ''
 downloadUrl: 'https://github.com/wuyoscar/GPT-Image2-Skill/archive/refs/heads/main.zip'
@@ -24,7 +24,7 @@ featured: true
 featuredRank: 6
 verified: true
 icon: image
-stars: 3819
+stars: 5998
 ---
 # Description
 

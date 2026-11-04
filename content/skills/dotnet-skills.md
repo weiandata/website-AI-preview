@@ -8,10 +8,10 @@ category: development
 tags: [.NET, C Sharp, Subagents]
 platforms: [Claude Code]
 author: Aaronontheweb
-version: v1.4.1
+version: 1.7.1
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-03'
+updatedAt: '2026-10-28'
 githubUrl: 'https://github.com/Aaronontheweb/dotnet-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/Aaronontheweb/dotnet-skills/archive/refs/heads/master.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 1090
+stars: 1246
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start in a non-production environment with task-matched skills and bounded input
 
 # Changelog
 
-## v1.4.1 | 2026-07-03
+## 1.7.1 | 2026-10-11
 
 ### zh
 
-对应仓库发布的 v1.4.1 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's v1.4.1 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

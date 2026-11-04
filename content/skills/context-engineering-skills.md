@@ -11,7 +11,7 @@ author: Murat Can Koylan
 version: 2.3.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-14'
+updatedAt: '2026-10-12'
 githubUrl: 'https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering'
 officialUrl: ''
 downloadUrl: 'https://github.com/muratcankoylan/Agent-Skills-for-Context-Engineering/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 17523
+stars: 18297
 ---
 # Description
 

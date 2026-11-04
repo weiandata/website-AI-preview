@@ -11,7 +11,7 @@ author: getsentry
 version: TODO
 license: Apache-2.0
 addedAt: '2026-07-31'
-updatedAt: '2026-07-27'
+updatedAt: '2026-11-02'
 githubUrl: 'https://github.com/getsentry/skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/getsentry/skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 896
+stars: 1119
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with task-matched skills and bounded input
 
 # Changelog
 
-## TODO | 2026-07-27
+## TODO | 2026-11-02
 
 ### zh
 

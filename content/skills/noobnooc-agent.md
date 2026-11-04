@@ -11,7 +11,7 @@ author: noobnooc
 version: TODO
 license: Not specified
 addedAt: '2026-07-31'
-updatedAt: '2026-07-02'
+updatedAt: '2026-08-18'
 githubUrl: 'https://github.com/noobnooc/agent'
 officialUrl: 'https://nooc.me'
 downloadUrl: 'https://github.com/noobnooc/agent/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: productivity
-stars: 1371
+stars: 1388
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with task-matched skills and bounded input
 
 # Changelog
 
-## TODO | 2026-07-02
+## TODO | 2026-08-18
 
 ### zh
 

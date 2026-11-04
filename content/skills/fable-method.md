@@ -11,7 +11,7 @@ author: Sahir619
 version: v1.4.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-15'
+updatedAt: '2026-10-03'
 githubUrl: 'https://github.com/Sahir619/fable-method'
 officialUrl: ''
 downloadUrl: 'https://github.com/Sahir619/fable-method/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: productivity
-stars: 1976
+stars: 2313
 ---
 # Description
 
