@@ -20,7 +20,7 @@ author: Addy Osmani
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-06-14'
+updatedAt: '2026-08-24'
 githubUrl: 'https://github.com/addyosmani/web-quality-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/addyosmani/web-quality-skills/archive/refs/heads/main.zip'
@@ -28,7 +28,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 2566
+stars: 3034
 ---
 # Description
 
@@ -118,7 +118,7 @@ After installation, identify the page, target browsers, priority quality dimensi
 
 # Changelog
 
-## TODO | 2026-06-14
+## TODO | 2026-08-24
 
 ### zh
 

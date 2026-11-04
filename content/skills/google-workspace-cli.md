@@ -17,7 +17,7 @@ author: googleworkspace
 version: 0.22.5
 license: Apache-2.0
 addedAt: '2026-07-19'
-updatedAt: '2026-07-17'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/googleworkspace/cli'
 officialUrl: 'https://developers.google.com/workspace'
 downloadUrl: 'https://github.com/googleworkspace/cli/archive/refs/heads/main.zip'
@@ -25,7 +25,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: automation
-stars: 29820
+stars: 32102
 ---
 # Description
 

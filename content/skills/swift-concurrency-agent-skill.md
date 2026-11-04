@@ -8,10 +8,10 @@ category: development
 tags: [Swift, Concurrency, Swift 6]
 platforms: [Claude Code, Codex, Cursor]
 author: AvdLee
-version: 2.1.1
+version: 2.3.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-05-04'
+updatedAt: '2026-09-14'
 githubUrl: 'https://github.com/AvdLee/Swift-Concurrency-Agent-Skill'
 officialUrl: 'https://www.swiftconcurrencycourse.com'
 downloadUrl: 'https://github.com/AvdLee/Swift-Concurrency-Agent-Skill/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 1606
+stars: 1702
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start in a non-production environment with task-matched skills and bounded input
 
 # Changelog
 
-## 2.1.1 | 2026-05-04
+## 2.3.0 | 2026-08-12
 
 ### zh
 
-对应仓库发布的 2.1.1 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 2.1.1 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

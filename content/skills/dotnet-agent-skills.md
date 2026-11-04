@@ -19,7 +19,7 @@ author: .NET
 version: 1.0.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/dotnet/skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/dotnet/skills/archive/refs/heads/main.zip'
@@ -27,7 +27,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 4819
+stars: 5818
 ---
 # Description
 

@@ -11,7 +11,7 @@ author: Ahmed Elnagdy
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-10-29'
 githubUrl: 'https://github.com/amElnagdy/delegate-skills'
 officialUrl: 'https://www.skills.sh/amelnagdy/delegate-skills'
 downloadUrl: 'https://github.com/amElnagdy/delegate-skills/archive/refs/heads/master.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: automation
-stars: 656
+stars: 2560
 ---
 # Description
 
@@ -97,7 +97,7 @@ Provide minimal scope, file boundaries, and acceptance criteria. Inspect the ful
 
 # Changelog
 
-## TODO | 2026-07-31
+## TODO | 2026-10-29
 
 ### zh
 

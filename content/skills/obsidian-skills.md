@@ -17,7 +17,7 @@ author: kepano
 version: TODO
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-06-08'
+updatedAt: '2026-09-15'
 githubUrl: 'https://github.com/kepano/obsidian-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/kepano/obsidian-skills/archive/refs/heads/main.zip'
@@ -25,7 +25,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: productivity
-stars: 42577
+stars: 50733
 ---
 # Description
 
@@ -121,7 +121,7 @@ Once installed, say what you need — gather notes on a topic, link a few pieces
 
 # Changelog
 
-## TODO | 2026-06-08
+## TODO | 2026-09-15
 
 ### zh
 

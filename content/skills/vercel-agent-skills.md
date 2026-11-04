@@ -11,7 +11,7 @@ author: Vercel Labs
 version: TODO
 license: Not specified
 addedAt: '2026-07-31'
-updatedAt: '2026-07-24'
+updatedAt: '2026-10-28'
 githubUrl: 'https://github.com/vercel-labs/agent-skills'
 officialUrl: 'https://skills.sh/vercel-labs/agent-skills'
 downloadUrl: 'https://github.com/vercel-labs/agent-skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 29649
+stars: 33511
 ---
 # Description
 
@@ -97,7 +97,7 @@ Provide framework versions, project settings, and deployment target. Before prod
 
 # Changelog
 
-## TODO | 2026-07-24
+## TODO | 2026-10-28
 
 ### zh
 

@@ -11,7 +11,7 @@ author: remotion-dev
 version: TODO
 license: Not specified
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-11-02'
 githubUrl: 'https://github.com/remotion-dev/skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/remotion-dev/skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: writing
-stars: 4161
+stars: 6318
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## TODO | 2026-07-31
+## TODO | 2026-11-02
 
 ### zh
 

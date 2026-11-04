@@ -8,10 +8,10 @@ category: automation
 tags: [Paid Media, Advertising, Audit]
 platforms: [Claude Code]
 author: Daniel Agrici
-version: 2.0.1
+version: 2.1.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-13'
+updatedAt: '2026-11-01'
 githubUrl: 'https://github.com/AgriciDaniel/claude-ads'
 officialUrl: 'https://claude-ads.md'
 downloadUrl: 'https://github.com/AgriciDaniel/claude-ads/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: automation
-stars: 7727
+stars: 10727
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start with read-only data and business goals to produce an audit. Before writes,
 
 # Changelog
 
-## 2.0.1 | 2026-07-13
+## 2.1.0 | 2026-10-16
 
 ### zh
 
-对应仓库发布的 2.0.1 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 2.0.1 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

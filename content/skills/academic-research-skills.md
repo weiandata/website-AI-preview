@@ -8,10 +8,10 @@ category: research-writing
 tags: [Academic Research, Literature Review, Peer Review]
 platforms: [Claude Code]
 author: Imbad0202
-version: 3.19.0
+version: 3.24.1
 license: NOASSERTION
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/Imbad0202/academic-research-skills'
 officialUrl: 'https://buymeacoffee.com/crucify020v'
 downloadUrl: 'https://github.com/Imbad0202/academic-research-skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: research
-stars: 40320
+stars: 55310
 ---
 # Description
 
@@ -97,15 +97,15 @@ Provide the research question, method, verified sources, and citation style. Req
 
 # Changelog
 
-## 3.19.0 | 2026-07-22
+## 3.24.1 | 2026-11-02
 
 ### zh
 
-对应仓库发布的 3.19.0 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 3.19.0 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

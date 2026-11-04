@@ -11,7 +11,7 @@ author: jeecgboot
 version: v1.0.0
 license: Apache-2.0
 addedAt: '2026-07-31'
-updatedAt: '2026-05-17'
+updatedAt: '2026-10-14'
 githubUrl: 'https://github.com/jeecgboot/skills'
 officialUrl: 'https://jeecg.com'
 downloadUrl: 'https://github.com/jeecgboot/skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 206
+stars: 246
 ---
 # Description
 

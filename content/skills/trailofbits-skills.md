@@ -17,7 +17,7 @@ author: Trail of Bits
 version: TODO
 license: CC-BY-SA-4.0
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-11-02'
 githubUrl: 'https://github.com/trailofbits/skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/trailofbits/skills/archive/refs/heads/main.zip'
@@ -25,7 +25,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 6363
+stars: 7993
 ---
 # Description
 
@@ -117,7 +117,7 @@ After installing the relevant skill, define repository scope, threat model, perm
 
 # Changelog
 
-## TODO | 2026-07-31
+## TODO | 2026-11-02
 
 ### zh
 

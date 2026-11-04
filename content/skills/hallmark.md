@@ -11,7 +11,7 @@ author: Nutlope
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/Nutlope/hallmark'
 officialUrl: 'https://www.usehallmark.com/'
 downloadUrl: 'https://github.com/Nutlope/hallmark/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: image
-stars: 20232
+stars: 47463
 ---
 # Description
 
@@ -97,7 +97,7 @@ Provide product goals, brand material, and target users. Ask for specific proble
 
 # Changelog
 
-## TODO | 2026-07-31
+## TODO | 2026-11-04
 
 ### zh
 

@@ -17,7 +17,7 @@ author: OpenSenseNova
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-28'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/OpenSenseNova/SenseNova-Skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/OpenSenseNova/SenseNova-Skills/archive/refs/heads/main.zip'
@@ -25,7 +25,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: document
-stars: 4833
+stars: 6017
 ---
 # Description
 
@@ -117,7 +117,7 @@ After copying the required skills, restart or refresh the agent and provide the 
 
 # Changelog
 
-## TODO | 2026-07-28
+## TODO | 2026-11-03
 
 ### zh
 

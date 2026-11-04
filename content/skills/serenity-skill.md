@@ -11,7 +11,7 @@ author: muxuuu
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-05-05'
+updatedAt: '2026-10-11'
 githubUrl: 'https://github.com/muxuuu/serenity-skill'
 officialUrl: ''
 downloadUrl: 'https://github.com/muxuuu/serenity-skill/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: research
-stars: 3648
+stars: 4157
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## TODO | 2026-05-05
+## TODO | 2026-10-11
 
 ### zh
 

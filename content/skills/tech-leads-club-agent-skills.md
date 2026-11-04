@@ -8,10 +8,10 @@ category: development
 tags: [Skill Registry, Security, Engineering]
 platforms: [Claude Code, Codex, Cursor, Copilot]
 author: tech-leads-club
-version: skills-catalog-v0.17.1
+version: skills-catalog-v0.17.19
 license: NOASSERTION
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/tech-leads-club/agent-skills'
 officialUrl: 'https://agent-skills.techleads.club/'
 downloadUrl: 'https://github.com/tech-leads-club/agent-skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 4962
+stars: 7129
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## skills-catalog-v0.17.1 | 2026-07-31
+## skills-catalog-v0.17.19 | 2026-11-02
 
 ### zh
 
-对应仓库发布的 skills-catalog-v0.17.1 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's skills-catalog-v0.17.1 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

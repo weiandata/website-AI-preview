@@ -11,7 +11,7 @@ author: Microsoft
 version: 0.2.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-29'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/microsoft/SkillOpt'
 officialUrl: 'https://aka.ms/skillopt'
 downloadUrl: 'https://github.com/microsoft/SkillOpt/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 15415
+stars: 18886
 ---
 # Description
 

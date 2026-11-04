@@ -14,10 +14,10 @@ platforms:
   - Claude Code
   - Codex
 author: Storybloq
-version: 1.7.0
+version: 1.15.9
 license: PolyForm-Shield-1.0.0
 addedAt: '2026-07-19'
-updatedAt: '2026-07-16'
+updatedAt: '2026-11-02'
 githubUrl: 'https://github.com/Storybloq/storybloq'
 officialUrl: 'https://www.storybloq.com'
 downloadUrl: 'https://github.com/Storybloq/storybloq/archive/refs/heads/main.zip'
@@ -25,7 +25,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 669
+stars: 788
 ---
 # Description
 
@@ -117,7 +117,7 @@ Initialise the .story directory in your project and record tickets, known issues
 
 # Changelog
 
-## 1.7.0 | 2026-07-16
+## 1.15.9 | 2026-09-20
 
 ### zh
 

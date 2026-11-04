@@ -14,10 +14,10 @@ platforms:
   - Claude Code
   - Codex
 author: kklimuk
-version: 0.21.0
+version: 0.28.0
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-18'
+updatedAt: '2026-10-31'
 githubUrl: 'https://github.com/kklimuk/docx-cli'
 officialUrl: ''
 downloadUrl: 'https://github.com/kklimuk/docx-cli/archive/refs/heads/main.zip'
@@ -25,7 +25,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: document
-stars: 144
+stars: 241
 ---
 # Description
 
@@ -117,7 +117,7 @@ Hand a .docx to an AI with this installed and say what you need — filling in, 
 
 # Changelog
 
-## 0.21.0 | 2026-07-18
+## 0.28.0 | 2026-10-27
 
 ### zh
 

@@ -17,7 +17,7 @@ author: Kenneth Khoo
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-22'
+updatedAt: '2026-09-04'
 githubUrl: 'https://github.com/kennethkhoocy/legal-scholarship-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/kennethkhoocy/legal-scholarship-skills/archive/refs/heads/main.zip'
@@ -25,7 +25,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: research
-stars: 23
+stars: 7
 ---
 # Description
 
@@ -117,7 +117,7 @@ After installation, provide the jurisdiction, time range, citation style, and co
 
 # Changelog
 
-## TODO | 2026-07-22
+## TODO | 2026-09-04
 
 ### zh
 

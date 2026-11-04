@@ -11,7 +11,7 @@ author: yaojingang
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-16'
+updatedAt: '2026-08-17'
 githubUrl: 'https://github.com/yaojingang/yao-meta-skill'
 officialUrl: 'https://github.com/yaojingang/yao-meta-skill#readme'
 downloadUrl: 'https://github.com/yaojingang/yao-meta-skill/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 2150
+stars: 2718
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with task-matched skills and bounded input
 
 # Changelog
 
-## TODO | 2026-07-16
+## TODO | 2026-08-17
 
 ### zh
 

@@ -11,7 +11,7 @@ author: WordPress
 version: TODO
 license: NOASSERTION
 addedAt: '2026-07-31'
-updatedAt: '2026-07-27'
+updatedAt: '2026-10-26'
 githubUrl: 'https://github.com/WordPress/agent-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/WordPress/agent-skills/archive/refs/heads/trunk.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 1949
+stars: 2331
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with task-matched skills and bounded input
 
 # Changelog
 
-## TODO | 2026-07-27
+## TODO | 2026-10-26
 
 ### zh
 

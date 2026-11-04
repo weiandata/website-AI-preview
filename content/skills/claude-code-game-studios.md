@@ -8,10 +8,10 @@ category: development
 tags: [Game Development, Studio Workflow, Asset Production]
 platforms: [Claude Code]
 author: Donchitos
-version: 1.0.0
+version: 1.2.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-05-21'
+updatedAt: '2026-10-19'
 githubUrl: 'https://github.com/Donchitos/Claude-Code-Game-Studios'
 officialUrl: ''
 downloadUrl: 'https://github.com/Donchitos/Claude-Code-Game-Studios/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 23517
+stars: 35188
 ---
 # Description
 
@@ -97,15 +97,15 @@ Provide engine, platform, scope, and style constraints and start with a few rele
 
 # Changelog
 
-## 1.0.0 | 2026-05-13
+## 1.2.0 | 2026-10-19
 
 ### zh
 
-对应仓库发布的 1.0.0 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 1.0.0 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

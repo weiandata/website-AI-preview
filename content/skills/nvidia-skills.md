@@ -11,7 +11,7 @@ author: NVIDIA
 version: TODO
 license: Apache-2.0
 addedAt: '2026-07-31'
-updatedAt: '2026-07-30'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/NVIDIA/skills'
 officialUrl: 'https://docs.nvidia.com/skills'
 downloadUrl: 'https://github.com/NVIDIA/skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 2746
+stars: 3859
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## TODO | 2026-07-30
+## TODO | 2026-11-04
 
 ### zh
 

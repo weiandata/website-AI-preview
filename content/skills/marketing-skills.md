@@ -8,10 +8,10 @@ category: content-creation
 tags: [Marketing, CRO, SEO, Analytics]
 platforms: [Claude Code, Agent Skills]
 author: Corey Haines
-version: 2.10.0
+version: 2.14.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-29'
+updatedAt: '2026-10-31'
 githubUrl: 'https://github.com/coreyhaines31/marketingskills'
 officialUrl: 'https://marketing-skills.com'
 downloadUrl: 'https://github.com/coreyhaines31/marketingskills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: writing
-stars: 42512
+stars: 58436
 ---
 # Description
 
@@ -97,15 +97,15 @@ Provide target customers, product facts, channels, baseline data, and metrics. B
 
 # Changelog
 
-## 2.10.0 | 2026-07-27
+## 2.14.0 | 2026-10-30
 
 ### zh
 
-对应仓库发布的 2.10.0 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 2.10.0 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

@@ -13,10 +13,10 @@ tags:
 platforms:
   - Claude Code
 author: AgriciDaniel
-version: 2.2.0
+version: 2.5.0
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-06'
+updatedAt: '2026-11-01'
 githubUrl: 'https://github.com/AgriciDaniel/claude-seo'
 officialUrl: ''
 downloadUrl: 'https://github.com/AgriciDaniel/claude-seo/archive/refs/heads/main.zip'
@@ -24,7 +24,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: writing
-stars: 11769
+stars: 26512
 ---
 # Description
 
@@ -116,7 +116,7 @@ Once installed, point it at the site or page and choose a full audit or a specif
 
 # Changelog
 
-## 2.2.0 | 2026-07-06
+## 2.5.0 | 2026-10-22
 
 ### zh
 

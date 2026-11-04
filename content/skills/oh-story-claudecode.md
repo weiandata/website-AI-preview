@@ -7,19 +7,19 @@ nameZh: 网文创作技能包
 category: content-creation
 tags: [Fiction Writing, Chinese, Cover Art]
 platforms: [Claude Code]
-author: worldwonderer
+author: ZenStory AI
 version: 0.7.2
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-28'
-githubUrl: 'https://github.com/worldwonderer/oh-story-claudecode'
+updatedAt: '2026-11-04'
+githubUrl: 'https://github.com/zenstory-ai/oh-story-claudecode'
 officialUrl: ''
-downloadUrl: 'https://github.com/worldwonderer/oh-story-claudecode/archive/refs/heads/main.zip'
+downloadUrl: 'https://github.com/zenstory-ai/oh-story-claudecode/archive/refs/heads/main.zip'
 featured: false
 featuredRank: 0
 verified: true
 icon: writing
-stars: 4847
+stars: 8296
 ---
 # Description
 
@@ -68,7 +68,7 @@ The repository targets Chinese web-fiction workflows and organizes genre researc
 # Installation
 
 ```bash
-npx skills add worldwonderer/oh-story-claudecode
+npx skills add zenstory-ai/oh-story-claudecode
 ```
 
 # Usage

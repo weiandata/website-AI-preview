@@ -11,7 +11,7 @@ author: browser-act
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-21'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/browser-act/skills'
 officialUrl: 'https://www.browseract.com/?co-from=github'
 downloadUrl: 'https://github.com/browser-act/skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: automation
-stars: 5028
+stars: 6318
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## TODO | 2026-07-21
+## TODO | 2026-11-04
 
 ### zh
 

@@ -8,10 +8,10 @@ category: image-design
 tags: [HTML Design, Prototypes, Presentations]
 platforms: [Claude Code, Agent Skills]
 author: alchaincyf
-version: '2.0'
+version: 3.2.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-27'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/alchaincyf/huashu-design'
 officialUrl: ''
 downloadUrl: 'https://github.com/alchaincyf/huashu-design/archive/refs/heads/master.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: image
-stars: 22280
+stars: 28652
 ---
 # Description
 
@@ -97,15 +97,15 @@ Provide audience, brand, content, and output dimensions. Approve one page before
 
 # Changelog
 
-## 2.0 | 2026-04-21
+## 3.2.0 | 2026-11-04
 
 ### zh
 
-对应仓库发布的 2.0 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 2.0 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

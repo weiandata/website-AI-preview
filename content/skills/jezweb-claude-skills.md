@@ -17,7 +17,7 @@ author: Jezweb
 version: 12.0.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-02'
+updatedAt: '2026-10-09'
 githubUrl: 'https://github.com/jezweb/claude-skills'
 officialUrl: 'https://jezweb.com.au'
 downloadUrl: 'https://github.com/jezweb/claude-skills/archive/refs/heads/main.zip'
@@ -25,7 +25,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: automation
-stars: 946
+stars: 1095
 ---
 # Description
 

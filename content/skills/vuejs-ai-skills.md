@@ -11,7 +11,7 @@ author: vuejs-ai
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-05-30'
+updatedAt: '2026-10-23'
 githubUrl: 'https://github.com/vuejs-ai/skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/vuejs-ai/skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 2749
+stars: 3252
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## TODO | 2026-05-30
+## TODO | 2026-10-23
 
 ### zh
 

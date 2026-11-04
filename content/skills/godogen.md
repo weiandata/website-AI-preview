@@ -17,7 +17,7 @@ author: htdt
 version: TODO
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-13'
+updatedAt: '2026-10-16'
 githubUrl: 'https://github.com/htdt/godogen'
 officialUrl: ''
 downloadUrl: 'https://github.com/htdt/godogen/archive/refs/heads/master.zip'
@@ -25,7 +25,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 4815
+stars: 7287
 ---
 # Description
 
@@ -121,7 +121,7 @@ Clone the repository, use publish.sh to pick an engine and host agent, and publi
 
 # Changelog
 
-## TODO | 2026-07-13
+## TODO | 2026-10-16
 
 ### zh
 

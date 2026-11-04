@@ -11,7 +11,7 @@ author: SimoneAvogadro
 version: 1.1.0
 license: Apache-2.0
 addedAt: '2026-07-31'
-updatedAt: '2026-04-27'
+updatedAt: '2026-10-12'
 githubUrl: 'https://github.com/SimoneAvogadro/android-reverse-engineering-skill'
 officialUrl: ''
 downloadUrl: 'https://github.com/SimoneAvogadro/android-reverse-engineering-skill/archive/refs/heads/master.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 6599
+stars: 8646
 ---
 # Description
 

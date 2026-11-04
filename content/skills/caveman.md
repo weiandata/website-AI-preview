@@ -17,10 +17,10 @@ platforms:
   - Windsurf
   - Cline
 author: JuliusBrussee
-version: 1.9.1
-license: MIT
+version: 4.0.1
+license: Apache-2.0
 addedAt: '2026-07-19'
-updatedAt: '2026-07-03'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/JuliusBrussee/caveman'
 officialUrl: 'https://caveman.so/'
 downloadUrl: 'https://github.com/JuliusBrussee/caveman/archive/refs/heads/main.zip'
@@ -28,7 +28,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 90627
+stars: 117388
 ---
 # Description
 
@@ -120,7 +120,7 @@ It takes effect as soon as it is installed; the agent's prose shortens on its ow
 
 # Changelog
 
-## 1.9.1 | 2026-07-03
+## 4.0.1 | 2026-10-13
 
 ### zh
 

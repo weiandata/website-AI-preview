@@ -17,7 +17,7 @@ author: Kenneth Khoo
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-22'
+updatedAt: '2026-09-04'
 githubUrl: 'https://github.com/kennethkhoocy/applied-micro-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/kennethkhoocy/applied-micro-skills/archive/refs/heads/main.zip'
@@ -25,7 +25,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: analysis
-stars: 54
+stars: 20
 ---
 # Description
 
@@ -117,7 +117,7 @@ After installation, provide the research question, data structure, treatment def
 
 # Changelog
 
-## TODO | 2026-07-22
+## TODO | 2026-09-04
 
 ### zh
 

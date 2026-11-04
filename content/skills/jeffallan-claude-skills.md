@@ -8,10 +8,10 @@ category: development
 tags: [Full Stack, Architecture, DevOps]
 platforms: [Claude Code]
 author: Jeff Allan
-version: 0.4.15
+version: 0.4.20
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-05-20'
+updatedAt: '2026-10-30'
 githubUrl: 'https://github.com/Jeffallan/claude-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/Jeffallan/claude-skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 10820
+stars: 12212
 ---
 # Description
 
@@ -97,15 +97,15 @@ Choose a skill matching the stack and provide versions, code structure, and acce
 
 # Changelog
 
-## 0.4.15 | 2026-05-20
+## 0.4.20 | 2026-10-16
 
 ### zh
 
-对应仓库发布的 0.4.15 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 0.4.15 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

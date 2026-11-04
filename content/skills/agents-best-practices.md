@@ -17,7 +17,7 @@ author: DenisSergeevitch
 version: TODO
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-06-29'
+updatedAt: '2026-10-19'
 githubUrl: 'https://github.com/DenisSergeevitch/agents-best-practices'
 officialUrl: ''
 downloadUrl: >-
@@ -26,7 +26,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 2132
+stars: 2411
 ---
 # Description
 
@@ -118,7 +118,7 @@ Once installed, tell the agent what you need: describe the scenario and constrai
 
 # Changelog
 
-## TODO | 2026-06-29
+## TODO | 2026-10-19
 
 ### zh
 

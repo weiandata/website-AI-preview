@@ -8,10 +8,10 @@ category: productivity
 tags: [Product Management, Discovery, Strategy]
 platforms: [Claude Code, Codex, Cowork]
 author: deanpeters
-version: v0.83
+version: '0.84'
 license: NOASSERTION
 addedAt: '2026-07-31'
-updatedAt: '2026-07-17'
+updatedAt: '2026-10-16'
 githubUrl: 'https://github.com/deanpeters/Product-Manager-Skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/deanpeters/Product-Manager-Skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: productivity
-stars: 6146
+stars: 7870
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start in a non-production environment with task-matched skills and bounded input
 
 # Changelog
 
-## v0.83 | 2026-07-17
+## 0.84 | 2026-08-10
 
 ### zh
 
-对应仓库发布的 v0.83 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's v0.83 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

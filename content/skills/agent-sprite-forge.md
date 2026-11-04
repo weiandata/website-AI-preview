@@ -8,10 +8,10 @@ category: image-design
 tags: [Sprite Sheets, Game Assets, Animation]
 platforms: [Claude Code, Codex]
 author: 0x0funky
-version: TODO
+version: 0.4.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-12'
+updatedAt: '2026-10-06'
 githubUrl: 'https://github.com/0x0funky/agent-sprite-forge'
 officialUrl: ''
 downloadUrl: 'https://github.com/0x0funky/agent-sprite-forge/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: image
-stars: 3567
+stars: 4967
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## TODO | 2026-07-12
+## 0.4.0 | 2026-10-06
 
 ### zh
 
-仓库没有版本化 Release；此处记录最近更新时间。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-The repository has no versioned release; this records its latest update.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

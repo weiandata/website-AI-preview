@@ -20,7 +20,7 @@ author: Bhanu Nami Kaze
 version: 3.0.1
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-23'
+updatedAt: '2026-10-14'
 githubUrl: 'https://github.com/Bhanunamikaze/Agentic-SEO-Skill'
 officialUrl: ''
 downloadUrl: 'https://github.com/Bhanunamikaze/Agentic-SEO-Skill/archive/refs/heads/main.zip'
@@ -28,7 +28,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: writing
-stars: 807
+stars: 1021
 ---
 # Description
 
