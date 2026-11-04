@@ -13,7 +13,7 @@ license: MIT
 addedAt: '2026-07-31'
 updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/alirezarezvani/claude-skills'
-officialUrl: 'https://alirezarezvani.medium.com/'
+officialUrl: 'https://alirezarezvani.com'
 downloadUrl: 'https://github.com/alirezarezvani/claude-skills/archive/refs/heads/main.zip'
 featured: false
 featuredRank: 0
