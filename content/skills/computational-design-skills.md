@@ -24,7 +24,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: image
-stars: 196
+stars: 225
 ---
 # Description
 

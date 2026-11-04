@@ -8,10 +8,10 @@ category: development
 tags: [Supabase, Postgres, Backend]
 platforms: [Claude Code, Codex]
 author: supabase
-version: 0.1.7
+version: 0.1.9
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-30'
+updatedAt: '2026-10-02'
 githubUrl: 'https://github.com/supabase/agent-skills'
 officialUrl: 'https://supabase.com/docs/guides/getting-started/ai-skills'
 downloadUrl: 'https://github.com/supabase/agent-skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 2457
+stars: 2999
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## 0.1.7 | 2026-07-30
+## 0.1.9 | 2026-09-28
 
 ### zh
 
-对应仓库发布的 0.1.7 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 0.1.7 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

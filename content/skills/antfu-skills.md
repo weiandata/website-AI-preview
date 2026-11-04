@@ -16,7 +16,7 @@ author: Anthony Fu
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-06-23'
+updatedAt: '2026-10-30'
 githubUrl: 'https://github.com/antfu/skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/antfu/skills/archive/refs/heads/main.zip'
@@ -24,7 +24,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 5690
+stars: 6037
 ---
 # Description
 
@@ -112,7 +112,7 @@ After installation, state the project's framework, build tool, package manager, 
 
 # Changelog
 
-## TODO | 2026-06-23
+## TODO | 2026-10-30
 
 ### zh
 

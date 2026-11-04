@@ -11,7 +11,7 @@ author: zanwei
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-04-13'
+updatedAt: '2026-08-28'
 githubUrl: 'https://github.com/zanwei/design-dna'
 officialUrl: ''
 downloadUrl: 'https://github.com/zanwei/design-dna/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: image
-stars: 1209
+stars: 2078
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with task-matched skills and bounded input
 
 # Changelog
 
-## TODO | 2026-04-13
+## TODO | 2026-08-28
 
 ### zh
 

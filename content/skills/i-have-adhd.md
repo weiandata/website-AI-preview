@@ -8,10 +8,10 @@ category: productivity
 tags: [ADHD, Communication, Concise Output]
 platforms: [Agent Skills]
 author: ayghri
-version: TODO
+version: 0.4.1
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-10-19'
 githubUrl: 'https://github.com/ayghri/i-have-adhd'
 officialUrl: ''
 downloadUrl: 'https://github.com/ayghri/i-have-adhd/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: productivity
-stars: 14573
+stars: 60026
 ---
 # Description
 
@@ -97,15 +97,15 @@ After installation, state the desired detail level and required information. For
 
 # Changelog
 
-## TODO | 2026-07-31
+## 0.4.1 | 2026-10-19
 
 ### zh
 
-仓库没有版本化 Release；此处记录最近更新时间。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-The repository has no versioned release; this records its latest update.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

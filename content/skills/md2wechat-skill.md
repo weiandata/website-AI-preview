@@ -8,10 +8,10 @@ category: content-creation
 tags: [WeChat, Markdown, Publishing]
 platforms: [Claude Code, Codex]
 author: geekjourneyx
-version: 3.2.0
+version: 3.8.0
 license: NOASSERTION
 addedAt: '2026-07-31'
-updatedAt: '2026-07-24'
+updatedAt: '2026-10-14'
 githubUrl: 'https://github.com/geekjourneyx/md2wechat-skill'
 officialUrl: 'https://md2wechat.cn'
 downloadUrl: 'https://github.com/geekjourneyx/md2wechat-skill/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: writing
-stars: 3385
+stars: 3780
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## 3.2.0 | 2026-07-24
+## 3.8.0 | 2026-09-24
 
 ### zh
 
-对应仓库发布的 3.2.0 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 3.2.0 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

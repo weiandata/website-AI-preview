@@ -11,7 +11,7 @@ author: David Ondrej
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/davidondrej/skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/davidondrej/skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 2725
+stars: 4256
 ---
 # Description
 
@@ -97,7 +97,7 @@ Parallelize only clearly bounded tasks and define each agent's file scope. Check
 
 # Changelog
 
-## TODO | 2026-07-31
+## TODO | 2026-11-03
 
 ### zh
 

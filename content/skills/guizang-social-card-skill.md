@@ -16,7 +16,7 @@ author: op7418
 version: TODO
 license: AGPL-3.0
 addedAt: '2026-07-19'
-updatedAt: '2026-07-01'
+updatedAt: '2026-10-30'
 githubUrl: 'https://github.com/op7418/guizang-social-card-skill'
 officialUrl: ''
 downloadUrl: >-
@@ -25,7 +25,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: image
-stars: 5191
+stars: 7965
 ---
 # Description
 
@@ -117,7 +117,7 @@ Once installed, hand over the material and say which output and which visual sys
 
 # Changelog
 
-## TODO | 2026-07-01
+## TODO | 2026-10-30
 
 ### zh
 

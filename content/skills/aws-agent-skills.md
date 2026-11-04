@@ -11,7 +11,7 @@ author: itsmostafa
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-27'
+updatedAt: '2026-11-02'
 githubUrl: 'https://github.com/itsmostafa/aws-agent-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/itsmostafa/aws-agent-skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 1139
+stars: 1172
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with task-matched skills and bounded input
 
 # Changelog
 
-## TODO | 2026-07-27
+## TODO | 2026-11-02
 
 ### zh
 

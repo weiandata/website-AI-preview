@@ -8,10 +8,10 @@ category: development
 tags: [Claude Code, Marketplace, Engineering]
 platforms: [Claude Code]
 author: daymade
-version: v1.64.0
+version: 3.24.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-06-13'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/daymade/claude-code-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/daymade/claude-code-skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 1305
+stars: 1515
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start in a non-production environment with task-matched skills and bounded input
 
 # Changelog
 
-## v1.64.0 | 2026-06-13
+## 3.24.0 | 2026-10-18
 
 ### zh
 
-对应仓库发布的 v1.64.0 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's v1.64.0 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

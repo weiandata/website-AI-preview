@@ -11,7 +11,7 @@ author: tradermonty
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/tradermonty/claude-trading-skills'
 officialUrl: 'https://tradermonty.github.io/claude-trading-skills/'
 downloadUrl: 'https://github.com/tradermonty/claude-trading-skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: analysis
-stars: 2539
+stars: 3598
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## TODO | 2026-07-31
+## TODO | 2026-11-04
 
 ### zh
 

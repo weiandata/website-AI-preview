@@ -15,10 +15,10 @@ platforms:
   - Codex CLI
   - opencode
 author: tt-a1i
-version: 2.11.0
-license: MIT
+version: 3.2.0
+license: Apache-2.0
 addedAt: '2026-07-19'
-updatedAt: '2026-07-16'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/tt-a1i/archify'
 officialUrl: 'https://tt-a1i.github.io/archify/'
 downloadUrl: 'https://github.com/tt-a1i/archify/archive/refs/heads/main.zip'
@@ -26,7 +26,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 5881
+stars: 93323
 ---
 # Description
 
@@ -120,7 +120,7 @@ Once installed, ask your agent to use it, for example "use archify to map this r
 
 # Changelog
 
-## 2.11.0 | 2026-07-16
+## 3.2.0 | 2026-10-19
 
 ### zh
 

@@ -11,7 +11,7 @@ author: MengTo
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-28'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/MengTo/Skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/MengTo/Skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: image
-stars: 3978
+stars: 7228
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## TODO | 2026-07-28
+## TODO | 2026-11-03
 
 ### zh
 

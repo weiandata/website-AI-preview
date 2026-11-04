@@ -8,10 +8,10 @@ category: development
 tags: [Engineering Practices, Code Review, Workflow]
 platforms: [Claude Code, Codex]
 author: tw93
-version: 3.32.0
+version: 3.41.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-19'
+updatedAt: '2026-11-02'
 githubUrl: 'https://github.com/tw93/Waza'
 officialUrl: ''
 downloadUrl: 'https://github.com/tw93/Waza/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 6716
+stars: 7507
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## 3.32.0 | 2026-07-19
+## 3.41.0 | 2026-10-30
 
 ### zh
 
-对应仓库发布的 3.32.0 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 3.32.0 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

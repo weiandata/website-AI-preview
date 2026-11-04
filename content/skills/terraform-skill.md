@@ -8,10 +8,10 @@ category: development
 tags: [Terraform, OpenTofu, Infrastructure]
 platforms: [Claude Code, Codex]
 author: antonbabenko
-version: v1.17.1
+version: 1.17.2
 license: NOASSERTION
 addedAt: '2026-07-31'
-updatedAt: '2026-06-03'
+updatedAt: '2026-10-24'
 githubUrl: 'https://github.com/antonbabenko/terraform-skill'
 officialUrl: ''
 downloadUrl: 'https://github.com/antonbabenko/terraform-skill/archive/refs/heads/master.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 2229
+stars: 2439
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start in a non-production environment with task-matched skills and bounded input
 
 # Changelog
 
-## v1.17.1 | 2026-06-03
+## 1.17.2 | 2026-10-24
 
 ### zh
 
-对应仓库发布的 v1.17.1 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's v1.17.1 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

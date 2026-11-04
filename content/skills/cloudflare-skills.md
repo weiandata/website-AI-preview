@@ -11,7 +11,7 @@ author: cloudflare
 version: TODO
 license: Apache-2.0
 addedAt: '2026-07-31'
-updatedAt: '2026-07-24'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/cloudflare/skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/cloudflare/skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 2518
+stars: 3278
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## TODO | 2026-07-24
+## TODO | 2026-11-03
 
 ### zh
 

@@ -8,10 +8,10 @@ category: productivity
 tags: [Development, Marketing, Business Operations]
 platforms: [Claude Code, Codex, Gemini CLI, Cursor]
 author: Alireza Rezvani
-version: 2.9.0
+version: 2.14.8
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-17'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/alirezarezvani/claude-skills'
 officialUrl: 'https://alirezarezvani.medium.com/'
 downloadUrl: 'https://github.com/alirezarezvani/claude-skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: productivity
-stars: 23542
+stars: 29268
 ---
 # Description
 
@@ -97,15 +97,15 @@ List and select only skills directly relevant to the task and provide explicit i
 
 # Changelog
 
-## 2.9.0 | 2026-05-28
+## 2.14.8 | 2026-11-03
 
 ### zh
 
-对应仓库发布的 2.9.0 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 2.9.0 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

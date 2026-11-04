@@ -13,10 +13,10 @@ platforms:
   - Codex
   - OpenCode
 author: nexu-io
-version: 0.15.1
+version: 0.27.0
 license: Apache-2.0
 addedAt: '2026-07-19'
-updatedAt: '2026-07-19'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/nexu-io/open-design'
 officialUrl: 'https://open-design.ai'
 downloadUrl: 'https://github.com/nexu-io/open-design/archive/refs/heads/main.zip'
@@ -24,7 +24,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: image
-stars: 79602
+stars: 105859
 ---
 # Description
 
@@ -116,15 +116,15 @@ Download the installer for your platform from the website or the repository's re
 
 # Changelog
 
-## 0.15.1 | 2026-07-19
+## 0.27.0 | 2026-11-04
 
 ### zh
 
-对应仓库当前发布的版本。近期版本着重解决长时间设计会话的连续性。完整变更请查看 GitHub Releases。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the release currently published. Recent versions focus on continuity through long design sessions. See GitHub Releases for the full history.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

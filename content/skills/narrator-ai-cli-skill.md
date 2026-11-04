@@ -11,7 +11,7 @@ author: NarratorAI-Studio
 version: v1.0.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-04-02'
+updatedAt: '2026-07-05'
 githubUrl: 'https://github.com/NarratorAI-Studio/narrator-ai-cli-skill'
 officialUrl: ''
 downloadUrl: 'https://github.com/NarratorAI-Studio/narrator-ai-cli-skill/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: writing
-stars: 1565
+stars: 3126
 ---
 # Description
 

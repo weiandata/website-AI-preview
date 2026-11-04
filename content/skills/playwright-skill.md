@@ -13,10 +13,10 @@ tags:
 platforms:
   - Claude Code
 author: lackeyjb
-version: 4.1.0
+version: 5.0.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2025-12-19'
+updatedAt: '2026-11-01'
 githubUrl: 'https://github.com/lackeyjb/playwright-skill'
 officialUrl: ''
 downloadUrl: 'https://github.com/lackeyjb/playwright-skill/archive/refs/heads/main.zip'
@@ -24,7 +24,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: automation
-stars: 2968
+stars: 3264
 ---
 # Description
 
@@ -122,15 +122,15 @@ After installation and browser setup, describe the URL, steps, expected result, 
 
 # Changelog
 
-## 4.1.0 | 2025-12-02
+## 5.0.0 | 2026-08-11
 
 ### zh
 
-对应仓库发布的 4.1.0 版本；后续提交活动记录在 GitHub 仓库中。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 4.1.0 release; subsequent activity is recorded in the GitHub repository.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

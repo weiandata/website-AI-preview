@@ -11,7 +11,7 @@ author: Romain Simon
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-11'
+updatedAt: '2026-08-10'
 githubUrl: 'https://github.com/romainsimon/paperasse'
 officialUrl: 'https://agentskill.sh/skillsets/paperasse'
 downloadUrl: 'https://github.com/romainsimon/paperasse/archive/refs/heads/master.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: research
-stars: 2297
+stars: 2575
 ---
 # Description
 
@@ -97,7 +97,7 @@ Provide location, date, and specific procedure and require current official sour
 
 # Changelog
 
-## TODO | 2026-07-11
+## TODO | 2026-08-10
 
 ### zh
 

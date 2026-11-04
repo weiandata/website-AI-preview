@@ -11,7 +11,7 @@ author: brycewang-stanford
 version: v2026.07
 license: NOASSERTION
 addedAt: '2026-07-31'
-updatedAt: '2026-07-02'
+updatedAt: '2026-11-02'
 githubUrl: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills'
 officialUrl: 'https://copaper.ai'
 downloadUrl: 'https://github.com/brycewang-stanford/Auto-Empirical-Research-Skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: productivity
-stars: 3188
+stars: 4919
 ---
 # Description
 

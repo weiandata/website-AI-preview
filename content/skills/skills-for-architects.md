@@ -14,10 +14,10 @@ platforms:
   - Claude
   - Claude Code
 author: Alpaca Labs LLC
-version: 1.4.1
+version: 1.5.2
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-29'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/AlpacaLabsLLC/skills-for-architects'
 officialUrl: 'https://alpa.llc/skills'
 downloadUrl: 'https://github.com/AlpacaLabsLLC/skills-for-architects/archive/refs/heads/main.zip'
@@ -25,7 +25,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: image
-stars: 299
+stars: 401
 ---
 # Description
 
@@ -117,15 +117,15 @@ After installation, provide the project phase, location, building type, delivera
 
 # Changelog
 
-## 1.4.1 | 2026-07-29
+## 1.5.2 | 2026-10-14
 
 ### zh
 
-对应仓库发布的 1.4.1 版本，完整变更请查看 GitHub Releases。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 1.4.1 release. See GitHub Releases for the full history.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

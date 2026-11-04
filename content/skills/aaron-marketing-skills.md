@@ -19,10 +19,10 @@ platforms:
   - Antigravity
   - OpenClaw
 author: Aaron He
-version: 19.0.0
+version: 20.2.0
 license: Apache-2.0
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/aaron-he-zhu/aaron-marketing-skills'
 officialUrl: 'https://skills.sh/aaron-he-zhu/aaron-marketing-skills'
 downloadUrl: 'https://github.com/aaron-he-zhu/aaron-marketing-skills/archive/refs/heads/main.zip'
@@ -30,7 +30,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: writing
-stars: 2482
+stars: 3067
 ---
 # Description
 
@@ -118,15 +118,15 @@ After installation, select the most relevant skill and provide target customers,
 
 # Changelog
 
-## 19.0.0 | 2026-07-24
+## 20.2.0 | 2026-10-29
 
 ### zh
 
-对应仓库发布的 19.0.0 版本；后续提交活动记录在 GitHub 仓库中。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 19.0.0 release; subsequent activity is recorded in the GitHub repository.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

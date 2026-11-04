@@ -16,10 +16,10 @@ platforms:
   - Copilot
   - Codex
 author: Agents365-ai
-version: 1.34.0
+version: 3.4.2
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-17'
+updatedAt: '2026-11-01'
 githubUrl: 'https://github.com/Agents365-ai/drawio-skill'
 officialUrl: 'https://agents365-ai.github.io/drawio-skill/'
 downloadUrl: 'https://github.com/Agents365-ai/drawio-skill/archive/refs/heads/main.zip'
@@ -27,7 +27,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: analysis
-stars: 6014
+stars: 10566
 ---
 # Description
 
@@ -121,7 +121,7 @@ Once installed, say what you want drawn — "diagram this repository's module de
 
 # Changelog
 
-## 1.34.0 | 2026-07-17
+## 3.4.2 | 2026-10-11
 
 ### zh
 

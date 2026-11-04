@@ -8,10 +8,10 @@ category: development
 tags: [Spec Driven Development, Autonomous Coding, Workflow]
 platforms: [Claude Code, Codex, Cursor, Copilot]
 author: gotalab
-version: 3.0.2
+version: 3.1.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-04-13'
+updatedAt: '2026-10-22'
 githubUrl: 'https://github.com/gotalab/cc-sdd'
 officialUrl: ''
 downloadUrl: 'https://github.com/gotalab/cc-sdd/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 3596
+stars: 3751
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## 3.0.2 | 2026-04-13
+## 3.1.0 | 2026-09-23
 
 ### zh
 
-对应仓库发布的 3.0.2 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 3.0.2 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

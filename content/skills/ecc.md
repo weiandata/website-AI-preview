@@ -8,10 +8,10 @@ category: development
 tags: [Agent Skills, Context Engineering, Security]
 platforms: [Claude Code, Codex, OpenCode, Cursor]
 author: affaan-m
-version: 2.1.0
+version: 2.2.3
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-27'
+updatedAt: '2026-11-02'
 githubUrl: 'https://github.com/affaan-m/ECC'
 officialUrl: 'https://ecc.tools'
 downloadUrl: 'https://github.com/affaan-m/ECC/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 236543
+stars: 296877
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## 2.1.0 | 2026-07-27
+## 2.2.3 | 2026-10-01
 
 ### zh
 
-对应仓库发布的 2.1.0 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 2.1.0 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

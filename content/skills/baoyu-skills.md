@@ -19,7 +19,7 @@ author: Jim Liu
 version: 2.5.2
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-04'
+updatedAt: '2026-11-02'
 githubUrl: 'https://github.com/JimLiu/baoyu-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/JimLiu/baoyu-skills/archive/refs/heads/main.zip'
@@ -27,7 +27,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: writing
-stars: 24394
+stars: 27271
 ---
 # Description
 

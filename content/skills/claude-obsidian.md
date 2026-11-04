@@ -8,10 +8,10 @@ category: productivity
 tags: [Obsidian, Knowledge Graph, PKM]
 platforms: [Claude Code]
 author: Daniel Agrici
-version: 2.0.0
+version: 3.0.1
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-10-25'
 githubUrl: 'https://github.com/AgriciDaniel/claude-obsidian'
 officialUrl: 'https://agricidaniel.com/blog/claude-obsidian-ai-second-brain'
 downloadUrl: 'https://github.com/AgriciDaniel/claude-obsidian/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: productivity
-stars: 10157
+stars: 16148
 ---
 # Description
 
@@ -97,15 +97,15 @@ Provide the vault structure, property conventions, and permitted sources. Test a
 
 # Changelog
 
-## 2.0.0 | 2026-07-29
+## 3.0.1 | 2026-10-21
 
 ### zh
 
-对应仓库发布的 2.0.0 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 2.0.0 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

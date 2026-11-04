@@ -11,7 +11,7 @@ author: Orchestra Research
 version: 1.7.2
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-06-16'
+updatedAt: '2026-10-11'
 githubUrl: 'https://github.com/Orchestra-Research/AI-Research-SKILLs'
 officialUrl: 'http://orchestra-research.com'
 downloadUrl: 'https://github.com/Orchestra-Research/AI-Research-SKILLs/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: research
-stars: 11287
+stars: 14254
 ---
 # Description
 

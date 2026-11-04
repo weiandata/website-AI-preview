@@ -8,10 +8,10 @@ category: productivity
 tags: [Skill Audit, Prompt Injection, Token Cost]
 platforms: [Claude Code, Codex]
 author: khendzel
-version: 1.7.0
+version: 1.8.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-31'
+updatedAt: '2026-09-30'
 githubUrl: 'https://github.com/khendzel/skills-janitor'
 officialUrl: ''
 downloadUrl: 'https://github.com/khendzel/skills-janitor/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: productivity
-stars: 113
+stars: 125
 ---
 # Description
 
@@ -97,15 +97,15 @@ Run read-only discovery and reporting first, then inspect security findings. Del
 
 # Changelog
 
-## 1.7.0 | 2026-07-20
+## 1.8.0 | 2026-09-30
 
 ### zh
 
-对应仓库发布的 1.7.0 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 1.7.0 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

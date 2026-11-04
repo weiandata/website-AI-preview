@@ -8,10 +8,10 @@ category: productivity
 tags: [Goal Setting, Writing, Analysis]
 platforms: [Claude Code, Codex, Agent Skills]
 author: KKKKhazix
-version: TODO
+version: 1.1.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-30'
+updatedAt: '2026-11-03'
 githubUrl: 'https://github.com/KKKKhazix/khazix-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/KKKKhazix/khazix-skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: productivity
-stars: 18853
+stars: 21937
 ---
 # Description
 
@@ -97,15 +97,15 @@ Select one skill and provide explicit scope. For cleanup, request a read-only re
 
 # Changelog
 
-## TODO | 2026-07-30
+## 1.1.0 | 2026-11-03
 
 ### zh
 
-仓库没有版本化 Release；此处记录最近更新时间。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-The repository has no versioned release; this records its latest update.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

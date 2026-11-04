@@ -11,7 +11,7 @@ author: Kaelio
 version: v0.16.0
 license: Apache-2.0
 addedAt: '2026-07-31'
-updatedAt: '2026-07-03'
+updatedAt: '2026-10-22'
 githubUrl: 'https://github.com/Kaelio/ktx'
 officialUrl: 'https://docs.kaelio.com/ktx'
 downloadUrl: 'https://github.com/Kaelio/ktx/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: analysis
-stars: 1520
+stars: 1628
 ---
 # Description
 

@@ -19,7 +19,7 @@ author: JuneYaooo
 version: TODO
 license: Apache-2.0
 addedAt: '2026-07-31'
-updatedAt: '2026-07-29'
+updatedAt: '2026-08-22'
 githubUrl: 'https://github.com/JuneYaooo/gpt-image2-ppt-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/JuneYaooo/gpt-image2-ppt-skills/archive/refs/heads/main.zip'
@@ -27,7 +27,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: image
-stars: 1129
+stars: 1426
 ---
 # Description
 
@@ -119,7 +119,7 @@ After installation, configure the required image-model credentials and provide a
 
 # Changelog
 
-## TODO | 2026-07-29
+## TODO | 2026-08-22
 
 ### zh
 

@@ -18,7 +18,7 @@ author: Google
 version: TODO
 license: Apache-2.0
 addedAt: '2026-07-31'
-updatedAt: '2026-07-30'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/google/skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/google/skills/archive/refs/heads/main.zip'
@@ -26,7 +26,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 15361
+stars: 21884
 ---
 # Description
 
@@ -114,7 +114,7 @@ After installation, name the Google product, desired outcome, and available envi
 
 # Changelog
 
-## TODO | 2026-07-30
+## TODO | 2026-11-04
 
 ### zh
 

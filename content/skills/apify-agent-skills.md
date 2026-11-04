@@ -11,7 +11,7 @@ author: apify
 version: TODO
 license: Not specified
 addedAt: '2026-07-31'
-updatedAt: '2026-06-25'
+updatedAt: '2026-10-30'
 githubUrl: 'https://github.com/apify/agent-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/apify/agent-skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: automation
-stars: 2314
+stars: 2489
 ---
 # Description
 
@@ -97,7 +97,7 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## TODO | 2026-06-25
+## TODO | 2026-10-30
 
 ### zh
 

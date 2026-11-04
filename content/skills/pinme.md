@@ -13,10 +13,10 @@ tags:
 platforms:
   - Claude Code
 author: glitternetwork
-version: 2.0.4
+version: 2.0.12
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-07-12'
+updatedAt: '2026-09-12'
 githubUrl: 'https://github.com/glitternetwork/pinme'
 officialUrl: 'https://pinme.eth.limo/'
 downloadUrl: 'https://github.com/glitternetwork/pinme/archive/refs/heads/main.zip'
@@ -24,7 +24,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 3712
+stars: 3753
 ---
 # Description
 
@@ -116,7 +116,7 @@ With the skill installed, ask your agent to deploy the current project and it wi
 
 # Changelog
 
-## 2.0.4 | 2026-07-12
+## 2.0.12 | 2026-07-25
 
 ### zh
 

@@ -8,10 +8,10 @@ category: development
 tags: [Google Antigravity, Agent Skills, Engineering]
 platforms: [Google Antigravity, Claude Code, Codex]
 author: rmyndharis
-version: 1.2.0
+version: 1.3.1
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-06-20'
+updatedAt: '2026-10-14'
 githubUrl: 'https://github.com/rmyndharis/antigravity-skills'
 officialUrl: 'https://github.com/rmyndharis/antigravity-skills'
 downloadUrl: 'https://github.com/rmyndharis/antigravity-skills/archive/refs/heads/main.zip'
@@ -19,7 +19,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: code
-stars: 1222
+stars: 1934
 ---
 # Description
 
@@ -97,15 +97,15 @@ Start in a non-production environment with the task-specific skill and explicit 
 
 # Changelog
 
-## 1.2.0 | 2026-06-20
+## 1.3.1 | 2026-10-14
 
 ### zh
 
-对应仓库发布的 1.2.0 版本。
+对应仓库当前发布的版本。完整变更请查看 GitHub Releases。
 
 ### en
 
-Matches the repository's 1.2.0 release.
+Matches the release currently published in the repository. See GitHub Releases for the full history.
 
 # FAQ
 

@@ -13,10 +13,10 @@ platforms:
   - Claude Code
   - Codex
 author: himself65
-version: 9.0.0
+version: 11.2.1
 license: MIT
 addedAt: '2026-07-19'
-updatedAt: '2026-06-14'
+updatedAt: '2026-11-04'
 githubUrl: 'https://github.com/himself65/finance-skills'
 officialUrl: 'https://skills.himself65.com'
 downloadUrl: 'https://github.com/himself65/finance-skills/archive/refs/heads/main.zip'
@@ -24,7 +24,7 @@ featured: true
 featuredRank: 3
 verified: true
 icon: analysis
-stars: 3030
+stars: 3501
 ---
 # Description
 
@@ -116,7 +116,7 @@ Once installed, describe what you want analysed and from what angle; the relevan
 
 # Changelog
 
-## 9.0.0 | 2026-06-14
+## 11.2.1 | 2026-10-25
 
 ### zh
 

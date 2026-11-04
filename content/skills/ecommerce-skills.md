@@ -20,7 +20,7 @@ author: Nexscope AI
 version: TODO
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-23'
+updatedAt: '2026-08-26'
 githubUrl: 'https://github.com/nexscope-ai/eCommerce-Skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/nexscope-ai/eCommerce-Skills/archive/refs/heads/main.zip'
@@ -28,7 +28,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: automation
-stars: 544
+stars: 1326
 ---
 # Description
 
@@ -116,7 +116,7 @@ After installation, provide the store platform, product facts, brand rules, targ
 
 # Changelog
 
-## TODO | 2026-07-23
+## TODO | 2026-08-26
 
 ### zh
 

@@ -19,7 +19,7 @@ author: Dong Shuyan
 version: 0.3.0
 license: MIT
 addedAt: '2026-07-31'
-updatedAt: '2026-07-11'
+updatedAt: '2026-10-30'
 githubUrl: 'https://github.com/dongshuyan/compass-skills'
 officialUrl: ''
 downloadUrl: 'https://github.com/dongshuyan/compass-skills/archive/refs/heads/master.zip'
@@ -27,7 +27,7 @@ featured: false
 featuredRank: 0
 verified: true
 icon: productivity
-stars: 672
+stars: 762
 ---
 # Description
 
